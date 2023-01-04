@@ -1,0 +1,159 @@
+﻿<Window x:Class="TestRunner.Designer.DuplicateFinder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestRunner.Designer"
+        mc:Ignorable="d"
+        Title="Duplicate Finder" WindowStartupLocation="CenterOwner" MinHeight="300" MinWidth="650" Height="600" Width="650">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="140*"/>
+            <RowDefinition Height="5" />
+            <RowDefinition  Height="200*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Test Path/s" Grid.Row="0" Margin="5,10,5,0">
+            <TextBox x:Name="tbxFolderPath" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" TextWrapping="Wrap" Margin="5">
+                <TextBox.Style>
+                    <Style>
+                        <Setter Property="Panel.Background" Value="{DynamicResource ResourceKey={x:Static SystemColors.ControlBrushKey}}" />
+                        <Setter Property="TextElement.Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.GrayTextBrushKey}}" />
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </GroupBox>
+        <GroupBox Header="Excluded Steps" Grid.Row="1" Margin="5,5,5,0">
+            <DockPanel Margin="5">
+                <TextBlock FontStyle="Italic" FontSize="9" Foreground="Gray" DockPanel.Dock="Bottom"><Run Text="* Right-click Add/Delete/Clear excluded steps"/></TextBlock>
+                <DockPanel>
+                    <ToolBar  VerticalAlignment="Stretch" Loaded="ToolBar_Loaded" BorderBrush="Silver" BorderThickness="1" ToolBarTray.IsLocked="True" DockPanel.Dock="Top" Margin="-3,0,0,0">
+                        <Button Style="{StaticResource TestEditorToolBarButtonStyle}" x:Name="btnAddExcludedStep" ToolTip="Add" Click="btnAddExcludedStep_Click" Height="26" Margin="1">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="pack://siteoforigin:,,,/Resources/add.png" Height="10" Width="10"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="9" TextWrapping="Wrap" FontWeight="SemiBold"><Run Text="Add"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource TestEditorToolBarButtonStyle}" x:Name="btnTestStepInsert" ToolTip="Delete" Click="btnDeleteExcludedStep_Click" Height="26" Margin="1">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="pack://siteoforigin:,,,/Resources/delete.ico" Height="10" Width="10"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="9" TextWrapping="Wrap" FontWeight="SemiBold"><Run Text="Delete"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource TestEditorToolBarButtonStyle}" x:Name="btnTestStepCopy" ToolTip="Clear" Click="btnClearExcludedSteps_Click" Height="26" Margin="1">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="pack://siteoforigin:,,,/Resources/clearbroom.png" Height="10" Width="10"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="9" TextWrapping="Wrap" FontWeight="SemiBold"><Run Text="Clear"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </ToolBar>
+                    <DataGrid x:Name="dgExcludedSteps" VerticalAlignment="Stretch" DockPanel.Dock="Top"
+                              Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                              RowStyle="{StaticResource DataGridRowStyle1}" CellStyle="{StaticResource DataGridCellStyle5}" 
+                              ItemsSource="{Binding}" CanUserAddRows="True" CanUserDeleteRows="True" SelectionMode="Extended">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Screen" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox x:Name="cbxScreenExclude" IsEditable="True" Text="{Binding mScreen, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Screens, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbxScreenExclude_SelectionChanged" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Control" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <ComboBox x:Name="cbxControlExclude" IsEditable="True" Text="{Binding mControl, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Controls, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbxControlExclude_SelectionChanged"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Keyword" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <ComboBox x:Name="cbxKeywordExclude" IsEditable="True" Text="{Binding mKeyword, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Keywords, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Header="Include Parameters?" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Width="120" Binding="{Binding includeParameter, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Binding="{Binding Parameters, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Parameters" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" Width="*" />
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Add" Click="addExcludedStep_Click"/>
+                                <MenuItem Header="Delete" Click="deleteExcludedStep_Click"/>
+                                <MenuItem Header="Clear" Click="clearExcludedSteps_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </DockPanel>
+            </DockPanel>
+        </GroupBox>
+        <GridSplitter Grid.Row="2" Height="3" ShowsPreview="True" BorderBrush="Transparent" HorizontalAlignment="Stretch" 
+                                          BorderThickness="0,1,0,1" Background="Transparent"/>
+        <GroupBox Grid.Row="3" Margin="5,0,5,0" Header="Duplicates">
+            <DockPanel Margin="5">
+                <ToolBar VerticalAlignment="Stretch" Loaded="ToolBar_Loaded" BorderBrush="Silver" BorderThickness="1" ToolBarTray.IsLocked="True" DockPanel.Dock="Top" Margin="-3,0,0,0">
+                    <StackPanel>
+                        <Button x:Name="btnFindTest" Margin="5,0,0,0" BorderBrush="WhiteSmoke" Width="75" Height="20" Click="btnFindDuplicates_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="pack://siteoforigin:,,,/Resources/search.png" Width="14" Height="14"/>
+                                <TextBlock Width="2"></TextBlock>
+                                <TextBlock FontSize="11">Find</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center">
+                        <CheckBox Grid.Column="4" x:Name="chkIncludeDupParameters" Checked="chkIncludeDupParameters_Checked" Unchecked="chkIncludeDupParameters_Unchecked"  Content="Include Parameters?" 
+                                  VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="10" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </ToolBar>
+                <DataGrid x:Name="dgDuplicates"  DockPanel.Dock="Bottom"
+                          Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                          RowStyle="{StaticResource DataGridRowStyle1}" CellStyle="{StaticResource DataGridCellStyle5}"
+                          ItemsSource="{Binding}" CanUserSortColumns="True" IsReadOnly="True" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridHyperlinkColumn Binding="{Binding TestToFind.TestName}" SortMemberPath="TestToFind.TestName" CanUserSort="True" CanUserReorder="False" CanUserResize="True"  Header="Test Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}"  Width="*">
+                            <DataGridHyperlinkColumn.ElementStyle>
+                                <Style>
+                                    <EventSetter Event="Hyperlink.Click" Handler="FileToFind_Click"/>
+                                </Style>
+                            </DataGridHyperlinkColumn.ElementStyle>
+                        </DataGridHyperlinkColumn>
+                        <DataGridHyperlinkColumn x:Name="ToFindLink" Binding="{Binding GoToText}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Link" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}"  Width="100" >
+                            <DataGridHyperlinkColumn.ElementStyle>
+                                <Style>
+                                    <EventSetter Event="Hyperlink.Click" Handler="FolderToFind_Click"/>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridHyperlinkColumn.ElementStyle>
+                        </DataGridHyperlinkColumn>
+                        <DataGridHyperlinkColumn x:Name="ToCompareLink" Binding="{Binding TestDuplicate.TestName}" SortMemberPath="TestDuplicate.TestName" CanUserSort="True" CanUserReorder="False" CanUserResize="True"  Header="Test Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}"  Width="*">
+                            <DataGridHyperlinkColumn.ElementStyle>
+                                <Style>
+                                    <EventSetter Event="Hyperlink.Click" Handler="FileToCompare_Click"/>
+                                </Style>
+                            </DataGridHyperlinkColumn.ElementStyle>
+                        </DataGridHyperlinkColumn>
+                        <DataGridHyperlinkColumn Binding="{Binding TestDuplicate.GoToText}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Link" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}"  Width="100">
+                            <DataGridHyperlinkColumn.ElementStyle>
+                                <Style>
+                                    <EventSetter Event="Hyperlink.Click" Handler="FolderToCompare_Click"/>
+                                    <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridHyperlinkColumn.ElementStyle>
+                        </DataGridHyperlinkColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+        <Button Grid.Row="4" x:Name="btnClose" Width="75" Style="{StaticResource ButtonStyle4}" Click="btnClose_Click" HorizontalAlignment="Right" Margin="0,0,25,0">Close</Button>
+
+    </Grid>
+
+</Window>

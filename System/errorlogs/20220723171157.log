@@ -1,0 +1,19 @@
+2022-07-23 05:11:57 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:11:57 pm| System
+2022-07-23 05:11:57 pm| The system cannot find the file specified
+2022-07-23 05:11:57 pm|    at System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at TestRunner.MainWindow.ShowHelpFile(Object sender, RoutedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 3701
+2022-07-23 05:12:25 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:12:25 pm| TestRunner
+2022-07-23 05:12:25 pm| Object reference not set to an instance of an object.
+2022-07-23 05:12:25 pm|    at TestRunner.MainWindow.tvKeywordDirectory_SelectedItemChanged(Object sender, RoutedPropertyChangedEventArgs`1 e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 4363
+2022-07-23 05:13:09 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:13:09 pm| mscorlib
+2022-07-23 05:13:09 pm| Value cannot be null.
+Parameter name: path1
+2022-07-23 05:13:09 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682

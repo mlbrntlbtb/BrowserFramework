@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{57B61CB7-EADD-4023-B170-39E9B7EE38FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HRSmartLib</RootNamespace>
+    <AssemblyName>HRSmartLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Tools\Selenium\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\..\..\Tools\Selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\..\..\Tools\Selenium\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DlkCommon\DlkCommonFunction.cs" />
+    <Compile Include="DlkCommon\DlkEnum.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkAutoSearchDropDown.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkButton.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkButtonGroup.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkCalendar.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkCheckBox.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkCheckBoxGroup.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkComboBox.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkContainerGroup.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkDataTree.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkDrawer.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkDropDownMenu.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkDualList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkDynamicForm.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkEmployeeList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkFieldDualList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkIconPicker.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkImage.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkLabel.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkLink.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkMessageList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkMessageModal.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkMultiSelect.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkNineBox.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkPagination.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkProgressBar.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkRadioButton.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkRichTextBox.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkRowList.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkSlider.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkTab.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkTable.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkTextBox.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkTreeView.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkWidget.cs" />
+    <Compile Include="LatestVersion\DlkControls\DlkWizard.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkAdministration.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkBrowser.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkCoreMenu.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkDialog.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkDynamicForm.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkLogin.cs" />
+    <Compile Include="LatestVersion\DlkFunctions\DlkTable.cs" />
+    <Compile Include="LatestVersion\DlkSystem\DlkHRSmartFunctionHandler.cs" />
+    <Compile Include="LatestVersion\DlkSystem\DlkHRSmartKeywordHandler.cs" />
+    <Compile Include="DlkControls\DlkControlExt.cs" />
+    <Compile Include="DlkSystem\DlkHRSmartTestExecute.cs" />
+    <Compile Include="DlkSystem\IFunctionHandler.cs" />
+    <Compile Include="DlkSystem\IKeywordHandler.cs" />
+    <Compile Include="DlkUtility\DlkHRSmartControlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GenerateStandardScript.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{1000485d-4034-419d-95f9-a07566912482}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,46 @@
+﻿<Window x:Class="TestRunner.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tr="clr-namespace:TestRunner"
+        Title="Deltek Test Runner" Height="334.212" Width="505.47" Loaded="Window_Loaded" ResizeMode="NoResize" Background="{x:Null}" ShowInTaskbar="True" Icon="TestRunner.ico"  WindowStartupLocation="CenterScreen" Foreground="{x:Null}" AllowsTransparency="True" WindowStyle="None" BorderBrush="Silver" BorderThickness="1">
+    <Window.Resources>
+        <tr:DlkProgressConverter x:Key="Progress"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="Fill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="186*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="177*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="txtTitle" Text="Deltek Test Runner" Grid.Column="1" Grid.Row="1" FontSize="40" Foreground="SteelBlue" VerticalAlignment="Center" FontFamily="Calibri">
+            <!--<TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="3" Color="#FFAEACAC"/>
+            </TextBlock.Effect>-->
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" >
+            <TextBlock x:Name="txtVersion" Text="Version" FontSize="14" Foreground="SteelBlue" Padding="4,0" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtVersionNo" FontSize="14" Foreground="SteelBlue" VerticalAlignment="Top"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" >
+            <TextBlock x:Name="txtPercent" Text="{Binding Path=FileLoadProgress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Progress}}" FontSize="10" Foreground="SkyBlue" Padding="4,0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="txtPercentSign" Text="%" Margin="-3,0" FontSize="10" Foreground="SkyBlue" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" >
+            <TextBlock x:Name="txtLoading" Text="Loading" FontSize="10" Foreground="Silver" Padding="4,0" VerticalAlignment="Center" FontStyle="Italic"/>
+            <TextBlock x:Name="txtDescription" Text="{Binding Path=CurrentItemProcessing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="-3,0,0,0" FontSize="10" Foreground="Silver" VerticalAlignment="Center" FontStyle="Italic"/>
+            <TextBlock x:Name="txtDescriptionTrailer" Text=" object store file..." FontSize="10" Foreground="Silver" VerticalAlignment="Center" FontStyle="Italic"/>
+        </StackPanel>
+    </Grid>
+</Window>

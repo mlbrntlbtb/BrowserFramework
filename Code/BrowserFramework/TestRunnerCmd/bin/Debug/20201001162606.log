@@ -1,0 +1,6 @@
+2020-10-01 04:26:06 PM| Test Scheduler encountered an unexpected error.
+2020-10-01 04:26:06 PM| CommonLib
+2020-10-01 04:26:06 PM| Object reference not set to an instance of an object.
+2020-10-01 04:26:06 PM|    at CommonLib.DlkHandlers.DlkSchedulerFileHandler.GetListScheduledSuite(DayOfWeek runDay)
+   at CommonLib.DlkUtility.DlkTestRunnerCmdLib.RunLegacySchedulerFile(String[] args)
+   at TestRunnerCmd.Program.Main(String[] args) in C:\TFS\BrowserFramework\Code\BrowserFramework\TestRunnerCmd\Program.cs:line 42

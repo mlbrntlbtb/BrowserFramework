@@ -1,0 +1,241 @@
+﻿<Window x:Class="TestRunner.AdvancedScheduler.ScheduleLogDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestRunner.AdvancedScheduler"
+        mc:Ignorable="d"
+        Title="View Status Logs" Height="520" Width="1280" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" ShowInTaskbar="True" Loaded="Window_Loaded">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid x:Name="gridMain" HorizontalAlignment="Stretch">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" Margin="10,10,1047.333,0" Grid.RowSpan="2" Height="Auto" VerticalAlignment="Top" Background="Transparent">
+            <TabItem Visibility="Hidden">
+                <DockPanel Height="Auto" Background="Transparent">
+                    <Label x:Name="lblFilter" Content="Display logs:" BorderThickness="0" HorizontalAlignment="Left" DockPanel.Dock="Left"/>
+                    <ComboBox x:Name="cmbFilter" Width="120" VerticalAlignment="Top" Margin="0,3" HorizontalAlignment="Left" DockPanel.Dock="Left"
+                               SelectionChanged="cmbFilter_SelectionChanged"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+        <DockPanel x:Name="CenterStack" Margin="10,5,10,10" Grid.Column="2" Grid.Row="1" VerticalAlignment="Stretch">
+            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Left" DockPanel.Dock="Top">
+                <TabControl Name="tabLogs" Margin="0,0,0.333,5" Width="Auto" Height="Auto">
+                    <TabItem Header="Logs" Visibility="Collapsed">
+                        <Grid VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="23" />
+                            </Grid.RowDefinitions>
+                            <DataGrid HorizontalAlignment="Left" Grid.Row="0" x:Name="LogsQueue" ItemsSource="{Binding ScheduleLogsRecord}" RowHeaderWidth="0"
+            	                Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+            	                SelectionMode="Single" IsReadOnly="True" SelectionUnit="FullRow"
+            	                CanUserAddRows="False" CanUserDeleteRows="False" RowStyle="{StaticResource DataGridRowStyle0}" 
+                                DockPanel.Dock="Top" VirtualizingStackPanel.IsVirtualizing="True" VerticalAlignment="Stretch" CanUserResizeColumns="True">
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Passed" >
+                                                <Setter Property="Background" Value="LightGreen" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Failed" >
+                                                <Setter Property="Background" Value="Salmon" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Error" >
+                                                <Setter Property="Background" Value="Salmon" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Warning" >
+                                                <Setter Property="Background" Value="Salmon" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Pending" >
+                                                <Setter Property="Background" Value="LemonChiffon" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Cancelled" >
+                                                <Setter Property="Background" Value="LightGray" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mTestStatus}" Value="Disconnected" >
+                                                <Setter Property="Background" Value="LightGray" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding mDateTime}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Timestamp" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="180" MinWidth="160">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mDateTime}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mProduct}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Product" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="150" MinWidth="130">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mProduct}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mTestName}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Suite" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="245" MinWidth="200">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mTestName}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mAgentName}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Agent" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="120" MinWidth="70">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mAgentName}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mTestEnvironment}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Environment" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="170" MinWidth="85">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mTestEnvironment}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mTestStatus}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Status" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="120" MinWidth="80">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mTestStatus}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mMessage}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Details" HeaderStyle="{StaticResource DataGridColumnHeaderStyle7}" IsReadOnly="True" Width="*" MinWidth="120">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="ToolTipService.ToolTip" Value="{Binding mMessage}" />
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Grid Margin="0,0,1,0" RenderTransformOrigin="0.585,0.208" Grid.Row="1" VerticalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,0,0,0">
+                                    <Rectangle Fill="LightGreen" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Passed</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Passed, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="Salmon" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Failed</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic" >
+                                            (
+                                            <TextBlock Text="{Binding Path=Failed, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="Salmon" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Error</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Error, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="Salmon" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Warning</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Warning, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="LemonChiffon" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Pending</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Pending, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="LightGray" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Cancelled</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Cancelled, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <Rectangle Fill="LightGray" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                    <TextBlock Width="3"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10">Disconnected</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="10" FontStyle="Italic">
+                                            (
+                                            <TextBlock Text="{Binding Path=Disconnected, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                            )
+                                        </TextBlock>
+
+                                </StackPanel>
+                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="11">
+                                        Log Count:
+                                        <TextBlock Text="{Binding Path=Total, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" FontWeight="Bold" Foreground="Navy" VerticalAlignment="Center"/>
+                                        <TextBlock Width="15"/>
+                                    </TextBlock>
+                            </Grid>
+                            <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Text" Value="No logs to display"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Top"/>
+                                        <Setter Property="Margin" Value="0,17,0,0"/>
+                                        <Setter Property="FontStyle" Value="Italic"/>
+                                        <Setter Property="FontSize" Value="10"/>
+                                        <Setter Property="Foreground" Value="Navy"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=NoLogsFound, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

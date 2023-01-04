@@ -1,0 +1,15 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.csproj.SuggestedBindingRedirects.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.csproj.CoreCompileInputs.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\TRDiagnostics.exe.config
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\TRDiagnostics.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\TRDiagnostics.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\TRDiagnosticsCore.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\HTMLBuilder.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\WebDriver.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\TRDiagnosticsCore.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\HTMLBuilder.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\bin\Debug\WebDriver.xml
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.csproj.CopyComplete
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\TRDiagnostics\obj\Debug\TRDiagnostics.pdb

@@ -1,0 +1,883 @@
+﻿<Window x:Class="TestRunner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:TestRunner.Common"
+        xmlns:tr="clr-namespace:TestRunner"
+        Title="Deltek Test Runner" Height="720" Width="1283" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="TestRunner.ico" 
+        MinHeight="720" MinWidth="1280" ShowInTaskbar="True">
+    <Window.Resources>
+        <common:DlkStringToBoolean x:Key="stringtobool" />
+        <common:DlkStringHasValueToBoolean x:Key="stringhasvaluetobool" />
+        <common:DlkTruncateString x:Key="truncatestring" />
+        <tr:DlkStepNumberConverter x:Key="snc" />
+        <tr:DlkScreenConverter x:Key="scc" />
+        <tr:DlkExecuteConverter x:Key="exc" />
+        <Style x:Name="ExecuteColumnStyle" x:Key="ExecuteColumnStyle" TargetType="ComboBoxItem">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding}" Value="Set condition...">
+                    <Setter Property="FontStyle" Value="Italic"/>
+                    <Setter Property="Foreground" Value="Gray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="gridMain" HorizontalAlignment="Stretch">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="290" MinWidth="290" MaxWidth="685"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23" />
+            <RowDefinition Height="142" />
+            <RowDefinition />
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Name="mnuMain">
+            <Menu.Style>
+                <Style TargetType="Menu">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundProcessInProgress, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Menu.Style>
+            <Menu.Background>
+                <SolidColorBrush />
+            </Menu.Background>
+            <MenuItem Header="File">
+                <MenuItem Header="Close" Click="Close"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <!--<MenuItem Header="VMs" Click="ShowVMs"/>-->
+                <MenuItem Header="Settings" Click="ShowSettings"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="User Guide" Click="ShowHelpFile"/>
+                <Separator />
+                <MenuItem Header="Feedback &amp; Error Reporting" Click="ReportError"/>
+                <Separator />
+                <MenuItem Header="Launch Diagnostic Test" Click="ShowDiagnostic" />
+                <Separator />
+                <MenuItem Header="What's New?" Click="ShowNewFeatures"/>
+                <MenuItem Header="About" Click="ShowAbout"/>
+
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="5,0,0,0" x:Name="tabControlTestType" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" 
+                    Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="#FF90D2FF">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundProcessInProgress, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Style>
+            <TabItem Header="Test Explorer" x:Name="tabKeyword" Background="#FF90D2FF" Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="27"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Grid Background="#FF828790" Margin="0,0,0,0">
+                            <DockPanel DockPanel.Dock="Top" Background="#FF90D2FF" Margin="1,1,1,1">
+                                <Label x:Name="lblKwRootFolder" Content="Test Directory" Margin="6,0,0,0" Width="100" HorizontalAlignment="Left" />
+                                <Button x:Name="btnSyncDir" Style="{StaticResource ToolbarButtonStyle}" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,0,3,0" ToolTip="Sync directory" Click="btnSyncDir_Click" DockPanel.Dock="Right" Visibility="Collapsed">
+                                    <Image x:Name="imgSyncDir" Source="pack://siteoforigin:,,,/Resources/refresh.png" Height="11" Width="11"/>
+                                </Button>
+                                <Button x:Name="btnFilter" Style="{StaticResource ToolbarButtonStyle}" Width="20"  Height="20" Click="btnFilter_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Filter">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/filter.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                </Button>
+                            </DockPanel>
+                        </Grid>
+                        <TextBox x:Name="txtKwRootFolder" Margin="0,-1,0,0" IsReadOnly="True" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Height="59" TextWrapping="Wrap">
+                            <TextBox.BorderBrush>
+                                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                                    <GradientStop Color="#FF828790" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBox.BorderBrush>
+                        </TextBox>
+                    </StackPanel>
+                    <DockPanel Grid.Row="1">
+                        <Grid DockPanel.Dock="Top" Background="#FF828790" Margin="0,0,0,0">
+                            <DockPanel Background="#FF90D2FF" Margin="1,1,1,1">
+                                <ToggleButton x:Name="btnTestDirSettings" Style="{StaticResource ExpandCollapseStyle}" Width="25" Height="25" Margin="0,0,0,0" HorizontalAlignment="Left" DockPanel.Dock="Left" Click="btnTestDirSettings_Click" />
+                                <Label x:Name="lblKwTestNames" Content="Test Explorer" HorizontalAlignment="Left" Margin="-7,0,0,0" ToolTip="CTRL+Click to select multiple tests"/>
+                                <Menu x:Name="mnuSearchTypes" Background="Transparent" Height="20" Width="20" Margin="-4,0,0,0" DockPanel.Dock="Right">
+                                    <MenuItem x:Name="btnSetSearchType" Click="btnSetSearchType_Click" VerticalAlignment="Center" Margin="-1" ToolTip="Search Options">
+                                        <MenuItem.Icon>
+                                            <Image Source="pack://siteoforigin:,,,/Resources/bullet_arrow_down.png"  Height="35"/>
+                                        </MenuItem.Icon>
+                                        <MenuItem.ContextMenu>
+                                            <ContextMenu x:Name="cmnuSearchTypes"/>
+                                        </MenuItem.ContextMenu>
+                                    </MenuItem>
+                                </Menu>
+                                <GridSplitter BorderBrush="Gray" BorderThickness="0,0,0.6,0" Opacity="0.4" Margin="0" Height="15" Foreground="Black" DockPanel.Dock="Right" HorizontalAlignment="Left"/>
+                                <Button x:Name="btnSearchTest" Style="{StaticResource ToolbarButtonStyle}" Width="20"  Height="20" Margin="0,0,2,0" Click="btnSearchTest_Click"  DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Search" >
+                                    <Image Source="pack://siteoforigin:,,,/Resources/find.png" Height="11" Width="11"/>
+                                </Button>
+                                <Button x:Name="btnSyncSelected" Style="{StaticResource ToolbarButtonStyle}" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,0,3,0" ToolTip="Refresh" DockPanel.Dock="Right" Click="btnSyncSelected_Click">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/refresh.png" Height="11" Width="11"/>
+                                </Button>
+                                <Button x:Name="btnDeleteTest" Style="{StaticResource ToolbarButtonStyle}" Width="20"  Height="20" Click="btnDeleteTest_Click" Margin="0,0,2,0" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Delete" >
+                                    <Image Source="pack://siteoforigin:,,,/Resources/delete.png" Height="11" Width="11"/>
+                                </Button>
+                                <Button x:Name="btnAddFolder" Style="{StaticResource ToolbarButtonStyle}" Width="20"  Height="20" Click="btnAddFolder_Click" Margin="0,0,2,0" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Add Folder">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/add_folder.png"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                </Button>
+                            </DockPanel>
+                        </Grid>
+                        <Grid x:Name="grdSearchGrid" DockPanel.Dock="Top" Background="Gray" Visibility="Collapsed">
+                            <TextBox x:Name="txtSearch" Margin="1,0,1,0" Background="LemonChiffon" KeyUp="txtSearch_KeyUp"></TextBox>
+                        </Grid>
+                        <TreeView x:Name="tvKeywordDirectory" Margin="0,-1,0,0" Height="Auto" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectedItemChanged="tvKeywordDirectory_SelectedItemChanged" UseLayoutRounding="True" SnapsToDevicePixels="True"  
+                                  TreeViewItem.Selected="GetSelectedItem" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" AllowDrop="True" DragOver="tvKeywordDirectoryItem_DragOver" Drop="tvKeywordDirectory_Drop">
+                            <TreeView.ItemContainerStyle>
+                                <Style x:Name="TreeViewItemStyle1" TargetType="{x:Type TreeViewItem}">
+                                    <Setter Property="IsExpanded" Value="{Binding Path=IsTestTreeExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Setter Property="AllowDrop" Value="True" />
+                                    <EventSetter Event="TreeViewItem.MouseMove" Handler="tvKeywordDirectoryItem_MouseMove" />
+                                    <EventSetter Event="TreeViewItem.DragOver"  Handler="tvKeywordDirectoryItem_DragOver"/>
+                                    <EventSetter Event="TreeViewItem.Drop" Handler="tvKeywordDirectoryItem_Drop"/>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type common:KwFolder}" ItemsSource="{Binding DirItems}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="16" Height="16"/>
+                                        <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type common:KwFile}" ItemsSource="{Binding DirItems}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                                        <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+                                <DataTemplate DataType="{x:Type common:KwInstance}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                                        <TextBlock Text="{Binding Name}" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="DodgerBlue" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                                 Color="White" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                                                 Color="DodgerBlue" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                                                 Color="White" />
+                            </TreeView.Resources>
+                        </TreeView>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2">
+                        <Button x:Name="btnKwTestImport" ToolTip="Import test from local directory" Content="Import" Style="{StaticResource ButtonStyle2}" DockPanel.Dock="Left" Click="btnKwTestImport_Click"/>
+                        <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,4,0">
+                            <Button x:Name="btnKwTestNew" ToolTip="Create a test" Content="New" Style="{StaticResource ButtonStyle2}" Click="btnKwTestNew_Click"/>
+                            <Button x:Name="btnKwTestEditor" ToolTip="Edit a test in Test Editor" Content="Edit" Style="{StaticResource ButtonStyle2}" Click="btnKwTestEditor_Click" IsEnabled="False"/>
+                            <Button x:Name="btnKwQueue" ToolTip="Add/insert test to queue" Click="btnKwQueue_Click" Style="{StaticResource ButtonStyle2}" Width="65" IsEnabled="False">
+                                <DockPanel>
+                                    <TextBlock x:Name="tbKwQueue" Text="Queue" Width="29" TextAlignment="Center" Margin="5,0,10,0" DockPanel.Dock="Left"/>
+                                    <GridSplitter BorderBrush="White" BorderThickness="0,0,1,0" Opacity="0.8" Margin="0,0,0,0" Foreground="White"/>
+                                    <Button Name="btnQueueType" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,0,-2,0" Width="15" Height="15" Style="{StaticResource ButtonTransparentStyle}"  ContextMenu="{StaticResource ctxQueueType}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowQueueContextMenu">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/bullet_arrow_down.png"  Height="20"/>
+                                    </Button>
+                                </DockPanel>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GridSplitter x:Name="gridSplitter" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" ShowsPreview="False" Width="Auto" BorderBrush="Gray"  VerticalAlignment="Stretch" 
+                                          BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" Opacity="0" />
+        <TabControl Grid.Column="2" Margin="0,0,12,0" Grid.Row="1" Background="Transparent">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundProcessInProgress, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Style>
+            <TabItem Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="15"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="250" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <DockPanel VerticalAlignment="Top" Width="Auto" Height="30" Grid.Row="0" HorizontalAlignment="Stretch" LastChildFill="True">
+                                <Label x:Name="lblSuitePath" Content="Suite:" Width="75" VerticalAlignment="Center" HorizontalAlignment="Left" DockPanel.Dock="Left" />
+                                <TextBox x:Name="txtSuitePath" HorizontalAlignment="Stretch" VerticalAlignment="Center" DockPanel.Dock="Left" IsEnabled="False" ToolTipService.ShowOnDisabled="True" 
+                                         Text="{Binding Path=LoadedSuite, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                            </DockPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" HorizontalAlignment="Right">
+                            <DockPanel VerticalAlignment="Top" Height="30" Margin="0,0,4,0" DockPanel.Dock="Right" HorizontalAlignment="Left">
+                                <Label x:Name="lblExecutionDate" Content="Execution Date:" VerticalAlignment="Center" />
+                                <TextBox x:Name="txtExecutionDate" Width="148" VerticalAlignment="Center" IsEnabled="False" IsReadOnly="True" HorizontalAlignment="Left"/>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                    <DockPanel VerticalAlignment="Top" Width="Auto" Margin="0,0,4,0" Grid.Row="1" HorizontalAlignment="Stretch" LastChildFill="True">
+                        <Label x:Name="lblDescription" Content="Description:" Width="75" VerticalAlignment="Top" />
+                        <TextBox x:Name="txtDescription" HorizontalAlignment="Stretch" Height="55" VerticalScrollBarVisibility="Auto" BorderBrush="Silver" ToolTipService.ShowOnDisabled="True" TextWrapping="Wrap" AcceptsReturn="True" IsEnabled="False" GotFocus="TextBox_DescriptionGotFocus" TextChanged="TextBox_DescriptionTextChanged"/>
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" Margin="0,0,4,0" Grid.Row="2" HorizontalAlignment="Stretch" LastChildFill="True">
+                        <Label x:Name="lblOwner" Content="Owner:" Width="75" VerticalAlignment="Center" />
+                        <TextBox x:Name="txtOwner" VerticalAlignment="Center" HorizontalAlignment="Stretch" BorderBrush="Silver" IsEnabled="False" GotFocus="TextBox_OwnerGotFocus" TextChanged="TextBox_OwnerTextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3" VerticalAlignment="Top" Margin="0,-2,7,0" LastChildFill="True">
+                        <TextBlock HorizontalAlignment="Right" Margin="0,0,5,0" DockPanel.Dock="Right">
+                                <Hyperlink x:Name="lnkManageGlobalVar" ToolTip="Manage global variables" Click="lnkManageGlobalVar_Click">
+                                    <Hyperlink.Style>
+                                        <Style TargetType="Hyperlink">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsSuiteLoaded, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Hyperlink.Style>
+                                    Variable
+                                </Hyperlink>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Margin="0,0,25,0" DockPanel.Dock="Right">
+                                <Hyperlink x:Name="lnkManageLink" ToolTip="Manage links attached to suite" Click="lnkManageLink_Click">
+                                    <Hyperlink.Style>
+                                        <Style TargetType="Hyperlink">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsSuiteLoaded, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Hyperlink.Style>
+                                    Links
+                                </Hyperlink>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Right" Margin="0,0,25,0" DockPanel.Dock="Right">
+                                <Hyperlink x:Name="lnkManageTags" ToolTip="Manage tags attached to suite" Click="lnkManageTags_Click">
+                                    <Hyperlink.Style>
+                                        <Style TargetType="Hyperlink">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsSuiteLoaded, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Hyperlink.Style>
+                                    Tags
+                                </Hyperlink>
+                        </TextBlock>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <DockPanel x:Name="CenterStack" Margin="0,0,12,0" Grid.Column="2" Grid.Row="2" VerticalAlignment="Stretch">
+            <DockPanel.Style>
+                <Style TargetType="DockPanel">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundProcessInProgress, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DockPanel.Style>
+            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Left" DockPanel.Dock="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="303" MaxHeight="490"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TabControl Name="tabTests" Grid.Row="0" Margin="0,0,0,0" >
+                        <TabItem Header="Tests" Visibility="Collapsed">
+                            <Grid VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <DataGrid HorizontalAlignment="Left" Grid.Row="0" x:Name="TestQueue" ItemsSource="{Binding}" RowHeaderWidth="0" 
+            	                    Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+            	                    SelectionMode="Extended" IsReadOnly="False"
+                                    CanUserAddRows="False" CanUserDeleteRows="False" Loaded="TestQueue_Loaded" 
+            	                    SelectionChanged="TestQueue_SelectionChanged" RowStyle="{StaticResource DataGridRowStyle0}"
+                                    DockPanel.Dock="Top" VirtualizingStackPanel.IsVirtualizing="True" VerticalAlignment="Stretch" CanUserResizeColumns="True"
+                                          AllowDrop="True" Drop="dgTestLineup_Drop" SizeChanged="TestQueue_SizeChanged">
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu x:Name="TestQueue_ContextMenu">
+                                            <ContextMenu.Style>
+                                                <Style TargetType="ContextMenu">
+                                                    <Setter Property="FontFamily" Value="Calibri"/>
+                                                </Style>
+                                            </ContextMenu.Style>
+                                            <MenuItem Name="TestQueue_EditMenu" Header="Edit..." Click="TestQueue_EditMenu_Click"/>
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                    <DataGrid.CellStyle>
+                                        <Style TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Foreground" Value="Navy" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding teststatus}" Value="Not Run" >
+                                                    <Setter Property="Background" Value="White" />
+                                                    <Setter Property="Foreground" Value="Navy" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding teststatus}" Value="Passed" >
+                                                    <Setter Property="Background" Value="LightGreen" />
+                                                    <Setter Property="Foreground" Value="Navy" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding teststatus}" Value="Failed" >
+                                                    <Setter Property="Background" Value="MistyRose" />
+                                                    <Setter Property="Foreground" Value="Navy" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.CellStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding testrow}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="#" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" IsReadOnly="True" Width="25"/>
+                                        <DataGridTemplateColumn x:Name="ExecuteColumn" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Execute" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" Width="75">
+                                            <DataGridTemplateColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Execute"/>
+                                                        <Button Name="btnApplyExecute" HorizontalAlignment="Right" Margin="5,0,5,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxExecute}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowExecuteContextMenu" ToolTip="Apply to all"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.HeaderTemplate>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="{Binding execute}" Width="32" Height="23" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                                                            <Label.Style>
+                                                                <Style TargetType="Label">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding dependent}" Value="True">
+                                                                            <Setter Property="FontStyle" Value="Italic"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding teststatus}" Value="Not Run" >
+                                                                            <Setter Property="Background" Value="White" />
+                                                                            <Setter Property="Foreground" Value="Navy" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding teststatus}" Value="Passed" >
+                                                                            <Setter Property="Background" Value="LightGreen" />
+                                                                            <Setter Property="Foreground" Value="Navy" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding teststatus}" Value="Failed" >
+                                                                            <Setter Property="Background" Value="MistyRose" />
+                                                                            <Setter Property="Foreground" Value="Navy" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding execute}" Value="False">
+                                                                            <Setter Property="Foreground" Value="Silver"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Label.Style>
+                                                        </Label>
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                                            <Label x:Name="lblDependent" FontFamily="Arial Black">
+                                                                <Label.Style>
+                                                                    <Style TargetType="Label">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding dependent}" Value="True">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                                <Setter Property="Content" Value="{Binding executedependencytestrow}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding teststatus}" Value="Not Run" >
+                                                                                <Setter Property="Background" Value="White" />
+                                                                                <Setter Property="Foreground" Value="Navy" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding teststatus}" Value="Passed" >
+                                                                                <Setter Property="Background" Value="LightGreen" />
+                                                                                <Setter Property="Foreground" Value="Navy" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding teststatus}" Value="Failed" >
+                                                                                <Setter Property="Background" Value="MistyRose" />
+                                                                                <Setter Property="Foreground" Value="Navy" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Label.Style>
+                                                            </Label>
+                                                            <Rectangle Stroke="RoyalBlue" Height="10" Width="10" StrokeThickness="0.5" Margin="-3,0,0,0" VerticalAlignment="Center">
+                                                                <Rectangle.Style>
+                                                                    <Style TargetType="Rectangle">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding dependent}" Value="True">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding executedependencyresult}" Value="passed">
+                                                                                <Setter Property="Fill" Value="LightGreen"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding executedependencyresult}" Value="failed">
+                                                                                <Setter Property="Fill" Value="MistyRose"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding executedependencyresult}" Value="not run">
+                                                                                <Setter Property="Fill" Value="White"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Rectangle.Style>
+                                                            </Rectangle>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox x:Name="cboExecute" IsEditable="True" SelectedValue="{Binding execute, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ItemsSource="{Binding Path=ExecuteValueList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" GotFocus="ComboBox_ExecuteGotFocus" LostFocus="ComboBox_ExecuteLostFocus" TextBoxBase.TextChanged="ComboBox_ExecuteTextChanged">
+                                                        <ComboBox.Style>
+                                                            <Style TargetType="ComboBox">
+                                                                <EventSetter Event="SelectionChanged" Handler="ExecuteChanged" />
+                                                                <Setter Property="ItemContainerStyle" Value="{StaticResource ExecuteColumnStyle}" />
+                                                            </Style>
+                                                        </ComboBox.Style>
+                                                    </ComboBox>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn x:Name="TestDisplayName" Binding="{Binding file}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" IsReadOnly="True"
+                                        Width="*">
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <TextBlock x:Name="txtDisplayNameHeader" Loaded="txtDisplayNameHeader_Loaded"  Text="File Name" />
+                                                        <Button Name="btnDisplayName" HorizontalAlignment="Right" Margin="5,0,5,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxDisplayName}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowDisplayNameContextMenu" ToolTip="Choose display type"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding file}" />
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Instance" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="False" Width="50">
+                                            <DataGridTemplateColumn.CellStyle>
+                                                <Style>
+                                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding instanceRange}" />
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTemplateColumn.CellStyle>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding instance}" Background="White" Foreground="Black"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding instance}" LostFocus="TextBox_InstanceLostFocus" GotFocus="TextBox_InstanceGotFocus" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Binding="{Binding description}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Description" HeaderStyle="{StaticResource DataGridColumnHeaderStyle6}" IsReadOnly="True" Width="250">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding description, Converter={StaticResource truncatestring}}" />
+                                                    <Setter Property="ToolTipService.IsEnabled" Value="{Binding description, Converter={StaticResource stringhasvaluetobool}}" />
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn x:Name="TestEnvironmentColumn" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Environment" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" Width="100">
+                                            <DataGridTemplateColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Environment"/>
+                                                        <Button Name="btnApplyEnvironment" HorizontalAlignment="Right" Margin="5,0,10,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxEnvironment}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowEnvironmentContextMenu" ToolTip="Apply to all"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.HeaderTemplate>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate x:Name="TestEnvironmentDataTemplate">
+                                                    <ComboBox IsEditable="True" IsEnabled="{Binding keepopenfieldsenabled, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Text="{Binding environment, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=EnvironmentIDs, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}" GotFocus="ComboBox_EnvironmentGotFocus" LostFocus="ComboBox_EnvironmentLostFocus" TextBoxBase.TextChanged="ComboBox_EnvironmentTextChanged" DropDownClosed="ComboBox_EnvironmentDropDownClosed" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn x:Name="TestBrowserColumn" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Browser" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}"  Width="80">
+                                            <DataGridTemplateColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Browser"/>
+                                                        <Button Name="btnApplyBrowser"  HorizontalAlignment="Right" Margin="5,0,10,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxBrowser}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowBrowserContextMenu" ToolTip="Apply to all"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.HeaderTemplate>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Browser.Name}">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding keepopenfieldsenabled}" Value="False">
+                                                                        <Setter Property="Foreground" Value="Silver"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox IsEnabled="{Binding keepopenfieldsenabled, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                                              ItemsSource="{Binding AllBrowsers, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"
+                                                              SelectedItem="{Binding Browser, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                                                              SelectedValue="{Binding Browser.Name, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                                              SelectedValuePath="Name" DropDownClosed="ComboBoxBrowser_DropDownClosed" GotFocus="ComboBox_BrowserGotFocus" SelectionChanged="ComboBox_BrowserSelectionChanged">
+                                                        <ComboBox.GroupStyle>
+                                                            <GroupStyle>
+                                                                <GroupStyle.HeaderTemplate>
+                                                                    <DataTemplate >
+                                                                        <TextBlock Text="{Binding Name}" FontWeight="ExtraBold" IsEnabled="False"/>
+                                                                    </DataTemplate>
+                                                                </GroupStyle.HeaderTemplate>
+                                                            </GroupStyle>
+                                                        </ComboBox.GroupStyle>
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Text="{Binding Name}"/>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                    </ComboBox>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn CanUserSort="False" CanUserReorder="False" CanUserResize="True" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" Width="100">
+                                            <DataGridTemplateColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <TextBlock Text="Keep Open?"/>
+                                                        <Button Name="btnIsOpen" HorizontalAlignment="Right" Margin="5,0,10,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxIsOpen}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowIsOpenContextMenu" ToolTip="Apply to all"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.HeaderTemplate>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate x:Name="IsOpenDataTemplate">
+                                                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Click="KeepOpenCheckBoxClicked" IsChecked="{Binding keepopen, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource stringtobool}}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Binding="{Binding executedsteps}"  CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Completed" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="70">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Binding="{Binding duration}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Duration" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="100" IsReadOnly="True"/>
+
+                                        <!--<DataGridTextColumn Binding="{Binding executiondate}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Execution Date" HeaderStyle="{StaticResource DataGridColumnHeaderStyle5}" Width="*" Visibility="Hidden"/>-->
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <!-- the non-editing cell -->
+                                        <DataTemplate x:Key="ReadonlyCellTemplate">
+                                            <TextBlock Text="{Binding browser}" />
+                                        </DataTemplate>
+
+                                        <!--the editing cell-->
+                                        <DataTemplate x:Key="EditableCellTemplate">
+                                            <TextBox Text="{Binding browser}" />
+                                        </DataTemplate>
+
+
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                                <Grid Margin="0,0,1,0" RenderTransformOrigin="0.585,0.208" Grid.Row="1" VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <!--<ColumnDefinition Width="619*"/>-->
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="24"/>
+                                        <RowDefinition Height="24"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Row="0" Margin="5,0,0,0">
+                                        <Rectangle Fill="LightGreen" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                        <TextBlock Width="3"/>
+                                        <TextBlock VerticalAlignment="Center" FontSize="10">Passed</TextBlock>
+                                        <TextBlock Width="20"/>
+                                        <Rectangle Fill="MistyRose" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                        <TextBlock Width="3"/>
+                                        <TextBlock VerticalAlignment="Center" FontSize="10">Failed</TextBlock>
+                                        <TextBlock Width="20"/>
+                                        <Rectangle Fill="White" Stroke="Silver" Height="12" Width="12" StrokeThickness="0.5"></Rectangle>
+                                        <TextBlock Width="3"/>
+                                        <TextBlock VerticalAlignment="Center" FontSize="10">Not run</TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                        <!--<Button x:Name="btnOpenSpreadsheetFromQueue" Content="XLSX" Style="{StaticResource ButtonStyle1}" Click="btnOpenSpreadsheetFromQueue_Click"/>-->
+                                        <Button x:Name="btnMoveTestUpInQueue" ToolTip="Move test up" Content="Up" Style="{StaticResource ButtonStyle1}" Click="btnMoveTestUpInQueue_Click" Width="50" IsEnabled="False"/>
+                                        <Button x:Name="btnMoveTestDownInQueue" ToolTip="Move test down" Content="Down" Style="{StaticResource ButtonStyle1}" Click="btnMoveTestDownInQueue_Click" Width="50" IsEnabled="False"/>
+                                        <Button x:Name="btnEditTestInQueue" ToolTip="Edit test in Test Editor" Content="Edit" Style="{StaticResource ButtonStyle2}" Click="btnEditTestInQueue_Click" IsEnabled="False"/>
+                                        <Button x:Name="btnRemoveTestInQueue" ToolTip="Remove test from suite" Content="Remove" Style="{StaticResource ButtonStyle2}" Click="btnRemoveTestInQueue_Click" IsEnabled="False"/>
+                                        <!--<Button x:Name="btnFilterTestsInQueue" Content="Show Failed Only" Style="{StaticResource ButtonStyle3}" Click="btnFilterTestsInQueue_Click"/>-->
+                                        <Button x:Name="btnClearTestsInQueue" ToolTip="Remove all tests" Content="Clear" Style="{StaticResource ButtonStyle1}" Click="btnClearTestsInQueue_Click" Width="50" IsEnabled="False"/>
+                                        <Button x:Name="btnCopyTestInQueue" ToolTip="Copy selected test" Content="Copy" Style="{StaticResource ButtonStyle1}" Click="btnCopyTestInQueue_Click" Width="50" IsEnabled="False"/>
+                                        <Button x:Name="btnPasteTestToQueue" ToolTip="Paste test to queue" Content="Paste" Style="{StaticResource ButtonStyle1}" Click="btnPasteTestToQueue_Click" Width="50" IsEnabled="False"/>
+                                    </StackPanel>
+                                    <!--<Grid Grid.Column=">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                </Grid>-->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Width="280" >
+                                        <Button x:Name="btnOpenTestSuiteToQueue" ToolTip="Load suite" Content="Open Suite" Style="{StaticResource ButtonStyle1}" Click="btnOpenTestSuiteToQueue_Click" Width="80"/>
+                                        <Button x:Name="btnSaveTestsToSuiteFromQueue" ToolTip="Save tests to suite" Content="Save" Style="{StaticResource ButtonStyle1}" Click="btnSaveTestsToSuiteFromQueue_Click" Margin="2,2,2,0" Height="20" VerticalAlignment="Top"/>
+                                        <Button x:Name="btnRunTestsInQueue" ToolTip="Run suite" Content="Run" Style="{StaticResource ButtonStyle1}" Click="btnRunTestsInQueue_Click" IsEnabled="False"/>
+                                        <Button x:Name="btnResultsOptions" ToolTip="Show more options for results" Click="btnResultsOptions_Click" Style="{StaticResource ButtonStyle2}" Width="100" IsEnabled="False">
+                                            <DockPanel>
+                                                <TextBlock x:Name="tbSuiteresults" Text="Results Options" Width="70" TextAlignment="Center" Margin="5,0,10,0" DockPanel.Dock="Left" />
+                                                <GridSplitter BorderBrush="White" BorderThickness="0,0,1,0" Opacity="0.8" Margin="0,0,0,0" Foreground="White"/>
+                                                <Button Name="btnSuiteResultOption" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,0,-2,0" Height="15" Style="{StaticResource ButtonTransparentStyle}" ContextMenu="{StaticResource ctxResultOptionType}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowSuiteResultOptionMenu">
+                                                    <Image Source="pack://siteoforigin:,,,/Resources/bullet_arrow_down.png" Height="20"/>
+                                                </Button>
+                                            </DockPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <GridSplitter x:Name="horizontalSplitter" Grid.Row="1" ShowsPreview="False" Height="Auto" BorderBrush="Gray"  VerticalAlignment="Stretch" 
+                                          BorderThickness="1,0,0,1" HorizontalAlignment="Stretch" Opacity="0"/>
+                    <TabControl x:Name="tabControlTestResultDetails" SelectionChanged="tabControlTestResultDetails_SelectionChanged" Grid.Row="4" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,2,0,0" >
+                        <TabItem x:Name="tabLog" ToolTip="View test results per step" Header="Log" Background="#FF90D2FF">
+                            <DataGrid x:Name="dgLogTestSteps" ItemsSource="{Binding}" RowHeaderWidth="0" VerticalAlignment="Stretch"
+                                  Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle7}"  
+                                  SelectionMode="Single" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" 
+                                  LoadingRow="dgLogTestSteps_LoadingRow" RowDetailsVisibilityMode="Collapsed"
+                                  Margin="0,0,0,0" CanUserResizeColumns="True"
+                                  AutoGenerateColumns="False" HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding mStepNumber, Converter={StaticResource snc}}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Step" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" IsReadOnly="True" Width="35"/>
+                                    <DataGridTextColumn Binding="{Binding mExecute, Converter={StaticResource exc}}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="Execute" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="70"/>
+                                    <DataGridTextColumn Binding="{Binding mScreen, Converter={StaticResource scc}}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Screen" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="170"/>
+                                    <DataGridTextColumn Binding="{Binding mControl}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Control" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="170"/>
+                                    <DataGridTextColumn Binding="{Binding mKeyword}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Keyword" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="190"/>
+                                    <DataGridTextColumn Binding="{Binding mParameterString}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Parameters" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}"
+                                                    IsReadOnly="True" Width="215">
+                                        <!--<DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.MinWidth" Value="390" />
+                                            <Setter Property="TextBlock.MaxWidth" Value="390" />
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>-->
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding mStepStatus}" CanUserSort="False" CanUserReorder="False" 
+                                                    CanUserResize="True" Header="Status" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" 
+                                                    IsReadOnly="True" Width="*"/>
+                                </DataGrid.Columns>
+                                <DataGrid.ItemContainerStyle>
+                                    <Style TargetType="DataGridRow">
+                                        <Setter Property="BorderThickness" Value="0.25"/>
+                                        <EventSetter Event="MouseLeftButtonUp" Handler="LogRow_Click"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="BorderBrush" Value="BlueViolet" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding mKeyword}" Value="LogComment">
+                                                <Setter Property="Background" Value="Orange"/>
+                                                <Setter Property="BorderBrush" Value="OrangeRed"/>
+                                                <Setter Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mKeyword}" Value="Note">
+                                                <Setter Property="Background" Value="Yellow"/>
+                                                <Setter Property="BorderBrush" Value="YellowGreen"/>
+                                                <Setter Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mKeyword}" Value="Hint">
+                                                <Setter Property="Background" Value="LightGreen"/>
+                                                <Setter Property="BorderBrush" Value="Green"/>
+                                                <Setter Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mKeyword}" Value="ExpectedResult">
+                                                <Setter Property="Background" Value="LightPink"/>
+                                                <Setter Property="BorderBrush" Value="DeepPink"/>
+                                                <Setter Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mKeyword}" Value="Step">
+                                                <Setter Property="Background" Value="LightPink"/>
+                                                <Setter Property="BorderBrush" Value="DeepPink"/>
+                                                <Setter Property="BorderThickness" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding mExecute}" Value="False">
+                                                <Setter Property="Foreground"  Value="Gray"/>
+                                                <Setter Property="FontStyle"  Value="Italic"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.ItemContainerStyle>
+                                <DataGrid.RowDetailsTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="3" Padding="3" BorderBrush="SteelBlue" BorderThickness="3" CornerRadius="5">
+                                            <DataGrid ItemsSource="{Binding mStepLogMessages}" 
+                                                  RowHeaderWidth="0" Style="{StaticResource DataGridStyle1}" 
+                                                  SelectionMode="Single" 
+                                                  Width="595"
+                                                  VerticalScrollBarVisibility="Visible"
+                                                  MaxHeight="190" Loaded="LoadLogDetailsGrid" VirtualizingStackPanel.IsVirtualizing="False">
+                                                <DataGrid.ItemContainerStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <EventSetter Event="MouseLeftButtonUp" Handler="LogRowDetails_Click"/>
+                                                    </Style>
+                                                </DataGrid.ItemContainerStyle>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Binding="{Binding mMessageDateTime}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="DateTime" Width="100" IsReadOnly="True"/>
+                                                    <DataGridTextColumn Binding="{Binding mMessageType}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Type" Width="95" IsReadOnly="True"/>
+                                                    <!--<DataGridTextColumn Binding="{Binding mMessageDetails}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Details" Width="400" IsReadOnly="True" >
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style>
+                                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>-->
+                                                    <DataGridTextColumn Binding="{Binding mMessageDetails}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Details" 
+                                                                Width="400" IsReadOnly="True">
+                                                        <DataGridTextColumn.ElementStyle>
+                                                            <Style>
+                                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding mMessageType}" Value="EXCEPTIONIMG" >
+                                                                        <Setter Property="TextBlock.Foreground" Value="Blue"/>
+                                                                        <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding mMessageType}" Value="OUTPUTFILE" >
+                                                                        <Setter Property="TextBlock.Foreground" Value="Blue"/>
+                                                                        <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </DataGridTextColumn.ElementStyle>
+                                                    </DataGridTextColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                            </DataGrid>
+                            <!--<Button x:Name="btnCopyToDesktop" Content="Copy To Desktop" Style="{StaticResource ButtonStyle4}" HorizontalAlignment="Right" Click="btnCopyToDesktop_Click" />-->
+                        </TabItem>
+                        <!--<TabItem x:Name="tabDocDiff" Header="DocDiff">
+                    <StackPanel Orientation="Vertical">
+                        <WebBrowser x:Name="webDocDiff" Height="200" Margin="0,0,0,5"></WebBrowser>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="btnDocDiffSOpenMaster" Content="Open Master" Style="{StaticResource ButtonStyle3}" Click="btnDocDiffSOpenMaster_Click"/>
+                            <Button x:Name="btnDocDiffSOpenCompare" Content="Open Compare" Style="{StaticResource ButtonStyle3}" Click="btnDocDiffSOpenCompare_Click"/>
+                            <Button x:Name="btnPromoteCompare" Content="Promote Compare" Style="{StaticResource ButtonStyle4}" Click="btnPromoteCompare_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>-->
+                        <TabItem x:Name="tabErrorScreenshot" ToolTip="View page screenshot where step failed" Header="Error Screenshot" Background="#FF90D2FF">
+                            <Grid Height="Auto">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image x:Name="imgError" Stretch="UniformToFill" Grid.Row="0"/>
+                                <Button x:Name="btnViewErrorScreenshot" ToolTip="View screenshot in Paint" Click="btnViewErrorScreenshot_Click" Style="{StaticResource ButtonStyle3}" 
+                                Content="View Screenshot" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabTestHistory" ToolTip="View test results from previous runs" Header="Test History" Background="#FF90D2FF">
+                            <DataGrid x:Name="dgTestHistory" ItemsSource="{Binding}" RowHeaderWidth="0" VerticalAlignment="Stretch"
+                      Style="{StaticResource DataGridStyle1}" RowStyle="{StaticResource DataGridRowStyle0}" SelectionMode="Single" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="Auto" Width="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding executiondate}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Execution Date" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" IsReadOnly="True" Width="200" MinWidth="200"/>
+                                    <DataGridTextColumn Binding="{Binding teststatus}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Test Status" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" IsReadOnly="True" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </DockPanel>
+
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="3" Margin="0,0,15,20">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundProcessInProgress, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Button Name="btnTestCapture" ToolTip="Record user actions and generate a test" Content="Test Capture" Style="{StaticResource ButtonStyle3}" Margin="0,5,5,0" Click="btnTestCapture_Click" />
+            <Button x:Name="btnScheduler" ToolTip="Schedule suite execution on scheduler" Click="btnScheduler_Click" Style="{StaticResource ButtonStyle2}"  Width="100" Margin="0,5,5,0.333">
+                <DockPanel>
+                    <TextBlock x:Name="tbKwScheduler" Text="Scheduler" Width="70" TextAlignment="Center" Margin="5,0,10,0" DockPanel.Dock="Left"/>
+                    <GridSplitter BorderBrush="White" BorderThickness="0,0,1,0" Opacity="0.8" Margin="0,0,0,0" Foreground="White"/>
+                    <Button Name="btnSchedulerType" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,0,-2,0" Width="15" Height="15" Style="{StaticResource ButtonTransparentStyle}"  ContextMenu="{StaticResource ctxSchedulerType}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowSchedulerContextMenu">
+                        <Image Source="pack://siteoforigin:,,,/Resources/bullet_arrow_down.png"  Height="20"/>
+                    </Button>
+                </DockPanel>
+            </Button>
+            <Button Name="btnDashboard" ToolTip="Generate results dashboard" Content="Dashboard" Style="{StaticResource ButtonStyle3}" Margin="0,5,5,0" Click="btnDashboard_Click"/>
+        </StackPanel>
+        <StatusBar Name="stsMain" HorizontalAlignment="Stretch" Height="Auto" Grid.Row="4" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="3" Background="White" BorderThickness="0">
+            <TextBlock Name="txtStatus" FontSize="11" Margin="5,0,0,0" Text="{Binding Path=StatusText, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></TextBlock>
+        </StatusBar>
+
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Width="84" Margin="0,0,27,7" Grid.Row="1">-->
+        <!--<Button Name=" btnReports" Content="Reports" Click="btnReports_Click" Style="{StaticResource ButtonStyle3}" Margin="0,0,10,5"/>-->
+        <!--<Button Name="btnOSRecorder" Content="OS Recorder" Style="{StaticResource ButtonStyle3}" Margin="0,5,10,27" Click="btnOSRecorder_Click" />-->
+        <!--<Button Name="btnScheduler" Content="Scheduler" Style="{StaticResource ButtonStyle3}" Margin="0,0,10,5" Click="btnScheduler_Click" />-->
+        <!--<Button Name="btnImportResults" Content="Import Results" Style="{StaticResource ButtonStyle3}" Margin="0,0,10,5" Click="btnImportResults_Click"/>-->
+        <!--<Button Name="btnCheckinFiles" Content="Checkin Files" Style="{StaticResource ButtonStyle3}" Margin="0,0,10,5" Click="btnCheckinFiles_Click"/>-->
+        <!--</StackPanel>-->
+    </Grid>
+</Window>
+    

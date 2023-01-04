@@ -1,0 +1,17 @@
+﻿<Window x:Class="TestRunner.StartBrowserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Start Browser" Height="100" Width="400"
+        Loaded="Window_Loaded" Closed="Window_Closed"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Name="lblEnvironment" Content="Environment:" />
+            <ComboBox Name="cboEnvironment" Width="200" Height="20" Text="{Binding EnvID, Mode=TwoWay}"/>
+            <Button Name="btnBrowser" Content="Browser" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Right" Margin="5,0,0,0" Click="btnBrowser_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

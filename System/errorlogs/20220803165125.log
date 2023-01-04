@@ -1,0 +1,18 @@
+2022-08-03 04:51:25 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-03 04:51:25 pm| System
+2022-08-03 04:51:25 pm| The system cannot find the file specified
+2022-08-03 04:51:25 pm|    at System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at TestRunner.MainWindow.ShowHelpFile(Object sender, RoutedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 3701
+2022-08-03 04:51:28 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-03 04:51:28 pm| System
+2022-08-03 04:51:28 pm| The system cannot find the file specified
+2022-08-03 04:51:28 pm|    at System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at TestRunner.MainWindow.ShowHelpFile(Object sender, RoutedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 3701
+2022-08-03 04:51:34 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-03 04:51:34 pm| System
+2022-08-03 04:51:34 pm| The system cannot find the file specified
+2022-08-03 04:51:34 pm|    at System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   at System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   at TestRunner.MainWindow.ShowHelpFile(Object sender, RoutedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 3701

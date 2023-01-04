@@ -1,0 +1,13 @@
+2022-04-12 03:10:32 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-04-12 03:10:32 pm| TestRunner
+2022-04-12 03:10:33 pm| Object reference not set to an instance of an object.
+2022-04-12 03:10:33 pm|    at TestRunner.MainWindow.tvKeywordDirectory_SelectedItemChanged(Object sender, RoutedPropertyChangedEventArgs`1 e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 4363
+2022-04-12 03:11:27 pm| [Write Output Manifest] Error in writing output manifest
+2022-04-12 03:11:27 pm| mscorlib
+2022-04-12 03:11:27 pm| String was not recognized as a valid DateTime.
+2022-04-12 03:11:27 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80

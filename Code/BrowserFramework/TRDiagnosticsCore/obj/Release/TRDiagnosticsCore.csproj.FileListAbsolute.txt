@@ -1,0 +1,10 @@
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\TRDiagnosticsCore.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\TRDiagnosticsCore.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\HTMLBuilder.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\WebDriver.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\HTMLBuilder.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\bin\Release\WebDriver.xml
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\obj\Release\TRDiagnosticsCore.csprojAssemblyReference.cache
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\obj\Release\TRDiagnosticsCore.csproj.CopyComplete
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\obj\Release\TRDiagnosticsCore.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\TRDiagnosticsCore\obj\Release\TRDiagnosticsCore.pdb

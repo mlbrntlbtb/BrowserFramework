@@ -1,0 +1,6 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\bin\Debug\HTMLBuilder.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\bin\Debug\HTMLBuilder.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Debug\HTMLBuilder.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Debug\HTMLBuilder.csproj.CoreCompileInputs.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Debug\HTMLBuilder.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Debug\HTMLBuilder.pdb

@@ -1,0 +1,295 @@
+﻿<#@ template language="C#" debug="true" hostSpecific="true"#> 
+<#@ import namespace="CommonLib.DlkSystem" #>
+<#@ import namespace="CommonLib.DlkHandlers" #>
+<#@ import namespace="CommonLib.DlkRecords" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="METHConverter.Utilities" #>
+<#@ parameter type="System.String" name="TestName" #>
+<#@ parameter type="System.Collections.Generic.List<DlkTestStepRecord>" name="TestSteps" #>
+<#@ parameter type="System.String" name="ObjectStorePath" #>
+using System;
+using System.Threading.Tasks;
+using SeleniumCostpoint.Common;
+using System.Collections.Generic;
+using Core.Sys;
+using Core.Sys.Selenium;
+using System.Threading;
+using System.Linq;
+using OpenQA.Selenium;
+
+namespace SeleniumCostpoint.Tests
+{
+    public class <#= TestName #> : SeleniumTestScript
+    {
+        public override bool TestExecute(out string ErrorMessage, string TestEnvironment, IDriver Driver)
+        {
+			bool ret = true;
+			ErrorMessage = string.Empty;
+			SeleniumDriver sDriver = Driver as SeleniumDriver;
+			Functions Function = new Functions(sDriver, this);
+
+			try
+			{
+				Function.Login( TestEnvironment, out ErrorMessage);
+				<#
+					DlkEnvironment.mDirObjectStore = ObjectStorePath;
+					DlkDynamicObjectStoreHandler.Initialize(true);
+
+					foreach(DlkTestStepRecord step in TestSteps)
+					{
+						DlkObjectStoreFileControlRecord osRec;
+						string actions = String.Empty;
+						string[] Params = step.mParameters[0].Split(new[] { DlkTestStepRecord.globalParamDelimiter, "|" }, StringSplitOptions.None);
+						step.mParameters.Clear();
+						step.mParameters.AddRange(new List<String>(Params));
+
+						if(step.mScreen != "Function")
+						{
+				#>
+				try {
+				Function.CurrentComponent = "<#= step.mScreen #>";
+				<#
+
+							if(String.IsNullOrEmpty(step.mControl))
+							{
+								//Special functions (ie. DlkDialog, DlkQuery)
+								actions = GetFunction(TestName, step.mKeyword, step.mParameters, step.mScreen);
+				#>
+				<#= actions #>
+				<#
+							}
+							else
+							{
+								osRec = DlkDynamicObjectStoreHandler.GetControlRecord(step.mScreen, step.mControl);
+								step.mControl =  ConvertControlToValidVariable(step.mControl);
+								actions = GetAction(TestName, step.mScreen + "_" + step.mControl, osRec.mControlType, step.mKeyword, step.mParameters);								
+								string isMessageArea = osRec.mControlType.ToLower() == "messagearea" ? "true" : "false";
+				#>
+				Function.WaitLoadingFinished(Function.IsCurrentComponentModal(<#=isMessageArea#>));
+
+				this.ScriptLogger.WriteLine("[<#= step.mScreen #>] Performing <#= step.mKeyword #> on <#= step.mControl #>...", Logger.MessageType.INF);
+				SeleniumControl <#= step.mScreen #>_<#= step.mControl #> = new SeleniumControl( sDriver, "<#= step.mControl #>", "<#= osRec.mSearchMethod #>", "<#= osRec.mSearchParameters #>");
+				<#= actions #>
+				<#
+							}
+						}
+						else
+						{
+							actions = GetFunction(TestName, step.mKeyword, step.mParameters);
+				#>
+				try
+				{
+				<#= actions #>
+					<#
+						if(step.mStepDelay > 0)
+						{
+					#>
+						Thread.Sleep(<#=step.mStepDelay#>);
+					<#
+						}
+					}
+					#>
+				}
+				catch(Exception ex)
+				{
+					throw new Exception(TraceMessage("Error performing [<#= step.mKeyword #>]" , ex.Message));
+				}
+				<#
+					}
+				#>
+			}
+			catch (Exception ex)
+			{
+				ret = false;
+				ErrorMessage = ex.Message;
+				throw new Exception(ex.Message);
+			}
+			return ret;
+        }
+    }
+}
+
+<#+
+
+public string GetAction(string TestName, string Control, string ControlType, string Keyword, List<string> Parameters)
+{
+	StringBuilder actions = new StringBuilder(String.Empty);
+	if(Keyword.Equals("VerifyExists") || Keyword.Equals("VerifyExist"))
+	{
+		string Expected = Convert.ToBoolean(Parameters[0]).ToString().ToLower(); // Just checking if parameter is boolean
+		actions.Append("Function.AssertEqual(").Append(Expected).Append(",").Append(Control).AppendLine(".Exists());");
+	}
+	else if(Keyword.Equals("VerifyReadOnly"))
+	{
+		actions.Append("Function.AssertEqual(\"").Append(Parameters[0].ToLower()).Append("\",").Append(Control).AppendLine(".IsReadOnly().ToLower());");
+	}
+	else
+	{
+		try
+		{
+			Type type = GetType(ControlType);
+			if(type == null) 
+				{
+					actions.AppendLine(String.Format("//TODO:: Auto-generated code for ControlType:{0} - Keyword:{1} is unavailable.", ControlType, Keyword));
+					actions.AppendLine("//Write your own code here...");
+					MainWindow.failCount++;
+					MainWindow.RunLogs.WriteLine(String.Format("{0}: No existing conversion for keyword [{1}] for controltype [{2}].", TestName, Keyword, ControlType),  Logger.MessageType.WRN);
+				}
+				else{
+					Object instance = GetInstance(type);
+					MethodInfo func = type.GetMethod(Keyword);
+
+					if (instance == null || func == null) 
+						{
+						actions.AppendLine(String.Format("//TODO:: Auto-generated code for ControlType:{0} - Keyword:{1} is unavailable.", ControlType, Keyword));
+						actions.AppendLine("//Write your own code here...");
+						MainWindow.failCount++;
+						MainWindow.RunLogs.WriteLine(String.Format("{0}: No existing conversion for keyword [{1}] for controltype [{2}].", TestName, Keyword, ControlType),  Logger.MessageType.WRN);
+						}
+					else{
+					switch(Parameters.Count)
+						{
+						case 1:
+							if(Parameters[0] == "")
+							{
+								try
+								{
+									actions.AppendLine((String)func.Invoke(instance, new []{Control}));
+								}
+								catch
+								{
+									actions.AppendLine((String)func.Invoke(instance, new []{Control, Parameters[0]}));
+								}
+							}
+							else
+							{
+								actions.AppendLine((String)func.Invoke(instance, new []{Control, Parameters[0]}));
+							}				
+							break;
+						case 2:
+							actions.AppendLine((String)func.Invoke(instance, new []{Control, Parameters[0], Parameters[1]}));
+							break;
+						case 3:
+							actions.AppendLine((String)func.Invoke(instance, new []{Control, Parameters[0], Parameters[1], Parameters[2]}));
+							break;
+						}
+					}						
+				}
+		}
+		catch (Exception e)
+		{
+			throw new Exception(e.Message);
+		}
+	}
+	return actions.ToString();
+}
+
+public string GetFunction(string TestName, string Function, List<string> Parameters, string SpecialControl = "")
+{
+	StringBuilder actions = new StringBuilder(string.Empty);
+
+	try
+	{
+		Type type;
+		if(String.IsNullOrEmpty(SpecialControl))
+		{
+			type = GetType("Functions");
+		}
+		else
+		{
+			type = GetType(SpecialControl);
+		}
+
+		Object instance = GetInstance(type);
+		MethodInfo func = type.GetMethod(Function);
+
+		if (instance == null || func==null) {
+			actions.AppendLine(String.Format("//TODO:: Auto-generated code for {0} is unavailable.", Function));
+			actions.AppendLine("//Write your own code here...");
+			MainWindow.failCount++;
+			MainWindow.RunLogs.WriteLine(String.Format("{0}: No existing conversion for Function [{1}].", TestName, Function),  Logger.MessageType.WRN);
+			}
+		else{
+			switch(Parameters.Count)
+			{
+				case 1:
+					if(Parameters[0] == "")
+					{
+						try
+						{
+							actions.AppendLine((String)func.Invoke(instance, null));
+						}
+						catch
+						{
+							actions.AppendLine((String)func.Invoke(instance, new []{Parameters[0]}));
+						}
+					}
+					else
+					{
+						actions.AppendLine((String)func.Invoke(instance, new []{Parameters[0]}));
+					}				
+					break;
+				case 2:
+					actions.AppendLine((String)func.Invoke(instance, new []{Parameters[0], Parameters[1]}));
+					break;
+				case 3:
+					actions.AppendLine((String)func.Invoke(instance, new []{Parameters[0], Parameters[1], Parameters[2]}));
+					break;
+				case 4:
+					actions.AppendLine((String)func.Invoke(instance, new []{Parameters[0], Parameters[1], Parameters[2], Parameters[3]}));
+					break;
+			}
+		}
+	}
+	catch(Exception e)
+	{
+		throw new Exception(e.Message);
+	}
+	return actions.ToString();
+}
+
+static object GetInstance(Type type)
+{
+    object ret = null;
+    ret = Activator.CreateInstance(type);
+    return ret;
+}
+
+static Type GetType(string ControlType)
+{
+    Type ret = null;
+
+    foreach (Type typ in Assembly.GetExecutingAssembly().GetTypes())
+    {
+        if (typ.Name.ToLower() == ControlType.ToLower())
+        {
+            ret = typ;
+            break;
+        }
+    }
+    return ret;
+}
+
+public DlkDynamicObjectStoreHandler DlkDynamicObjectStoreHandler
+{
+    get { return DlkDynamicObjectStoreHandler.Instance; }
+}				
+
+public string ConvertControlToValidVariable(string ControlName)
+{
+	System.CodeDom.Compiler.CodeDomProvider provider = System.CodeDom.Compiler.CodeDomProvider.CreateProvider("C#");
+	ControlName = ControlName.Trim();
+	ControlName = ControlName.Replace(" ", "");
+
+	if (provider.IsValidIdentifier (ControlName)) 
+	{
+	      return ControlName;
+	} 
+	else 
+	{
+		return  System.Text.RegularExpressions.Regex.Replace(ControlName, @"[^a-zA-Z0-9_]", "");
+	}
+}
+#>

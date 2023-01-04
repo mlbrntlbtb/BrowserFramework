@@ -1,0 +1,31 @@
+﻿<Window x:Class="Recorder.TestPlaybackDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Test" Height="210" Width="450" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/splash.png" Opacity="0.25"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="221*" />
+                <ColumnDefinition Width="178*" />
+                <ColumnDefinition Width="43*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnOK" Grid.Column="0" Style="{StaticResource ButtonStyle4}" HorizontalAlignment="Right" Content="OK" Click="btnOK_Click" Margin="0,12,2,12"/>
+            <Button x:Name="btnCancel" Grid.Column="1" Style="{StaticResource ButtonStyle4}" HorizontalAlignment="Left"  Content="Cancel" Click="btnCancel_Click" Margin="2,12,0,12"/>
+        </Grid>
+        <DockPanel Grid.Row="0">
+            <TextBlock x:Name="txtInstructions" VerticalAlignment="Top" Margin="20,20,20,5" FontSize="11" TextWrapping="Wrap" Foreground="SteelBlue" DockPanel.Dock="Top" Height="38"/>
+            <StackPanel Orientation="Vertical" Margin="20,5" Height="61" DockPanel.Dock="Bottom">
+                <RadioButton x:Name="rbPlayback" Margin="0,0,20,5" Click="rbPlayback_Click"  FontSize="11" Content="Save test and run until the last step before recording." IsChecked="True" VerticalAlignment="Center" />
+                <RadioButton x:Name="rbManual" Margin="0,0,20,5" Click="rbManual_Click"  FontSize="11" Content="Keep the existing steps but do not run the test before recording." IsChecked="False" VerticalAlignment="Center" />
+                <RadioButton x:Name="rbClear" Margin="0,0,20,5" Click="rbClear_Click"  FontSize="11" Content="Clear the existing steps. I would like to start the recording from scratch." IsChecked="False" VerticalAlignment="Center" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

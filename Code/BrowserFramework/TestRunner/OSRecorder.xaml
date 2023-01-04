@@ -1,0 +1,270 @@
+﻿<Window x:Class="TestRunner.OSRecorder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:TestRunner.Common"
+        xmlns:TestRunner="clr-namespace:TestRunner"
+        Title="Object Store Recorder" Height="600" Width="427" 
+        Background="#FF90D2FF" WindowStartupLocation="CenterOwner"
+        Loaded="Window_Loaded">
+    <DockPanel LastChildFill="True">
+        <Menu IsMainMenu="True" Background="#FF90D2FF" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="mnuNew" Header="_New" Click="mnuNew_Click"/>
+                <Separator/>
+                <MenuItem x:Name="mnuOpen" Header="_Open" Click="mnuOpen_Click"/>
+                <Separator/>
+                <MenuItem x:Name="mnuSave" Header="_Save" Click="mnuSave_Click" IsEnabled="False"/>
+                <MenuItem x:Name="mnuSaveAs" Header="Save _As" Click="mnuSaveAs_Click"/>
+                <Separator/>
+                <MenuItem x:Name="mnuExit" Header="E_xit" Click="mnuExit_Click"/>
+            </MenuItem>
+
+        </Menu>
+        <StackPanel Orientation="Horizontal" Margin="5,0,5,0" Background="#FF90D2FF" DockPanel.Dock="Top">
+            <Label x:Name="lblScreen" Content="Screen :    " Margin="0,0,0,0"/>
+            <TextBox x:Name="txtScreen" Text="{Binding Screen, Mode=TwoWay}" Margin="5,0,0,0" Width="339" Height="20" FontSize="10"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" >
+            <TabControl x:Name="tabControl" Margin="5,5,5,0">
+                <TabItem x:Name="tabProperties" Header="Properties" Background="#FF90D2FF" IsSelected="True">
+                    <StackPanel Orientation="Vertical" Background="#FF90D2FF">
+                        <Grid Background="#FF90D2FF" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="lblControlType" Content="Control Type :" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0"/>
+                            <Label x:Name="lblControlName" Content="Control Name :" Margin="5,0,0,0" Grid.Column="0" Grid.Row="1"/>
+                            <Label x:Name="lblSearchType" Content="Search Type :" Margin="5,0,0,0" Grid.Column="0" Grid.Row="2"/>
+                            <Label x:Name="lblSearchValue" Content="Search Value :" Margin="5,0,0,0" Grid.Column="0" Grid.Row="3"/>
+                            <ComboBox x:Name="cboControlType" Text="{Binding ControlType, Mode=TwoWay}" IsEditable="True" Margin="5,0,5,0" Grid.Column="1" Grid.Row="0"/>
+                            <TextBox x:Name="txtControlName" Text="{Binding ControlName, Mode=TwoWay}" Margin="5,0,5,0" Grid.Column="1" Grid.Row="1"/>
+                            <ComboBox x:Name="cboSearchType" Text="{Binding SearchType, Mode=TwoWay}" IsEditable="True" Margin="5,0,5,0" Grid.Column="1" Grid.Row="2"/>
+                            <TextBox x:Name="txtSearchValue" Text="{Binding SearchValue, Mode=TwoWay}" Margin="5,0,5,0" TextWrapping="Wrap" AcceptsReturn="False" Height="60" Grid.Column="1" Grid.Row="3"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Button Name="btnInspect" Content="{StaticResource RecordIcon}" Style="{StaticResource BigButtonStyle}" Click="btnInspect_Click" Grid.Column="0" Grid.Row="0" Margin="5,0,0,0" ToolTip="Inspect"/>
+                            
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="0,10,5,10">
+                                <Button x:Name="btnHighlight" Content="Highlight" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Margin="0,0,5,0" Click="btnHighlight_Click"/>
+                                <Button x:Name="btnSaveControl" Content="Update" Style="{StaticResource ButtonStyle2}" Click="btnSaveControl_Click"/>
+                                <Button x:Name="btnCancel" Content="Cancel" Style="{StaticResource ButtonStyle2}" Click="btnCancel_Click"/>
+                            </StackPanel>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem x:Name="tabDOM" Header="DOM" Background="#FF90D2FF">
+                    <TestRunner:XmlViewer x:Name="DOMViewer" Grid.Column="0" Grid.Row="2" Margin="5,5,5,5" Height="204"/>
+                </TabItem>
+            </TabControl>
+
+        </StackPanel>
+        <ToolBarTray DockPanel.Dock="Top" Margin="5,0,5,0" HorizontalAlignment="Stretch" Background="#FF90D2FF">
+            <ToolBar HorizontalAlignment="Stretch" Background="#FF90D2FF">
+                <Button x:Name="btnAdd" Content="{StaticResource AddIcon}" Style="{StaticResource ToolbarButtonStyle}" ToolTip="Add" Click="btnAdd_Click"/>
+                <Button x:Name="btnEdit" Content="{StaticResource EditIcon}" Style="{StaticResource ToolbarButtonStyle}" ToolTip="Edit" Click="btnEdit_Click"/>
+                <Button x:Name="btnDelete" Content="{StaticResource DeleteIcon}" Style="{StaticResource ToolbarButtonStyle}" ToolTip="Delete" Click="btnDelete_Click"/>
+                <Separator/>
+                <Label Content="Find: "/>
+                <TextBox x:Name="txtFind" Width="180"/>
+                <Button x:Name="btnFindNext" Content="{StaticResource FindIcon}" Style="{StaticResource ToolbarButtonStyle}" ToolTip="Find" Click="btnFindNext_Click"/>
+                <Button x:Name="btnClear" Content="{StaticResource Clear}" Style="{StaticResource ToolbarButtonStyle}" ToolTip="Clear" Click="btnClear_Click" RenderTransformOrigin="0.88,-0.72"/>
+                
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid x:Name="dgControls" ItemsSource="{Binding}" RowHeaderWidth="0" Margin="5,0,5,5"
+                      Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Hidden"
+                      SelectionMode="Single" IsReadOnly="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False"
+                      RowStyle="{StaticResource DataGridRowStyle1}"
+                      SelectionChanged="dgControls_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding mControlType}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Control Type" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="*" />
+                <DataGridTextColumn Binding="{Binding mKey}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </DockPanel>
+    
+    <!--<Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical">
+            <Menu IsMainMenu="True" Background="White">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" Command="New"/>
+
+                </MenuItem>
+
+            </Menu>
+            
+            <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0" DockPanel.Dock="Top">
+                    <Label x:Name="lblScreen" Content="Screen :    " Margin="0,0,0,0"/>
+                    <TextBox x:Name="txtScreen" Text="{Binding Screen, Mode=TwoWay}" Margin="5,0,0,0" Width="300" Height="20" FontSize="10"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" >
+                    <TabControl x:Name="tabControl" Margin="5,5,0,0">
+                        <TabItem x:Name="tabProperties" Header="Properties" Background="#FF90D2FF" IsSelected="True">
+                            <Grid Background="#FF90D2FF">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                                    <Label x:Name="lblControlType" Content="Control Type :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblControlName" Content="Control Name :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblSearchType" Content="Search Type :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblSearchValue" Content="Search Value :" Margin="5,0,0,0"/>
+
+                                </StackPanel>
+                                <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                                    <ComboBox x:Name="cboControlType" Text="{Binding ControlType, Mode=TwoWay}" IsEditable="True" Margin="5,5,5,5"/>
+                                    <TextBox x:Name="txtControlName" Text="{Binding ControlName, Mode=TwoWay}" Margin="5,0,5,5"/>
+                                    <ComboBox x:Name="cboSearchType" Text="{Binding SearchType, Mode=TwoWay}" IsEditable="True" Margin="5,0,5,5"/>
+                                    <TextBox x:Name="txtSearchValue" Text="{Binding SearchValue, Mode=TwoWay}" Margin="5,0,5,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Margin="0,0,5,0">
+                                    <Button Name="btnInspect" Content="Inspect" Style="{StaticResource ButtonStyle2}" Click="btnInspect_Click"/>
+                                    <Button x:Name="btnHighlight" Content="Highlight" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Margin="0,0,5,0" Click="btnHighlight_Click"/>
+                                    <Button x:Name="btnSaveControl" Content="Save" Style="{StaticResource ButtonStyle2}" Click="btnSaveControl_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabDOM" Header="DOM" Background="#FF90D2FF">
+                            <TestRunner:XmlViewer x:Name="DOMViewer" Grid.Column="0" Grid.Row="2" Margin="5,5,5,5" Height="204"/>
+                        </TabItem>
+                    </TabControl>
+
+                </StackPanel>
+                <DataGrid x:Name="dgControls" ItemsSource="{Binding}" RowHeaderWidth="0" Margin="5,0,5,5"
+                      Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Hidden"
+                      SelectionMode="Single" IsReadOnly="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False"
+                      RowStyle="{StaticResource DataGridRowStyle1}"
+                      SelectionChanged="dgControls_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding mControlType}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Control Type" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="100" />
+                        <DataGridTextColumn Binding="{Binding mKey}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="175"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+            
+            
+            --><!--<Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+
+                --><!--<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,0">
+                    <Button Name="btnOpen" Content="Open" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Left" Margin="5,0,0,0" Click="btnOpen_Click"/>
+                    <Button Name="btnNew" Content="New" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Left" Margin="5,0,0,0" Click="btnNew_Click"/>
+                    <Button Name="btnSave" Content="Save" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Left" Margin="5,0,0,0" Click="btnSave_Click"/>
+                </StackPanel>-->
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">
+                    <Label Name="lblEnvironment" Content="Environment:" />
+                    <ComboBox Name="cboEnvironment" Width="200" Height="20" Text="{Binding EnvID, Mode=TwoWay}"/>
+                    <Button Name="btnBrowser" Content="Browser" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Right" Margin="5,0,0,0" Click="btnBrowser_Click"/>
+                </StackPanel>-->
+                
+                
+                
+                <!--<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,0">
+                    <Label x:Name="lblScreen" Content="Screen :    " Margin="0,0,0,0"/>
+                    <TextBox x:Name="txtScreen" Text="{Binding Screen, Mode=TwoWay}" Margin="5,0,0,0" Width="300" Height="20" FontSize="10"/>
+
+                </StackPanel>-->
+                <!--<DataGrid x:Name="dgControls" ItemsSource="{Binding}" RowHeaderWidth="0" Margin="5,0,5,5"
+                      Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Hidden"  VerticalAlignment="Stretch"
+                      SelectionMode="Single" IsReadOnly="False"
+                      CanUserAddRows="False" CanUserDeleteRows="False"
+                      RowStyle="{StaticResource DataGridRowStyle1}" Grid.Column="0" Grid.Row="1"
+                      SelectionChanged="dgControls_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding mControlType}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Control Type" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="100" />
+                        <DataGridTextColumn Binding="{Binding mKey}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="175"/>
+                    </DataGrid.Columns>
+                </DataGrid>-->
+                <!--<StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" >
+                    <TabControl x:Name="tabControl" Margin="5,5,0,0">
+                        <TabItem x:Name="tabProperties" Header="Properties" Background="#FF90D2FF" IsSelected="True">
+                            <Grid Background="#FF90D2FF">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">
+                                    <Label x:Name="lblControlType" Content="Control Type :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblControlName" Content="Control Name :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblSearchType" Content="Search Type :" Margin="5,0,0,0"/>
+                                    <Label x:Name="lblSearchValue" Content="Search Value :" Margin="5,0,0,0"/>
+
+                                </StackPanel>
+                                <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                                    <ComboBox x:Name="cboControlType" Text="{Binding ControlType, Mode=TwoWay}" IsEditable="True" Margin="5,5,5,5"/>
+                                    <TextBox x:Name="txtControlName" Text="{Binding ControlName, Mode=TwoWay}" Margin="5,0,5,5"/>
+                                    <ComboBox x:Name="cboSearchType" Text="{Binding SearchType, Mode=TwoWay}" IsEditable="True" Margin="5,0,5,5"/>
+                                    <TextBox x:Name="txtSearchValue" Text="{Binding SearchValue, Mode=TwoWay}" Margin="5,0,5,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Margin="0,0,5,0">
+                                    <Button Name="btnInspect" Content="Inspect" Style="{StaticResource ButtonStyle2}" Click="btnInspect_Click"/>
+                                    <Button x:Name="btnHighlight" Content="Highlight" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Margin="0,0,5,0" Click="btnHighlight_Click"/>
+                                    <Button x:Name="btnSaveControl" Content="Save" Style="{StaticResource ButtonStyle2}" Click="btnSaveControl_Click"/>
+                                    --><!--<Button x:Name="btnCancel" Content="Cancel" Style="{StaticResource ButtonStyle2}" Click="btnCancel_Click"/>--><!--
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tabDOM" Header="DOM" Background="#FF90D2FF">
+                            <TestRunner:XmlViewer x:Name="DOMViewer" Grid.Column="0" Grid.Row="2" Margin="5,5,5,5" Height="204"/>
+                        </TabItem>
+                    </TabControl>
+
+                </StackPanel>-->
+                
+                <!--<Grid Grid.Column="1" Grid.Row="2">
+                    <Label x:Name="lblControls" Content="Controls:" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,5,0">
+                        --><!--<Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Click="btnEdit_Click"/>--><!--
+                        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Click="btnDelete_Click"/>
+                    </StackPanel>
+                </Grid>--><!--
+
+            </Grid>--><!--
+        </StackPanel>
+        
+
+
+    </Grid>-->
+</Window>

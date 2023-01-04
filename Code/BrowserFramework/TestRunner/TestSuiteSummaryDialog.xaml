@@ -1,0 +1,76 @@
+﻿<Window x:Class="TestRunner.TestSuiteSummaryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Test Suite Summary" Height="500" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Margin="5,5,5,5">
+            <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left">Test Suite Summary:</Label>
+            <DataGrid Height="400" x:Name="dgTestSuiteSummary" ItemsSource="{Binding}" RowHeaderWidth="0"
+                      Style="{StaticResource DataGridStyle1}" HorizontalScrollBarVisibility="Hidden" SelectionMode="Single" IsReadOnly="True" RowStyle="{StaticResource DataGridRowStyle1}" CellStyle="{StaticResource DataGridCellStyle1}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding suite}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Suite" HeaderStyle="{StaticResource DataGridColumnHeaderStyle4}" />
+                    <DataGridTextColumn Binding="{Binding resultsdirectory}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Last Run" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" />
+                    <DataGridTextColumn Binding="{Binding counttotal}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Total" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" />
+                    <DataGridTextColumn Binding="{Binding countpass}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Passed" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" />
+                    <DataGridTextColumn Binding="{Binding countfail}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Failed" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border Margin="3" Padding="3" BorderBrush="SteelBlue" BorderThickness="3" CornerRadius="5">
+                            <DataGrid ItemsSource="{Binding testrecs}" 
+                                                  RowHeaderWidth="0" Style="{StaticResource DataGridStyle1}" 
+                                                  SelectionMode="Single" 
+                                                  Width="700"
+                                                  VerticalScrollBarVisibility="Visible"
+                                                  MaxHeight="200"
+                                                  >
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding teststatus}" Value="Not Run" >
+                                                <Setter Property="Background" Value="LemonChiffon" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding teststatus}" Value="Passed" >
+                                                <Setter Property="Background" Value="LightGreen" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding teststatus}" Value="Failed" >
+                                                <Setter Property="Background" Value="MistyRose" />
+                                                <Setter Property="Foreground" Value="Navy" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding testrow}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="#" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" />
+                                    <DataGridTextColumn Binding="{Binding teststatus}" CanUserSort="False" CanUserReorder="False" CanUserResize="False"  Header="Test Status" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" />
+                                    <DataGridTextColumn Binding="{Binding testtype}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Test Type" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" />
+                                    <DataGridTextColumn Binding="{Binding folder}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Folder" HeaderStyle="{StaticResource DataGridColumnHeaderStyle2}"/>
+                                    <DataGridTextColumn Binding="{Binding spreadsheet}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Spreadsheet" HeaderStyle="{StaticResource DataGridColumnHeaderStyle3}"/>
+                                    <DataGridTextColumn Binding="{Binding testname}" CanUserSort="False" CanUserReorder="False" CanUserResize="False" Header="Test Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyle5}" MinWidth="255">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <Button x:Name="btnCloseSummary" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Right" Content="Close" Click="btnCloseSummary_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

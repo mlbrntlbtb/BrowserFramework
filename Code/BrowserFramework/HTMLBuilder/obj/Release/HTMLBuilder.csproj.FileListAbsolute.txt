@@ -1,0 +1,5 @@
+C:\TFS\BrowserFramework\Code\BrowserFramework\HTMLBuilder\bin\Release\HTMLBuilder.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\HTMLBuilder\bin\Release\HTMLBuilder.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Release\HTMLBuilder.csprojAssemblyReference.cache
+C:\TFS\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Release\HTMLBuilder.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\HTMLBuilder\obj\Release\HTMLBuilder.pdb

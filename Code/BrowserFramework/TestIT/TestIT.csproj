@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92005580-B9F5-44F0-90C0-3B54B54FE72A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestIT</RootNamespace>
+    <AssemblyName>TestIT</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TestIT.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Appium.Net">
+      <HintPath>..\..\..\Tools\ExternalLib\Appium.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Envs\EnvMaconomyTouch.cs" />
+    <Compile Include="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\Driver.cs" />
+    <Compile Include="Sys\Logger.cs" />
+    <Compile Include="Sys\Mailer.cs" />
+    <Compile Include="Sys\MobileConfig.cs" />
+    <Compile Include="Sys\ObjectStoreHandler.cs" />
+    <Compile Include="Sys\ReportBuilder.cs" />
+    <Compile Include="Sys\TestRun.cs" />
+    <Compile Include="Sys\TestScript.cs" />
+    <Compile Include="TestsScripts\GlobalProductTest.cs" />
+    <Compile Include="TestRuns\MaconomyTouch\Login.cs" />
+    <Compile Include="TestRuns\MaconomyTouch\SanityAbsence.cs" />
+    <Compile Include="TestRuns\MaconomyTouch\SanityExpense.cs" />
+    <Compile Include="TestRuns\GlobalProductRun.cs" />
+    <Compile Include="TestsScripts\MaconomyTouch\LoginTest.cs" />
+    <Compile Include="TestsScripts\MaconomyTouch\SanityAbsenceTest.cs" />
+    <Compile Include="TestsScripts\MaconomyTouch\SanityExpenseTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{1000485d-4034-419d-95f9-a07566912482}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaconomyTouch\MaconomyTouchLib.csproj">
+      <Project>{c9712bd0-f2d3-4d36-af3e-d2142b20cbe0}</Project>
+      <Name>MaconomyTouchLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

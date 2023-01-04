@@ -1,0 +1,14 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\CPExtensibility.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\CPExtensibility.csproj.SuggestedBindingRedirects.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\App.baml
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\ProductSelection.baml
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\App.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\EditControlWindow.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\EditScreenWindow.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\NewScreenWindow.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\ProductSelection.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\UnsavedChangesWindow.g.cs
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\CPExtensibility_MarkupCompile.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\CPExtensibility_MarkupCompile.lref
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\CPExtensibility.exe.config
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\CPExtensibility\obj\Debug\View\CPExtensibilityMainForm.g.cs

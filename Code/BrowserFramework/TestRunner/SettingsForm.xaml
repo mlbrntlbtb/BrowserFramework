@@ -1,0 +1,1049 @@
+﻿<Window x:Class="TestRunner.SettingsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pw="clr-namespace:TestRunner.Common"
+        xmlns:local="clr-namespace:TestRunner.Controls"
+        Title="Settings" Height="630" Width="624" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize" Closing="Window_Closing">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="tabEnvironments" Grid.Row="0" Margin="10,10,10,0" Background="#FF90D2FF">
+            <TabItem x:Name="tpgEnvironment" Header="Environment">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170" MinWidth="170" MaxWidth="340"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" VerticalAlignment="Stretch" Width="auto">
+                        <GroupBox Header="Environment" Margin="5,10,0,10" Grid.ColumnSpan="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lstEnvs" Grid.Row="0" Margin="0,10,0,0" BorderThickness="0" Background="White" ItemsSource="{Binding}" SelectionChanged="lstEnvs_SelectionChanged">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <EventSetter Event="Selected" Handler="ListBoxItem_Selected"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                    <Button x:Name="btnAdd" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnAdd_Click" ToolTip="Add">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/add.png"/>
+                                    </Button>
+                                    <Button x:Name="btnEdit" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnEdit_Click" ToolTip="Edit">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                    </Button>
+                                    <Button x:Name="btnClone" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnClone_Click" ToolTip="Clone">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/copy.png"/>
+                                    </Button>
+                                    <Button x:Name="btnDelete" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnDelete_Click" ToolTip="Delete">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/delete.ico"/>
+
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+
+
+                        </GroupBox>
+                    </Grid>
+                    <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ShowsPreview="False" Width="Auto" BorderBrush="Gray"  VerticalAlignment="Stretch" 
+                                          BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" Opacity="0" />
+                    <Grid Grid.Column="2" Margin="5,10,10,0">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="43*"/>
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <DockPanel>
+                                    <Label>ID</Label>
+                                </DockPanel>
+                                <TextBox x:Name="txtID" Text="{Binding mID, Mode=OneWay}" MaxLength="50" TextChanged="txtID_TextChanged"></TextBox>
+                                <Popup x:Name="popuptxtID" PlacementTarget="{Binding ElementName=txtID}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <local:CustomPopup x:Name="popupEnvID" Style="{StaticResource popupStyle1}" PopupLabel="ID has reached the maximum length of 50 characters."></local:CustomPopup>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>URL</Label>
+                                <TextBox x:Name="txtUrl" Text="{Binding mUrl, Mode=OneWay}" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="67" TextChanged="txtUrl_TextChanged" MaxLength="2083"></TextBox>
+                                <Popup x:Name="popupTxtUrl" PlacementTarget="{Binding ElementName=txtUrl}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <ContentControl Style="{StaticResource PopupContentStyle}">
+                                        <StackPanel>
+                                            <Label VerticalAlignment="Center" Content="URL has reached the maximum length of 2083 characters."/>
+                                        </StackPanel>
+                                    </ContentControl>
+                                </Popup>
+                                <Label x:Name="lblUrlError" FontStyle="Italic" FontSize="8.2" Margin="0" FontWeight="ExtraBold" Height="23">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Content" Value="Note: URL should start with http:// or https://"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Content" Value="{Binding InvalidURLMessage, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,-10,0,5">
+                                <Label>User</Label>
+                                <TextBox x:Name="txtUser" Text="{Binding mUser, Mode=OneWay}" MaxLength="100"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5" >
+                                <Label>Password</Label>
+                                <PasswordBox x:Name="txtPassword" pw:MaskedPassword.BindPassword="true" pw:MaskedPassword.BoundPassword="{Binding mPassword, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLength="100"></PasswordBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Database</Label>
+                                <TextBox x:Name="txtDatabase" Text="{Binding mDatabase, Mode=OneWay}" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxLength="100"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5" Name="PinPanel" Visibility="Collapsed">
+                                <Label>PIN</Label>
+                                <TextBox x:Name="txtPin" Text="{Binding mPin, Mode=OneWay}" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5" Name="MetaDataPanel" Visibility="Visible">
+                                <Label>Interface</Label>
+                                <TabControl x:Name="tabMetaData" Background="Transparent">
+                                    <TabItem Visibility="Collapsed">
+                                        <StackPanel Orientation="Horizontal">
+                                            <RadioButton x:Name="rdoDefault" Content="Default">
+                                                <RadioButton.Style>
+                                                    <Style TargetType="RadioButton">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="">
+                                                                <Setter Property="IsChecked" Value="True"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="{x:Null}">
+                                                                <Setter Property="IsChecked" Value="False"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </RadioButton.Style>
+                                            </RadioButton>
+                                            <TextBlock Width="15"/>
+                                            <RadioButton x:Name="rdoClassic" Content="Classic">
+                                                <RadioButton.Style>
+                                                    <Style TargetType="RadioButton">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="classic">
+                                                                <Setter Property="IsChecked" Value="True"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="{x:Null}">
+                                                                <Setter Property="IsChecked" Value="False"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </RadioButton.Style>
+                                            </RadioButton>
+                                            <TextBlock Width="15"/>
+                                            <RadioButton x:Name="rdoNew" Content="New">
+                                                <RadioButton.Style>
+                                                    <Style TargetType="RadioButton">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="new">
+                                                                <Setter Property="IsChecked" Value="True"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding mMetaData, Mode=OneWay}" Value="{x:Null}">
+                                                                <Setter Property="IsChecked" Value="False"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </RadioButton.Style>
+                                            </RadioButton>
+                                        </StackPanel>
+                                    </TabItem>
+                                </TabControl>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,10">
+                                <Button x:Name="btnTestConnection"  Style="{StaticResource ButtonStyle2}" Width="90" VerticalAlignment="Center" DockPanel.Dock="Right" Content="Test Connection" Click="btnTestConnection_Click" ToolTip="Test connection using selected browser"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button x:Name="btnCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnCheck_Click" ToolTip="Accept" IsEnabled="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                                </Button>
+                                <Button x:Name="btnNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnNotCheck_Click" ToolTip="Reject">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right"  Margin="-10,-40,0,10">
+                                <TextBlock x:Name="tbURLBlacklistContainer">
+                                    <Hyperlink x:Name="lnkURLBlacklist" FontSize="8" Click="lnkURLBlacklist_Click">
+                                        <TextBlock x:Name="tbURLBlackList">
+                                           Show URL Blacklist
+                                        </TextBlock> 
+                                    </Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+                            <Grid Margin="0,-27,0,10">
+                                <GroupBox x:Name="grpURLBlackList" Visibility="Hidden"  Header="URL Blacklist" Height="88" Width="auto" DockPanel.Dock="Top" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Vertical" Margin="0,5,0,0">
+                                        <TextBox Name="txtURLBlacklist" Height="38" Margin="1,0,0,0" TextWrapping="Wrap" MaxLines="1" VerticalScrollBarVisibility="Auto"
+                                                 Text="{Binding Path=URLBlacklist, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=Window}, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Label FontSize="8" FontStyle="Italic">* Separate each URL with semi-colon (;) No spaces</Label>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Vertical" Grid.Row="0">
+                            <Label>ID</Label>
+                            <TextBox x:Name="txtID" Text="{Binding mID, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1">
+                            <Label>Url</Label>
+                            <TextBox x:Name="txtUrl" Text="{Binding mUrl, Mode=OneWay}" TextWrapping="Wrap" Height="Auto"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="2">
+                            <Label>User</Label>
+                            <TextBox x:Name="txtUser" Text="{Binding mUser, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="3">
+                            <Label>Password</Label>
+                            <TextBox x:Name="txtPassword" Text="{Binding mPassword, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="4" Margin="0,0,0,0">
+                            <Label>Database</Label>
+                            <TextBox x:Name="txtDatabase" Text="{Binding mDatabase, Mode=OneWay}" TextWrapping="Wrap" Height="Auto"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right">
+                            <Button x:Name="btnCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnCheck_Click" ToolTip="Accept">
+                                <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                            </Button>
+                            <Button x:Name="btnNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnNotCheck_Click" ToolTip="Reject">
+                                <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                            </Button>
+                        </StackPanel>-->
+
+                        <!--<StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,0,0">
+                            <Button x:Name="btnAdd" Content="{StaticResource AddIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnEdit" Content="{StaticResource EditIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnDelete" Content="{StaticResource DeleteIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                        </StackPanel>-->
+                    </Grid>
+                </Grid>
+                <!--<DataGrid x:Name="dgvEnvironments" ItemsSource="{Binding}" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle1}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="URL" HeaderStyle="{StaticResource DataGridColumnHeaderStyle4}" Binding="{Binding mUrl}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="User" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mUser}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Password" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mPassword}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Database" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mDatabase}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Action" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="dgvBtn1"></Button>
+                                        <Button x:Name="dgvBtn2"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>-->
+            </TabItem>
+            <TabItem x:Name="tpgBrowsers" Header="Browsers">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <GroupBox Header="Browsers" Grid.Row="1" Margin="5,10,10,10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lstBrowsers" Grid.Row="0" Margin="0,10,0,0" BorderThickness="0" Background="White" ItemsSource="{Binding}" SelectionChanged="lstBrowsers_SelectionChanged">
+                                </ListBox>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="0,10,10,0">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="43*"/>
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Browser Version</Label>
+                                <!--<TextBlock x:Name="tbVersion" Margin="10,0,0,5" TextWrapping="Wrap"/>-->
+                                <TextBox x:Name="tbVersion" Text="{Binding mDatabase, Mode=OneWay}" IsEnabled="False" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Browser Driver Version</Label>
+                                <!--<TextBlock x:Name="tbVersion" Margin="10,0,0,5" TextWrapping="Wrap"/>-->
+                                <TextBox x:Name="tbDriver" Text="{Binding mDatabase, Mode=OneWay}" IsEnabled="False" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Notes</Label>
+                                <!--<TextBlock x:Name="tbNotes" Margin="10,0,0,5" TextWrapping="Wrap"/>-->
+                                <TextBox x:Name="tbNotes" Text="{Binding mUrl, Mode=OneWay}" IsEnabled="False" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="118"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="chkDefaultBrowser" Margin="0,5,15,0" IsEnabled="{Binding IsBrowserSelected, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Content="Set Default" Click="chkDefaultBrowser_Click" VerticalContentAlignment="Bottom"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Vertical" Grid.Row="0">
+                            <Label>ID</Label>
+                            <TextBox x:Name="txtID" Text="{Binding mID, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1">
+                            <Label>Url</Label>
+                            <TextBox x:Name="txtUrl" Text="{Binding mUrl, Mode=OneWay}" TextWrapping="Wrap" Height="Auto"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="2">
+                            <Label>User</Label>
+                            <TextBox x:Name="txtUser" Text="{Binding mUser, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="3">
+                            <Label>Password</Label>
+                            <TextBox x:Name="txtPassword" Text="{Binding mPassword, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="4" Margin="0,0,0,0">
+                            <Label>Database</Label>
+                            <TextBox x:Name="txtDatabase" Text="{Binding mDatabase, Mode=OneWay}" TextWrapping="Wrap" Height="Auto"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right">
+                            <Button x:Name="btnCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnCheck_Click" ToolTip="Accept">
+                                <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                            </Button>
+                            <Button x:Name="btnNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnNotCheck_Click" ToolTip="Reject">
+                                <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                            </Button>
+                        </StackPanel>-->
+
+                        <!--<StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,0,0">
+                            <Button x:Name="btnAdd" Content="{StaticResource AddIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnEdit" Content="{StaticResource EditIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnDelete" Content="{StaticResource DeleteIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                        </StackPanel>-->
+                    </Grid>
+                </Grid>
+                <!--<DataGrid x:Name="dgvEnvironments" ItemsSource="{Binding}" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle1}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="URL" HeaderStyle="{StaticResource DataGridColumnHeaderStyle4}" Binding="{Binding mUrl}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="User" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mUser}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Password" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mPassword}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Database" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mDatabase}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Action" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="dgvBtn1"></Button>
+                                        <Button x:Name="dgvBtn2"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>-->
+            </TabItem>
+            <TabItem x:Name="tpgRemoteBrowser" Header="Remote">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170" MinWidth="170" MaxWidth="340"/>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29*"/>
+                            <ColumnDefinition Width="142*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Remote Machines" Margin="5,10,0,10" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Width="auto">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lstRemoteBrowsers" Grid.Row="0" Margin="0,10,0,0" BorderThickness="0" Background="White" ItemsSource="{Binding}" SelectionChanged="lstRemoteBrowsers_SelectionChanged">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <EventSetter Event="Selected" Handler="ListBoxItem_Selected"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                    <Button x:Name="btnAddRemoteBrowser" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnAddRemoteBrowser_Click" ToolTip="Add">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/add.png"/>
+                                    </Button>
+                                    <Button x:Name="btnEditRemoteBrowser" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnEditRemoteBrowser_Click" ToolTip="Edit">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                    </Button>
+                                    <Button x:Name="btnCloneRemoteBrowser" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnCloneRemoteBrowser_Click" ToolTip="Clone">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/copy.png"/>
+                                    </Button>
+                                    <Button x:Name="btnDeleteRemoteBrowser" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnDeleteRemoteBrowser_Click" ToolTip="Delete">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/delete.ico"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+
+
+                        </GroupBox>
+                    </Grid>
+                    <GridSplitter Grid.Column="1" Grid.Row="0" ShowsPreview="False" Width="Auto" BorderBrush="Gray"  VerticalAlignment="Stretch" 
+                                          BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" Opacity="0" Margin="0,0,0.4,-0.2" />
+                    <Grid Grid.Column="2" Margin="5,10,10,0">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="43*"/>
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Orientation="Vertical" MaxHeight="390" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,2">
+                                <Label>ID</Label>
+                                <TextBox x:Name="txtRemoteBrowserID" Text="{Binding Id, Mode=OneWay}" MaxLength="50" TextChanged="txtRemoteBrowserID_TextChanged"></TextBox>
+                                <Popup x:Name="popupRemoteBrowserID" PlacementTarget="{Binding ElementName=txtRemoteBrowserID}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <local:CustomPopup x:Name="popupRemID" Style="{StaticResource popupStyle1}" PopupLabel="ID has reached the maximum length of 50 characters."></local:CustomPopup>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,2">
+                                <Label>URL</Label>
+                                <TextBox x:Name="txtRemoteBrowserUrl" Text="{Binding Url, Mode=OneWay}" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="67" TextChanged="txtRemoteBrowserUrl_TextChanged" MaxLength="2083"></TextBox>
+                                <Popup x:Name="popupRemoteBrowserUrl" PlacementTarget="{Binding ElementName=txtRemoteBrowserUrl}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <ContentControl Style="{StaticResource PopupContentStyle}">
+                                        <StackPanel>
+                                            <Label VerticalAlignment="Center" Content="URL has reached the maximum length of 2083 characters."/>
+                                        </StackPanel>
+                                    </ContentControl>
+                                </Popup>
+                                <Label x:Name="lblRemoteUrlError" FontStyle="Italic" FontSize="8.2" Margin="0" FontWeight="ExtraBold" Height="23">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Content" Value="Note: URL should start with http:// or https://"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Content" Value="{Binding InvalidURLMessage, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,2">
+                                <Label>Browser</Label>
+                                <!--<TextBox x:Name="txtRemoteBrowserType" Text="{Binding Type, Mode=OneWay}"></TextBox>-->
+                                <ComboBox x:Name="cboRemoteBrowserType" Text="{Binding Browser, Mode=OneWay}" IsEditable="False" SelectedItem="{Binding Browser, Mode=OneWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button x:Name="btnRemoteBrowserCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnRemoteBrowserCheck_Click" ToolTip="Accept" IsEnabled="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                                </Button>
+                                <Button x:Name="btnRemoteBrowserNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnRemoteBrowserNotCheck_Click" ToolTip="Reject">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- old code -->
+                        <!--<StackPanel Orientation="Vertical" Grid.Row="0">
+                            <Label>Browser Name</Label>
+                            <TextBox x:Name="txtRemoteBrowserID" Text="{Binding Id, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="1">
+                            <Label>Url</Label>
+                            <TextBox x:Name="txtRemoteBrowserUrl" Text="{Binding Url, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="2">
+                            <Label>Type</Label>
+                            -->
+                        <!--<TextBox x:Name="txtRemoteBrowserType" Text="{Binding Type, Mode=OneWay}"></TextBox>-->
+                        <!--
+                            <ComboBox x:Name="cboRemoteBrowserType" Text="{Binding Type, Mode=OneWay}" IsEditable="True"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="3">
+                            <Label>Device Name</Label>
+                            <TextBox x:Name="txtDeviceName" Text="{Binding DeviceName, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="4">
+                            <Label>Device Version</Label>
+                            <TextBox x:Name="txtDeviceVersion" Text="{Binding DeviceVersion, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="5">
+                            <Label>Application</Label>
+                            <ComboBox x:Name="cboApplication" Text="{Binding Application, Mode=OneWay}" IsEditable="True"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right">
+                            <Button x:Name="btnRemoteBrowserCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnRemoteBrowserCheck_Click" ToolTip="Accept">
+                                <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                            </Button>
+                            <Button x:Name="btnRemoteBorwsderNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnRemoteBorwsderNotCheck_Click" ToolTip="Reject">
+                                <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                            </Button>
+                        </StackPanel>-->
+
+                        <!--<StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,0,0">
+                            <Button x:Name="btnAdd" Content="{StaticResource AddIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnEdit" Content="{StaticResource EditIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                            <Button x:Name="btnDelete" Content="{StaticResource DeleteIcon}" Style="{StaticResource ToolbarButtonStyle}"></Button>
+                        </StackPanel>-->
+                    </Grid>
+                </Grid>
+                <!--<DataGrid x:Name="dgvEnvironments" ItemsSource="{Binding}" AutoGenerateColumns="False" Style="{StaticResource DataGridStyle1}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="URL" HeaderStyle="{StaticResource DataGridColumnHeaderStyle4}" Binding="{Binding mUrl}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="User" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mUser}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Password" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mPassword}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Database" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Binding="{Binding mDatabase}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Action" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="dgvBtn1"></Button>
+                                        <Button x:Name="dgvBtn2"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>-->
+            </TabItem>
+            <TabItem x:Name="tpgMobile" Header="Mobile">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170" MinWidth="170" MaxWidth="340"></ColumnDefinition>
+                        <ColumnDefinition Width="5"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="83*"/>
+                            <ColumnDefinition Width="19*"/>
+                            <ColumnDefinition Width="78*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Devices" Margin="5,10,0,10" Grid.ColumnSpan="3" VerticalAlignment="Stretch" Width="auto">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lstMobile" Grid.Row="0" Margin="0,10,0,0" BorderThickness="0" Background="White" ItemsSource="{Binding}" SelectionChanged="lstMobile_SelectionChanged">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <EventSetter Event="Selected" Handler="ListBoxItem_Selected"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                    <Button x:Name="btnAddMobile" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnAddMobile_Click" ToolTip="Add">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/add.png"/>
+                                    </Button>
+                                    <Button x:Name="btnEditMobile" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnEditMobile_Click" ToolTip="Edit">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                    </Button>
+                                    <Button x:Name="btnCloneMobile" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnCloneMobile_Click" ToolTip="Clone">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/copy.png"/>
+                                    </Button>
+                                    <Button x:Name="btnDeleteMobile" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnDeleteMobile_Click" ToolTip="Delete">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/delete.ico"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+
+
+                        </GroupBox>
+                    </Grid>
+                    <GridSplitter Grid.Column="1" Grid.Row="0" ShowsPreview="False" Width="Auto" BorderBrush="Gray"  VerticalAlignment="Stretch" 
+                                          BorderThickness="0,0,0,1" HorizontalAlignment="Stretch" Opacity="0" Margin="0,0,0.4,-0.2" />
+                    <Grid Grid.Column="2" Margin="5,10,10,0">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="43*"/>
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Orientation="Vertical" MaxHeight="390" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,2">
+                                <Label>ID</Label>
+                                <TextBox x:Name="txtMobileID" Text="{Binding MobileId, Mode=OneWay}" MaxLength="50" TextChanged="txtMobileID_TextChanged"></TextBox>
+                                <Popup x:Name="popupMobileID" PlacementTarget="{Binding ElementName=txtMobileID}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <local:CustomPopup x:Name="popupMobID" Style="{StaticResource popupStyle1}" PopupLabel="ID has reached the maximum length of 50 characters."></local:CustomPopup>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,2">
+                                <Label>Appium Server URL</Label>
+                                <TextBox x:Name="txtMobileBrowserUrl" Text="{Binding MobileUrl, Mode=OneWay}" TextChanged="txtMobileBrowserUrl_TextChanged" MaxLength="2083"></TextBox>
+                                <Popup x:Name="popupMobileBrowserUrl" PlacementTarget="{Binding ElementName=txtMobileBrowserUrl}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <ContentControl Style="{StaticResource PopupContentStyle}">
+                                        <StackPanel>
+                                            <Label VerticalAlignment="Center" Content="URL has reached the maximum length of 2083 characters."/>
+                                        </StackPanel>
+                                    </ContentControl>
+                                </Popup>
+                                <Label x:Name="lblMobileUrlError" FontStyle="Italic" FontSize="8.2" Margin="0" FontWeight="ExtraBold" Height="23">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                                                    <Setter Property="Content" Value="Note: URL should start with http:// or https://"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsURLRecentlyBlank, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                                                    <Setter Property="Content" Value="{Binding InvalidURLMessage, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,-10,0,2">
+                                <Label>Device Name</Label>
+                                <TextBox x:Name="txtDeviceName" Text="{Binding DeviceName, Mode=OneWay}" MaxLength="100" TextChanged="txtDeviceName_TextChanged"></TextBox>
+                                <Popup x:Name="popuptxtDeviceName" PlacementTarget="{Binding ElementName=txtDeviceName}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <ContentControl Style="{StaticResource PopupContentStyle}">
+                                        <StackPanel>
+                                            <Label VerticalAlignment="Center" Content="Device Name has reached the maximum length of 100 characters."/>
+                                        </StackPanel>
+                                    </ContentControl>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="chkEmulator" Margin="0,5,15,0" Content="Use emulator" IsChecked="{Binding IsEmulator, Mode=OneWay}" Click="chkEmulator_Click"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,10,2">
+                                        <Label>Type</Label>
+                                        <ComboBox x:Name="cboMobileType" Text="{Binding MobileType, Mode=OneWay}" Focusable="True" IsEditable="False"   DropDownClosed="cboMobileType_DropDownClosed" SelectionChanged="cboMobileType_SelectionChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,0,2">
+                                        <Label>Version</Label>
+                                        <ComboBox x:Name="cboDeviceVersion" Text="{Binding DeviceVersion, Mode=OneWay}" Focusable="True" IsEditable="False" DropDownClosed="cboDeviceVersion_DropDownClosed" LostKeyboardFocus="cboDeviceVersion_LostKeyboardFocus" SelectionChanged="cboDeviceVersion_SelectionChanged"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Margin="0,7,0,2">
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="optAppID"  Width="48" Checked="optAppID_Checked">App</RadioButton>
+                                    <RadioButton x:Name="optMobBrowser" Checked="optMobBrowser_Checked">Browser (in device)</RadioButton>
+                                </StackPanel>
+                                <!--<Label>Application ID</Label>-->
+                                <Grid Margin="0,2,0,0">
+                                    <TextBox x:Name="txtApplication" Text="{Binding Application, Mode=OneWay}" Visibility="Collapsed" MaxLength="100" TextChanged="txtApplication_TextChanged" LostFocus="txtApplication_LostFocus"></TextBox>
+                                    <Popup x:Name="popuptxtMobileApp" PlacementTarget="{Binding ElementName=txtApplication}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                        <local:CustomPopup x:Name="popupMobileApp" Style="{StaticResource popupStyle1}" PopupLabel="Application name has reached the maximum length of 100 characters."></local:CustomPopup>
+                                    </Popup>
+                                    <ComboBox x:Name="cmbMobBrowser" Text="{Binding Application, Mode=OneWay}"></ComboBox>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+                                <Label x:Name="lblPackagePath">Package Path</Label>
+                                <TextBox x:Name="txtPath" Text="{Binding Path, Mode=OneWay}" TextWrapping="Wrap" MaxLines="2" MaxLength="260" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="67" IsEnabled="False" TextChanged="txtPath_TextChanged" LostFocus="txtPath_LostFocus" />
+                                <Popup x:Name="popuptxtMobilePackagePath" PlacementTarget="{Binding ElementName=txtPath}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <local:CustomPopup x:Name="popupMobilePackagePath" Style="{StaticResource popupStyle1}" PopupLabel="Package path has reached the maximum length of 260 characters."></local:CustomPopup>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Margin="0,0,0,0">
+                                <Button x:Name="btnMobileCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnMobileCheck_Click" ToolTip="Accept" IsEnabled="{Binding IsURLValid, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                                </Button>
+                                <Button x:Name="btnMobileNotCheck" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnMobileNotCheck_Click" ToolTip="Reject">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tpgSourceControl" Header="Source Control" Visibility="Collapsed">
+                <DockPanel>
+                    <Grid Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="79"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="5" Header="Authentication" Margin="0,0,0,175">
+
+                        </GroupBox>
+                        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26" Width="35">Type</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="0"  x:Name="cmbSourceControlType" ItemsSource="{Binding}" VerticalAlignment="Bottom" IsEnabled="False" Margin="10,0,10,5" Height="22"/>
+                        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,7,0,7" Height="26" Width="43">Server</Label>
+                        <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtSourceControlServer" Height="22"  IsEnabled="False" Margin="10,7,10,11" VerticalAlignment="Center"></TextBox>
+                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,7,0,7" Height="26" Width="69">Username</Label>
+                        <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtSourceControlUser" IsEnabled="False" Margin="10,7,10,11"/>
+                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,7,0,7" Height="26" Width="60">Password</Label>
+                        <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtSourceControlPassword" IsEnabled="False" Margin="10,7,10,11" />
+                        <GroupBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Header="Test Directory" Margin="0,20,0,30">
+                            <Grid Margin="0,0,0,3" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="78"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="65"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Height="24">Local Path</Label>
+                                <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtLocalTestDirectory" IsEnabled="False" Height="23"/>
+                                <Button Grid.Column="2" Grid.Row="0" x:Name="btnMap" Style="{StaticResource ButtonStyle2}" Content="Map" IsEnabled="False" Height="23"></Button>
+                                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Height="24">Server Path</Label>
+                                <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtServerTestDirectory" IsEnabled="False" Height="23" Grid.ColumnSpan="2" Margin="0,8,8,8"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="tpgScheduler" Header="Scheduler">
+                <DockPanel Margin="10,10,0,0">
+                    <GroupBox Header="Email Server Settings" Margin="5,10,10,10" Height="190" DockPanel.Dock="Top">
+                        <Grid  Margin="0,0,0,2" VerticalAlignment="Bottom" Height="165">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="78"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="35"></ColumnDefinition>
+                                <ColumnDefinition Width="55"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="15"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Height="24">SMTP Server</Label>
+                            <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtSMTPServer" IsEnabled="True" Height="23" Grid.ColumnSpan="1" Margin="0,6,5,6" TextChanged="txtSMTPServer_TextChanged"/>
+                            <Label Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Height="24">Port</Label>
+                            <TextBox Grid.Column="3" Grid.Row="0" x:Name="txtSMTPPort" IsEnabled="True" Height="23" Grid.ColumnSpan="1" Margin="0,6,5,6" TextChanged="txtSMTPPort_TextChanged"/>
+                            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Height="24">User ID</Label>
+                            <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtSMTPUser" IsEnabled="True" Height="23" Grid.ColumnSpan="3" Margin="0,6,5,6" TextChanged="txtSMTPUser_TextChanged"/>
+                            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Height="24">Password</Label>
+                            <PasswordBox Grid.Column="1" Grid.Row="2" x:Name="pbSMTPPass" IsEnabled="True" Height="23" Grid.ColumnSpan="3" Margin="0,6,5,6" PasswordChar="*" PasswordChanged="pbSMTPPass_PasswordChanged"/>
+                            <CheckBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Name="chkUseCustomSender" Margin="10,-5,10,-20" Checked="chkUseCustomSender_Checked"  Unchecked="chkUseCustomSender_Unchecked"  Height="23" >
+                                <AccessText TextWrapping="Wrap" FontSize="11">
+                                    Use custom sender address
+                                </AccessText>
+                            </CheckBox>
+                            <TextBox Grid.Column="0" Grid.Row="4" x:Name="txtCustomSenderAdd" Margin="10,-20,5,16" IsEnabled="False" Height="23" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+                            <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4"  Margin="15,-5,0,10" FontSize="10" FontStyle="Italic"> * Default: AutomationBatch@deltek.com</TextBlock>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Default Email Recipients" Margin="5,10,10,10" Height="130" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <CheckBox Name="chkUseDefaultEmail" Margin="10" Checked="chkUseDefaultEmail_Checked" Unchecked="chkUseDefaultEmail_Unchecked" Height="48" >
+                                <AccessText TextWrapping="Wrap" FontSize="11">
+                                    Always send notification report to the following recipients after every scheduled test execution:
+                                </AccessText>
+                            </CheckBox>
+                            <TextBox x:Name="txtMailAddresses" Margin="10,-20,10,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="40" TextChanged="txtMailAddresses_TextChanged"></TextBox>
+                            <TextBlock Margin="15,3,0,0" FontSize="10" FontStyle="Italic"> * Separate each email address with a semicolon (;) No spaces.</TextBlock>
+
+                            <Button x:Name="btnEmailUpdate" Style="{StaticResource ButtonStyle2}" Margin="10" HorizontalAlignment="Right" Content="Update" Visibility="Collapsed" Click="btnEmailUpdate_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Default Scripts" Margin="5,10,10,10" Height="180" Visibility="Hidden" DockPanel.Dock="Bottom">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        </StackPanel>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem x:Name="tpgDashboard" Header="Dashboard" Visibility="Collapsed">
+                <Grid>
+                    <Grid Grid.Column="0" Margin="20">
+                        <StackPanel Orientation="Vertical" MaxHeight="390" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Margin="0,7,0,2">
+                                <Label>Dashboard Source:</Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="optDatabase"  Width="80" Checked="optDatabase_Checked" >Database</RadioButton>
+                                    <RadioButton x:Name="optLocal" Checked="optLocal_Checked" >Local</RadioButton>
+                                </StackPanel>
+                            </StackPanel>
+                            <GroupBox x:Name="grpDatabase" Header="Database Info" Margin="0,7,0,2" IsEnabled="True">
+                                <DockPanel Margin="5">
+                                    <StackPanel Orientation="Vertical">
+                                        <DockPanel LastChildFill="True">
+                                            <StackPanel Orientation="Vertical" Margin="0,0,0,2" DockPanel.Dock="Left" Width="80">
+                                                <Label>Server</Label>
+                                                <Label>Database</Label>
+                                                <Label>User</Label>
+                                                <Label>Password</Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="0,0,0,2" DockPanel.Dock="Right">
+                                                <TextBox x:Name="txtServer" Text="{Binding MobileId, Mode=OneWay}" Margin="0,0,0,3" TextChanged="DashboardInfo_TextChanged"></TextBox>
+                                                <TextBox x:Name="txtResultDatabase" Text="{Binding MobileUrl, Mode=OneWay}" Margin="0,0,0,3" TextChanged="DashboardInfo_TextChanged"></TextBox>
+                                                <TextBox x:Name="txtUserDatabase" Text="{Binding DeviceName, Mode=OneWay}" Margin="0,0,0,3" TextChanged="DashboardInfo_TextChanged"></TextBox>
+                                                <PasswordBox x:Name="txtPasswordDatabase" Margin="0,0,0,3" PasswordChar="*" PasswordChanged="txtPasswordDatabase_PasswordChanged"></PasswordBox>
+                                            </StackPanel>
+                                        </DockPanel>
+                                        <Label x:Name="lblLoading" HorizontalAlignment="Center" Visibility="Collapsed">Attempting to connect...</Label>
+                                        <Button x:Name="btnDbTest" Style="{StaticResource ButtonStyle3}" Content="Test Connection" Click="btnDbTest_Click"/>
+                                    </StackPanel>
+                                </DockPanel>
+                            </GroupBox>
+                            <CheckBox x:Name="chkSubmitResults" Checked="chkSubmitResults_Checked">Submit suite results to database after execution.</CheckBox>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tpgTags" Header="Tags">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <GroupBox Header="Tags" Grid.Row="1" Margin="5,10,10,10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="60"/>
+                                </Grid.RowDefinitions>
+                                <ListBox x:Name="lstTags" Grid.Row="0" Margin="0,10,0,0" BorderThickness="0" Background="White" 
+                                         ItemsSource="{Binding Path=AllTags, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" DisplayMemberPath="Name"
+                                         SelectionChanged="lstTags_SelectionChanged">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <EventSetter Event="Selected" Handler="ListBoxItem_Selected"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                                <StackPanel x:Name="pnlAddEditDelTag" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                    <Button x:Name="btnAddTag" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Bottom" Click="btnAddTag_Click"  ToolTip="Add">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/add.png"/>
+                                    </Button>
+                                    <Button x:Name="btnEditTag" VerticalAlignment="Bottom" Click="btnEditTag_Click" ToolTip="Edit">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="BorderBrush" Value="SteelBlue" />
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="FontSize" Value="10" />
+                                                <Setter Property="Width" Value="25" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="Margin" Value="2,2,2,2" />
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Opacity" Value="0.5" />
+                                                    </Trigger>
+                                                    <DataTrigger Binding="{Binding ElementName=lstTags, Path=SelectedItem}" Value="{x:Null}">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                    </Button>
+                                    <Button x:Name="btnDeleteTag" VerticalAlignment="Bottom" Click="btnDeleteTag_Click" ToolTip="Delete">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="BorderBrush" Value="SteelBlue" />
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="FontSize" Value="10" />
+                                                <Setter Property="Width" Value="25" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="Margin" Value="2,2,2,2" />
+                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Opacity" Value="0.5" />
+                                                    </Trigger>
+                                                    <DataTrigger Binding="{Binding ElementName=lstTags, Path=SelectedItem}" Value="{x:Null}">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="pack://siteoforigin:,,,/Resources/delete.ico"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="0,10,10,0">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Name</Label>
+                                <TextBox x:Name="txtTagName" MaxLength="100" Text="{Binding Path=SelectedTag.Name, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Mode=OneWay}" TextChanged="txtTagName_TextChanged"></TextBox>
+                                <Popup x:Name="popuptxtTageName" PlacementTarget="{Binding ElementName=txtTagName}" StaysOpen="False" Placement="Top" AllowsTransparency="True" PopupAnimation="Fade" IsOpen="False">
+                                    <local:CustomPopup x:Name="popupTagName" Style="{StaticResource popupStyle1}" PopupLabel="Name has reached the maximum length of 100 characters."></local:CustomPopup>
+                                </Popup>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <Label>Description</Label>
+                                <TextBox x:Name="txtTagDescription" Text="{Binding Path=SelectedTag.Description, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Mode=OneWay}" TextWrapping="Wrap" MaxLines="3" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="70"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>Tag Conflicts</Label>
+                                    <Button x:Name="btnManageConflicts" Style="{StaticResource ButtonTransparentStyle}" VerticalAlignment="Center" Click="btnManageConflicts_Click" ToolTip="Add/Delete" Height="12">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/edit.png"/>
+                                    </Button>
+                                </StackPanel>
+                                <ItemsControl x:Name="lstTagConflicts" Height="180" ItemsSource="{Binding Path=TagConflicts, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" DisplayMemberPath="Name" Background="White" BorderBrush="Silver"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button x:Name="btnCheckTag" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnCheckTag_Click" ToolTip="Accept">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/check.ico"/>
+                                </Button>
+                                <Button x:Name="btnNotCheckTag" Style="{StaticResource ToolbarButtonStyle}" HorizontalAlignment="Right" Click="btnNotCheckTag_Click" ToolTip="Reject">
+                                    <Image Source="pack://siteoforigin:,,,/Resources/button_cancel.ico"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tpgConfigs" Header="Preferences" Height="23" VerticalAlignment="Bottom">
+                <DockPanel Margin="10,10,0,0">
+                    <GroupBox Header="Target Application" Margin="5,0,10,5" Height="65" DockPanel.Dock="Top">
+                        <DockPanel Margin="20,5,20,5" Grid.ColumnSpan="2">
+                            <!--<StackPanel DockPanel.Dock="Left" Margin="0,0,20,0"  HorizontalAlignment="Left">
+                                <TextBlock Text="Error Logs Level" HorizontalAlignment="Left"/>
+                            </StackPanel>-->
+                            <ComboBox x:Name="cmbTargetApplication" ItemsSource="{Binding}" VerticalAlignment="Center" SelectionChanged="cmbTargetApplication_SelectionChanged" DisplayMemberPath="DisplayName"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="grpBoxObjectStore" Header="Object Store" Margin="5,0,10,5" Height="55" DockPanel.Dock="Top" VerticalAlignment="Center">
+                        <DockPanel Margin="10,5,20,5" Grid.ColumnSpan="2">
+                            <CheckBox x:Name="chkShowApplicationName">Use Application Name instead of Application ID</CheckBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="grpTestDirectories" Header="Test/Suite Directories" Margin="5,0,10,5" Height="80" DockPanel.Dock="Top" VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="20"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Width="80" Grid.Row="0" Grid.Column="1" Margin="0,5">Test Directory</TextBlock>
+                            <TextBox x:Name="txtTestDir" Grid.Row="0" Grid.Column="2" Margin="0,5"  FontSize="11" Text="{Binding Path=TestDirectory, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=Window}, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                            ToolTip="{Binding ElementName=txtTestDir, Path=Text}" GotFocus="txtTestDir_GotFocus"></TextBox>
+                            <Button x:Name="btnBrowseTestDir" Grid.Row="0" Grid.Column="3" Width="21" Margin="2,5,0,5" Click="btnBrowseTestDir_Click" ToolTip="Browse Test Directory">
+                                <TextBlock>...</TextBlock>
+                            </Button>
+                            <Button x:Name="btnResetTestDir" Grid.Row="0" Grid.Column="4" Width="21" Margin="2,5,0,5" Click="btnResetTestDir_Click" ToolTip="Reset">
+                                <Image Source="pack://siteoforigin:,,,/Resources/reset.png"/>
+                            </Button>
+
+                            <TextBlock Width="80" Grid.Row="1" Grid.Column="1" Margin="0,5">Suite Directory</TextBlock>
+                            <TextBox x:Name="txtSuiteDir" Grid.Row="1" Grid.Column="2" Margin="0,5" FontSize="11" Text="{Binding Path=SuiteDirectory, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=Window}, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                                        ToolTip="{Binding ElementName=txtSuiteDir, Path=Text}" GotFocus="txtSuiteDir_GotFocus"></TextBox>
+                            <Button x:Name="btnBrowseSuiteDir" Grid.Row="1" Grid.Column="3" Width="21" Margin="2,5,0,5" Click="btnBrowseSuiteDir_Click" ToolTip="Browse Suite Directory">
+                                <TextBlock>...</TextBlock>
+                            </Button>
+                            <Button x:Name="btnResetSuiteDir" Grid.Row="1" Grid.Column="4" Width="21" Margin="2,5,0,5" Click="btnResetSuiteDir_Click" ToolTip="Reset">
+                                <Image Source="pack://siteoforigin:,,,/Resources/reset.png"/>
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Error Log Level" Margin="5,0,10,5" Height="65" DockPanel.Dock="Top">
+                        <DockPanel Margin="20,5,20,5" Grid.ColumnSpan="2">
+                            <!--<StackPanel DockPanel.Dock="Left" Margin="0,0,20,0"  HorizontalAlignment="Left">
+                                <TextBlock Text="Error Logs Level" HorizontalAlignment="Left"/>
+                            </StackPanel>-->
+                            <ComboBox x:Name="cmbErrLogLevel" ItemsSource="{Binding}" VerticalAlignment="Center" SelectionChanged="cmbErrLogLevel_SelectionChanged"/>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Header="Test Dashboard" Margin="5,0,10,8" Height="105" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical" Margin="10,5,0,0" Grid.ColumnSpan="2">
+                            <!--<StackPanel DockPanel.Dock="Left" Margin="0,0,20,0"  HorizontalAlignment="Left">
+                                <TextBlock Text="Error Logs Level" HorizontalAlignment="Left"/>
+                            </StackPanel>-->
+                            <CheckBox x:Name="chkEnableDashboardRecording">Save test suite results to the dashboard repository</CheckBox>
+                            <GroupBox Header="Repository"  Margin="-5,5,5,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <!--<Button Style="{StaticResource LinkButton}">Clean-up</Button>-->
+                                    <TextBlock Margin="5">Clean-up dashboard repository to improve performance...</TextBlock>
+                                    <Button x:Name="btnCleanUpDashboard" Style="{StaticResource ToolbarButtonStyle}" VerticalAlignment="Center" ToolTip="Clean-up" Height="16" Width="22" Click="btnCleanUpDashboard_Click">
+                                        <Image Source="pack://siteoforigin:,,,/Resources/delete.ico"/>
+                                    </Button>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="gbSourceControl" Header="Source Control" Margin="5,0,10,5" Visibility="Visible" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <CheckBox Name="chkEnableSourceControl" Content="Enable Source Control (MS Team Foundation Server)" Checked="chkEnableSourceControl_Checked" 
+                          Unchecked="chkEnableSourceControl_Unchecked" VerticalAlignment="Center" Margin="10,5,0,0"/>
+                            <CheckBox x:Name="chkGetLatestOnLaunch" Content="Get latest version of Test Runner on launch"  Margin="10,5,0,0" Checked="chkGetLatestOnLaunch_Checked" Unchecked="chkGetLatestOnLaunch_Unchecked"/>
+                            <CheckBox Name="chkDoNotCheckInEnv" Content="Do not check-in Environment information"  Margin="10,5,0,0" Checked="chkDoNotCheckInEnv_Checked" Unchecked="chkDoNotCheckInEnv_Unchecked"/>
+                        </StackPanel>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,10,0">
+            <Button x:Name="btnOk" Style="{StaticResource ButtonStyle2}" Content="OK" Click="btnOk_Click"/>
+            <Button x:Name="btnCancel" Style="{StaticResource ButtonStyle2}" Content="Cancel" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

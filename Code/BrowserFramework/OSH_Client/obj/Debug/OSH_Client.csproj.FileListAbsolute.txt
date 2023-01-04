@@ -1,0 +1,16 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\OSH_Client.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\OSH_Client.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.CoreCompileInputs.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.CopyComplete
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.dll
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.pdb
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\OSH_Client.dll
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\OSH_Client.pdb
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Debug\Newtonsoft.Json.dll
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.AssemblyReference.cache
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.CoreCompileInputs.cache
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.csproj.CopyComplete
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.dll
+C:\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Debug\OSH_Client.pdb

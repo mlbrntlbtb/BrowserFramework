@@ -1,0 +1,41 @@
+2022-08-11 01:43:44 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:43:44 pm| mscorlib
+2022-08-11 01:43:44 pm| Value cannot be null.
+Parameter name: path1
+2022-08-11 01:43:44 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 01:43:53 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:43:53 pm| mscorlib
+2022-08-11 01:43:53 pm| String was not recognized as a valid DateTime.
+2022-08-11 01:43:53 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkTest..ctor(String TestFilePath, Boolean IsNewFile) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkTest.cs:line 436
+   at CommonLib.DlkHandlers.DlkTestSuiteResultsFileHandler.GetLatestSuiteResults(String AbsoluteSuitePath, String& ResultFolderPath) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkTestSuiteResultsFileHandler.cs:line 643
+   at TestRunner.MainWindow.LoadSuite(String SuitePath, Boolean IsSilent) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1169
+   at TestRunner.MainWindow.btnOpenTestSuiteToQueue_Click(Object sender, RoutedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 3105
+2022-08-11 01:43:54 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:43:54 pm| mscorlib
+2022-08-11 01:43:54 pm| Value cannot be null.
+Parameter name: path1
+2022-08-11 01:43:54 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 01:44:02 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:44:02 pm| mscorlib
+2022-08-11 01:44:02 pm| Value cannot be null.
+Parameter name: path1
+2022-08-11 01:44:02 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 01:44:07 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:44:07 pm| PresentationFramework
+2022-08-11 01:44:07 pm| 'Refresh' is not allowed during an AddNew or EditItem transaction.
+2022-08-11 01:44:07 pm|    at System.Windows.Data.CollectionView.Refresh()
+   at TestRunner.MainWindow.ChangeKeepOpenBrowsers() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7133
+   at TestRunner.MainWindow.ComboBoxBrowser_DropDownClosed(Object sender, EventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 5920

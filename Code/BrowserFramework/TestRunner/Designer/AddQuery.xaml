@@ -1,0 +1,228 @@
+﻿<Window x:Class="TestRunner.Designer.AddQuery"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:td="clr-namespace:TestRunner.Designer"
+        Title="Query" MinHeight="480" MinWidth="640" Height="480" Width="640" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Window.Resources>
+        <td:TagIdConverter x:Key="tagidcnvrt" />
+        <td:TagOperatorConverter x:Key="tagoptrcnvrt" />
+        <td:TagIsConverter x:Key="tagiscnvrt" />
+        <td:TagContainsConverter x:Key="cntnscnvrt" />
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition />
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Height="25">
+                        <TextBlock x:Name="lblTargetName" Margin="10,0,10,0" VerticalAlignment="Center" Foreground="DodgerBlue">Query Name</TextBlock>
+                        <TextBox x:Name="txtName" Margin="10,0,10,0" Text="{Binding Name}"></TextBox>
+                    </DockPanel>
+                    <StackPanel x:Name="stpColumnType" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <TextBlock Width="10"/>
+                        <TextBlock Foreground="DodgerBlue">Column Type: </TextBlock>
+                        <TextBlock Width="15"/>
+                        <RadioButton x:Name="rdoSubQuery" IsChecked="True" Checked="rdoSubQuery_Checked" IsEnabled="True">Tag Conditions</RadioButton>
+                        <TextBlock Width="15"/>
+                        <RadioButton x:Name="rdoColumnOperation" IsChecked="False" Checked="rdoColumnOperation_Checked" IsEnabled="True">Column Operations</RadioButton>
+                    </StackPanel>
+                </Grid>
+                <GroupBox x:Name="grpSubQuery" Grid.Row="1" Margin="10,0,10,0" Header="Tags" Visibility="Visible">
+                    <StackPanel Orientation="Vertical">
+                        <TabControl Height="35" Background="LemonChiffon">
+                            <TabItem Visibility="Hidden">
+                                <DockPanel>
+                                    <Button x:Name="btnSubQryAManageTags" DockPanel.Dock="Right" Width="100" Click="btnSubQryAManageTags_Click" FontSize="10" Style="{StaticResource ToolbarButtonStyle}" 
+                                            Height="19" Margin="0,0,0,0" Foreground="Navy" VerticalContentAlignment="Center">Add/Remove Tags...</Button>
+                                    <TextBlock Foreground="Navy" FontSize="11" VerticalAlignment="Center">Operator</TextBlock>
+                                    <TextBlock Width="7"/>
+                                    <ComboBox x:Name="cboSubQAOpr" Width="70" Text="And" IsEditable="True" SelectedItem="{Binding Path=Operator, Converter={StaticResource tagoptrcnvrt}, Mode=OneWay}" FontSize="10">
+                                        <ComboBox.Style>
+                                            <Style TargetType="ComboBox">
+                                                <Setter Property="IsEnabled" Value="True" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=dgSubQA, Path=Items.Count}" Value="1">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=dgSubQA, Path=Items.Count}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.Style>
+                                    </ComboBox>
+                                    <TextBlock Width="10"/>
+
+                                    <!--<TextBlock>TOTAL</TextBlock>-->
+                                </DockPanel>
+                            </TabItem>
+                        </TabControl>
+                        <TextBlock Height="5"/>
+                        <DataGrid x:Name="dgSubQA" Style="{StaticResource DataGridStyle1}" Height="232" ItemsSource="{Binding}" SelectionUnit="FullRow" CellStyle="{StaticResource DataGridCellStyleNoSelect}"
+                                  RowStyle="{StaticResource DataGridRowStyle0}" SelectionMode="Single" CanUserAddRows="False"  CanUserResizeColumns="False" CanUserSortColumns="False"
+                                  CanUserDeleteRows="False" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible"  VerticalAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="50" IsReadOnly="True">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" >
+                                            <Setter Property="Background" Value="Navy" />
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="FontSize" Value="11" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="{Binding ElementName=cboSubQAOpr, Path=Text}" />
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                            <!--<Setter Property="BorderThickness" Value="0.25"/>-->
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ListPosition}"  Value="0">
+                                                    <Setter Property="Text"  Value=""/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Width="100">
+                                    <DataGridTemplateColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" >
+                                            <Setter Property="Background" Value="Navy" />
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="FontSize" Value="11" />
+                                        </Style>
+                                    </DataGridTemplateColumn.HeaderStyle>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" Foreground="Black">Contains</TextBlock>
+                                                <ComboBox x:Name="cboIs" Grid.Row="0" Visibility="{Binding Path=Is, Converter={StaticResource cntnscnvrt}, UpdateSourceTrigger=PropertyChanged}"  SelectedValue="{Binding Path=Is, Converter={StaticResource tagiscnvrt}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cboIs_SelectionChanged" ItemsSource="{Binding Path=IsTaggedAsList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch">
+                                                </ComboBox>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Width="*" Header="Tag" IsReadOnly="True">
+                                    <DataGridTextColumn.Binding>
+                                        <MultiBinding Converter="{StaticResource tagidcnvrt}">
+                                            <Binding Path="TagId" />
+                                            <Binding Path="Contains" />
+                                        </MultiBinding>
+                                    </DataGridTextColumn.Binding>
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader" >
+                                            <Setter Property="Background" Value="Navy" />
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="FontSize" Value="11" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="grpColOperations" Grid.Row="1" Margin="10,0,10,0" Header="Operations" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,5">
+                        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                            <TextBlock Width="100">Column 1</TextBlock>
+                            <ComboBox x:Name="cboColumn1" Width="250" IsEditable="True" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                            <TextBlock Width="100">Operator</TextBlock>
+                            <ComboBox x:Name="cboColOperators" Width="250" IsEditable="True" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                            <TextBlock Width="100">Column 2</TextBlock>
+                            <ComboBox x:Name="cboColumn2" Width="250" IsEditable="True" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                            <TextBlock Width="100">Decimal Places</TextBlock>
+                            <ComboBox x:Name="cboDecimalPlaces" Width="50" IsEditable="True" SelectedIndex="0" SelectionChanged="cboDecimalPlaces_SelectionChanged"></ComboBox>
+                        </StackPanel>
+                        <CheckBox x:Name="chkPercentage" Margin="5,5,5,5" Checked="chkPercentage_Changed" Unchecked="chkPercentage_Changed">Show in percentage</CheckBox>
+                        <GroupBox Header="Format preview" Margin="5,5,5,5" Height="100">
+                            <TextBlock x:Name="txtFormatPreview" HorizontalAlignment="Center" VerticalAlignment="Center">75</TextBlock>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+                
+
+            </Grid>
+            <!--<StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Margin="10,0,10,0" VerticalAlignment="Center">Operator</TextBlock>
+                <ComboBox Margin="0,5,0,5" Width="200" IsEditable="True" IsEnabled="False" Text="And"></ComboBox>
+            </StackPanel>-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <!--<GroupBox Grid.Row="0" Margin="10,0,10,0" Header="Subquery B">
+                    <StackPanel Orientation="Vertical">
+                        <TabControl Height="35">
+                            <TabItem Visibility="Hidden">
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" Width="70"></Button>
+                                    <TextBlock DockPanel.Dock="Right" Width="10"/>
+                                    <ComboBox Width="70" DockPanel.Dock="Right"></ComboBox>
+                                    <TextBlock DockPanel.Dock="Right" Width="10"/>
+                                    <TextBlock DockPanel.Dock="Right">Operator</TextBlock>
+                                    <TextBlock/>
+                                </DockPanel>
+                            </TabItem>
+                        </TabControl>
+                        <TextBlock Height="5"/>
+                        <DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridComboBoxColumn Width="100" >
+
+                                </DataGridComboBoxColumn >
+                                <DataGridTextColumn Width="*" Header="Tag">
+
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupBox>-->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Height="25" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <Button x:Name="btnOK" Width="100" Click="btnOK_Click" Style="{StaticResource ButtonStyle1}" Margin="0">OK</Button>
+                    <TextBlock Width="10" />
+                    <Button x:Name="btnCancel" Width="100" Style="{StaticResource ButtonStyle1}" Margin="0" Click="btnCancel_Click">Cancel</Button>
+
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,110 @@
+﻿<Window x:Class="TestRunner.SetScheduleDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:TestRunner.Common"
+        Title="Set Schedule" Height="300" Width="550" Loaded="Window_Loaded"
+        WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="NoResize"
+        xmlns:control ="clr-namespace:TestRunner.Controls">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" Margin="10">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,5,0,0">
+                <Label >Set a schedule for:</Label>
+                <TextBlock x:Name="tbWeekday" Text="Monday" FontWeight="Bold" Margin="5,5,0,0" />
+             </StackPanel>
+            <StackPanel x:Name="QueueSched" Orientation="Vertical" DockPanel.Dock="Top" Margin="0,5,0,0" Visibility="Collapsed">
+                <Label Margin="8,0,0,0">Queue after</Label>
+                <TextBox x:Name="txtQueue" AcceptsReturn="True" Style="{StaticResource TextBoxStyle1}" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Width="Auto" HorizontalAlignment="Stretch" Margin="10,0" IsReadOnly="True" Background="LightGray"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="0,5,0,0">
+                <Label Margin="8,0,0,0"> Suite:</Label>
+                <TextBox x:Name="txtSuite" AcceptsReturn="True" Style="{StaticResource TextBoxStyle1}" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Width="Auto" HorizontalAlignment="Stretch" Margin="10,0" IsReadOnly="True" Background="LightGray"/>
+             </StackPanel>
+            <StackPanel x:Name="TimeSched" Orientation="Vertical"  DockPanel.Dock="Top" Margin="0,5,0,0" Width="220" HorizontalAlignment="Left">
+                <Label Margin="8,0,0,0">Set Time:</Label>
+                <control:TimePickerCtrl x:Name="scheduleTime" Margin="10,0,80,0"/>
+            </StackPanel>
+            <StackPanel x:Name="RunSuite" Orientation="Vertical"  DockPanel.Dock="Top" Margin="0,5,0,0">
+                <Label Margin="8,0,0,0">Execute suite?</Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <RadioButton x:Name="rdoTrue" Content="TRUE" Margin="0,0,10,0"/>
+                    <RadioButton x:Name="rdoFalse" Content="FALSE" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" >
+                <Button x:Name="btnOK" Style="{StaticResource ButtonStyle2}" Width="80" HorizontalAlignment="Stretch" Height="20" Click="btnOK_Click">OK</Button>
+                <Button x:Name="btnCancel" Style="{StaticResource ButtonStyle2}" Width="80" HorizontalAlignment="Stretch" Margin="5,0,0,0" Height="20" Click="btnCancel_Click">Cancel</Button>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Margin="10" HorizontalAlignment="Stretch">
+            <DockPanel DockPanel.Dock="Top">
+                <Label DockPanel.Dock="Left">List of Available Tests</Label>
+                <Button x:Name="btnSearchTest" Style="{StaticResource ToolbarButtonStyle}" Width="20"  Height="20" Click="btnSearchTest_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Search" >
+                    <Image Source="pack://siteoforigin:,,,/Resources/find.png" Height="11" Width="11"/>
+                </Button>
+            </DockPanel>
+            <Grid x:Name="grdSearchGrid" DockPanel.Dock="Top" Background="Gray" Visibility="Collapsed">
+                <TextBox x:Name="txtSearch" Margin="1,0,1,0" Background="LemonChiffon" KeyUp="txtSearch_KeyUp"></TextBox>
+            </Grid>
+            <TreeView x:Name="tvSuiteDirectory" Margin="0,-1,0,0" Height="Auto" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectedItemChanged="tvSuiteDirectory_SelectedItemChanged">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="False" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type common:BFFolder}" ItemsSource="{Binding DirItems}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="16" Height="16"/>
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type common:BFFile}" ItemsSource="{Binding DirItems}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type common:BFInstance}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                            <TextBlock Text="{Binding Name}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    <!--Suites-->
+                    <!--<HierarchicalDataTemplate DataType="{x:Type common:BFFolder}" ItemsSource="{Binding DirItems}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="16" Height="16"/>
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type common:BFFile}" ItemsSource="{Binding DirItems}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Path}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type common:BFInstance}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Icon}" VerticalAlignment="Stretch" Width="15" Height="13"/>
+                            <TextBlock Text="{Binding Name}" Margin="3,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>-->
+                </TreeView.Resources>
+            </TreeView>
+            <!--<ListBox x:Name="lbTests" PreviewMouseUp="lbTests_PreviewMouseUp" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" HorizontalAlignment="Left" Foreground="Navy"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+        </DockPanel>
+    </Grid>
+</Window>

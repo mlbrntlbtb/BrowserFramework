@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" debug="true" hostSpecific="true"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="CommonLib.DlkSystem" #>
+<#@ import namespace="CommonLib.DlkHandlers" #>
+<#@ import namespace="CommonLib.DlkRecords" #>
+<#@ import namespace="METHConverter.Utilities" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="System.String" name="TestRunName" #>
+<#@ parameter type="System.Collections.Generic.List<TestInfo>" name="Tests" #>
+using System;
+using Core.Sys;
+using Core.Sys.Selenium;
+using SeleniumCostpoint.Tests;
+
+namespace SeleniumCostpoint.TestRuns
+{
+    public class <#= TestRunName #> : SeleniumTestRun
+    {
+        public <#= TestRunName #>(Logger SessionLogger, String Environment) : base(SessionLogger, Environment) { }
+
+        public override void ExecuteTests()
+        {
+		<#
+			foreach(TestInfo mTest in Tests)
+			{
+		#>
+		new <#= mTest.name.Trim().Replace(" ", "_") #>().Run(this,SeleniumDriver.Browser.<#= mTest.browser.ToString().ToUpper() #>, "<#= mTest.environment #>" );
+		<#
+			}
+		#>           
+        }
+    }
+}

@@ -1,0 +1,1453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3543CF0-765F-4C13-A4B3-93A52488386B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestRunner</RootNamespace>
+    <AssemblyName>TestRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\experiment\cp7.1testrunner\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>86B0AA104BB6781A9C1177D0751E262991C9027D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TestRunner_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TestRunner.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\..\..\Tools\ExternalLib\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\..\..\Tools\Selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="SgmlReaderDll, Version=1.8.10.0, Culture=neutral, PublicKeyToken=46b2db9ca481831b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\ExternalLib\SgmlReaderDll.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\..\..\Tools\Selenium\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WebDriver, Version=2.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=2.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\ExternalLib\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AddEditSuiteLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEditTestLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTestDirectoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\AddEditExternalScript.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\AdvancedSchedulerMainForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\BlacklistTestCheckLoadingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\CreateSchedulerConditionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\EmailResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\ResultsDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\ScheduleLogDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AdvancedScheduler\SuiteEditorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\SuiteEditorTestRowEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\TestLineupOptionsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdvancedScheduler\ExportReportsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AdvancedScheduler\ProductSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AdvancedScheduler\TestLineupRowEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AddEditSuiteLink.xaml.cs">
+      <DependentUpon>AddEditSuiteLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditTestLink.xaml.cs">
+      <DependentUpon>AddEditTestLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTestDirectoryForm.xaml.cs">
+      <DependentUpon>AddTestDirectoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\AddEditExternalScript.xaml.cs">
+      <DependentUpon>AddEditExternalScript.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\AdvancedSchedulerMainForm.xaml.cs">
+      <DependentUpon>AdvancedSchedulerMainForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\BlacklistTestCheckLoadingDialog.xaml.cs">
+      <DependentUpon>BlacklistTestCheckLoadingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\Classes\KeywordLoaderSingleton.cs" />
+    <Compile Include="AdvancedScheduler\CreateSchedulerConditionDialog.xaml.cs">
+      <DependentUpon>CreateSchedulerConditionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\EmailResults.xaml.cs">
+      <DependentUpon>EmailResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\Model\AgentGroup.cs" />
+    <Compile Include="AdvancedScheduler\Model\TestLineupStatus.cs" />
+    <Compile Include="AdvancedScheduler\Model\TreeViewSelectedItem.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\ResultsDetailsPresenter.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\ScheduleLogDetailsPresenter.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\TestLineupStatusPresenter.cs" />
+    <Compile Include="AdvancedScheduler\ResultsDetails.xaml.cs">
+      <DependentUpon>ResultsDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\ScheduleLogDetails.xaml.cs">
+      <DependentUpon>ScheduleLogDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\SuiteEditorForm.xaml.cs">
+      <DependentUpon>SuiteEditorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\SuiteEditorTestRowEditorDialog.xaml.cs">
+      <DependentUpon>SuiteEditorTestRowEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\TestLineupOptionsDialog.xaml.cs">
+      <DependentUpon>TestLineupOptionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\ExportReportsDialog.xaml.cs">
+      <DependentUpon>ExportReportsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\Model\Agent.cs" />
+    <Compile Include="AdvancedScheduler\Model\Enumerations.cs" />
+    <Compile Include="AdvancedScheduler\Model\ExecutionHistory.cs" />
+    <Compile Include="AdvancedScheduler\Model\ExternalScript.cs" />
+    <Compile Include="AdvancedScheduler\Model\TestLineupRecord.cs" />
+    <Compile Include="AdvancedScheduler\Model\TestSuite.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\ExportPresenter.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\AgentPresenter.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\ControllerPresenter.cs" />
+    <Compile Include="AdvancedScheduler\Presenter\ScheduleRunnerPresenter.cs" />
+    <Compile Include="AdvancedScheduler\ProductSelection.xaml.cs">
+      <DependentUpon>ProductSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\TestLineupRowEditorDialog.xaml.cs">
+      <DependentUpon>TestLineupRowEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedScheduler\View\IExportView.cs" />
+    <Compile Include="AdvancedScheduler\View\IAgentsView.cs" />
+    <Compile Include="AdvancedScheduler\View\ICalendarView.cs" />
+    <Compile Include="AdvancedScheduler\View\IControllerView.cs" />
+    <Compile Include="AdvancedScheduler\View\IResultsDetailsView.cs" />
+    <Compile Include="AdvancedScheduler\View\IScheduleLogDetailsView.cs" />
+    <Compile Include="AdvancedScheduler\View\IScheduleRunnerView.cs" />
+    <Compile Include="AdvancedScheduler\View\ITestLineupStatusView.cs" />
+    <Compile Include="Common\DlkBackgroundWorkerWithAbort.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\DlkEditorWindowHandler.cs" />
+    <Compile Include="Common\DlkExportResultsHandler.cs" />
+    <Compile Include="Common\DlkExtensionMethodsUI.cs" />
+    <Compile Include="Common\DlkGlobalVariables.cs" />
+    <Compile Include="Common\DlkStringHasValueToBoolean.cs" />
+    <Compile Include="Common\DlkTruncateString.cs" />
+    <Compile Include="Common\DlkVirtualizingWrapPanel.cs" />
+    <Compile Include="Common\ISuiteEditor.cs" />
+    <Compile Include="Controls\CustomPopup.cs" />
+    <Compile Include="Controls\DialogBox.xaml.cs">
+      <DependentUpon>DialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Modal.xaml.cs">
+      <DependentUpon>Modal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConvertToDataModificationDialog.xaml.cs">
+      <DependentUpon>ConvertToDataModificationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConvertToDataModificationWindow.xaml.cs">
+      <DependentUpon>ConvertToDataModificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardCleanupWindow.xaml.cs">
+      <DependentUpon>DashboardCleanupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\AddContainsTag.xaml.cs">
+      <DependentUpon>AddContainsTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\AddEditTag.xaml.cs">
+      <DependentUpon>AddEditTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\AddQuery.xaml.cs">
+      <DependentUpon>AddQuery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\BatchReplace.xaml.cs">
+      <DependentUpon>BatchReplace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\DuplicateFinder.xaml.cs">
+      <DependentUpon>DuplicateFinder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiagnosticTest.xaml.cs">
+      <DependentUpon>DiagnosticTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiagnosticTestProgress.xaml.cs">
+      <DependentUpon>DiagnosticTestProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\Model\Costpoint\CP_Inspector.cs" />
+    <Compile Include="Designer\Model\Duplicate.cs" />
+    <Compile Include="Designer\Model\Enumerations.cs" />
+    <Compile Include="Designer\Model\ExcludedStepRecord.cs" />
+    <Compile Include="Designer\Model\Query.cs" />
+    <Compile Include="Designer\Model\QueryCol.cs" />
+    <Compile Include="Designer\Model\QueryRow.cs" />
+    <Compile Include="Designer\Model\QueryTag.cs" />
+    <Compile Include="Designer\Model\Match.cs" />
+    <Compile Include="Designer\Model\TLSuite.cs" />
+    <Compile Include="Designer\Presenter\DuplicatePresenter.cs" />
+    <Compile Include="Designer\Presenter\FinderPresenter.cs" />
+    <Compile Include="Designer\Presenter\MainPresenter.cs" />
+    <Compile Include="Designer\Presenter\BatchReplacePresenter.cs" />
+    <Compile Include="Designer\Presenter\ProductSelectionPresenter.cs" />
+    <Compile Include="Designer\Presenter\TagPresenter.cs" />
+    <Compile Include="Designer\Presenter\TestPresenter.cs" />
+    <Compile Include="Designer\Presenter\TestSuitesPresenter.cs" />
+    <Compile Include="Designer\ProductSelection.xaml.cs">
+      <DependentUpon>ProductSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\ManageTags.xaml.cs">
+      <DependentUpon>ManageTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\TagBasket.xaml.cs">
+      <DependentUpon>TagBasket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\AddEditSuiteTags.xaml.cs">
+      <DependentUpon>AddEditSuiteTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\TestDetails.xaml.cs">
+      <DependentUpon>TestDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\View\IFinderView.cs" />
+    <Compile Include="Designer\View\IAddQueryView.cs" />
+    <Compile Include="Designer\View\IMainView.cs" />
+    <Compile Include="Designer\View\IBatchReplaceView.cs" />
+    <Compile Include="Designer\View\IProductSelectionView.cs" />
+    <Compile Include="Designer\View\ITagView.cs" />
+    <Compile Include="Designer\View\ITestSuitesView.cs" />
+    <Compile Include="Designer\View\ITestsView.cs" />
+    <Compile Include="Designer\LibraryMainForm.xaml.cs">
+      <DependentUpon>LibraryMainForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\ManageSuiteTags.xaml.cs">
+      <DependentUpon>ManageSuiteTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnterProductKey.xaml.cs">
+      <DependentUpon>EnterProductKey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateExecutionConditionDialog.xaml.cs">
+      <DependentUpon>CreateExecutionConditionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalVariableFileSelectionDialog.xaml.cs">
+      <DependentUpon>GlobalVariableFileSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDestination.xaml.cs">
+      <DependentUpon>ImportDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTestOptionDialog.xaml.cs">
+      <DependentUpon>ImportTestOptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateDashboardWindow.xaml.cs">
+      <DependentUpon>GenerateDashboardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSuiteLinks.xaml.cs">
+      <DependentUpon>ManageSuiteLinks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTestLinks.xaml.cs">
+      <DependentUpon>ManageTestLinks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenInBrowserOptionDialog.xaml.cs">
+      <DependentUpon>OpenInBrowserOptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\EditStep.xaml.cs">
+      <DependentUpon>EditStep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\Model\Inspector.cs" />
+    <Compile Include="Recorder\Presenter\EditStepPresenter.cs" />
+    <Compile Include="Recorder\EnvironmentSelectionDialog.xaml.cs">
+      <DependentUpon>EnvironmentSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\Presenter\AppClassFactory.cs" />
+    <Compile Include="Recorder\Presenter\PresenterObjects\CP_MainPresenter.cs" />
+    <Compile Include="Recorder\View\IEditStepView.cs" />
+    <Compile Include="ExportResultsDialog.xaml.cs">
+      <DependentUpon>ExportResultsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulerSettingsDialog.xaml.cs">
+      <DependentUpon>SchedulerSettingsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFeaturesDialog.xaml.cs">
+      <DependentUpon>NewFeaturesDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddControlDialog.xaml.cs">
+      <DependentUpon>AddControlDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDataColumn.xaml.cs">
+      <DependentUpon>AddDataColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckInCommentsDialog.xaml.cs">
+      <DependentUpon>CheckInCommentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewFolder.xaml.cs">
+      <DependentUpon>AddNewFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddHost.xaml.cs">
+      <DependentUpon>AddHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckinSourceControlDialog.xaml.cs">
+      <DependentUpon>CheckinSourceControlDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DlkIsValidTimeToBoolean.cs" />
+    <Compile Include="Common\DlkMaskedPassword.cs" />
+    <Compile Include="Common\DlkScheduleStringConverter.cs" />
+    <Compile Include="Common\DlkUserMessages.cs" />
+    <Compile Include="Common\DlkVariableParameterChecker.cs" />
+    <Compile Include="Controls\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\AddVariable.xaml.cs">
+      <DependentUpon>AddVariable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\Model\Variable.cs" />
+    <Compile Include="Recorder\TestPlaybackDialog.xaml.cs">
+      <DependentUpon>TestPlaybackDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\UnexpectedModalDialog.xaml.cs">
+      <DependentUpon>UnexpectedModalDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\Model\Action.cs" />
+    <Compile Include="Recorder\Model\Constants.cs" />
+    <Compile Include="Recorder\Model\Control.cs" />
+    <Compile Include="Recorder\Model\Descriptor.cs" />
+    <Compile Include="Recorder\Model\Enumerations.cs" />
+    <Compile Include="Recorder\Model\Screen.cs" />
+    <Compile Include="Recorder\Model\Step.cs" />
+    <Compile Include="Recorder\Presenter\MainPresenter.cs" />
+    <Compile Include="Recorder\TestCapture.xaml.cs">
+      <DependentUpon>TestCapture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\View\IMainView.cs" />
+    <Compile Include="ScheduleOptions.xaml.cs">
+      <DependentUpon>ScheduleOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetExternalScriptDialog.xaml.cs">
+      <DependentUpon>SetExternalScriptDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetScheduleDialog.xaml.cs">
+      <DependentUpon>SetScheduleDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusyPage.xaml.cs">
+      <DependentUpon>BusyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClearRowDialog.xaml.cs">
+      <DependentUpon>ClearRowDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DlkTestSuiteLoader.cs" />
+    <Compile Include="Common\DlkReportDataModels.cs" />
+    <Compile Include="Common\DlkReportTemplateSelector.cs" />
+    <Compile Include="Common\DlkStartBrowserData.cs" />
+    <Compile Include="Common\DlkAddControlData.cs" />
+    <Compile Include="Common\DlkStringToBoolean.cs" />
+    <Compile Include="Common\DlkOSRecorderData.cs" />
+    <Compile Include="Common\DlkReportQueryRecord.cs" />
+    <Compile Include="Common\DlkSummaryResultsHandler.cs" />
+    <Compile Include="Common\DlkTestHistory.cs" />
+    <Compile Include="Common\DlkTestResultsQueryHandler.cs" />
+    <Compile Include="EmailSettingsDialog.xaml.cs">
+      <DependentUpon>EmailSettingsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecuteScriptDialog.xaml.cs">
+      <DependentUpon>ExecuteScriptDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterTestDirectoryForm.xaml.cs">
+      <DependentUpon>FilterTestDirectoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadObjectStoreDialog.xaml.cs">
+      <DependentUpon>LoadObjectStoreDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadResultsDialog.xaml.cs">
+      <DependentUpon>LoadResultsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OSRecorder.xaml.cs">
+      <DependentUpon>OSRecorder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopulateReportDBDialog.xaml.cs">
+      <DependentUpon>PopulateReportDBDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer.xaml.cs">
+      <DependentUpon>ReportViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveTestDialog.xaml.cs">
+      <DependentUpon>SaveTestDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveSuiteDialogSC.xaml.cs">
+      <DependentUpon>SaveSuiteDialogSC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveSuiteDialog.xaml.cs">
+      <DependentUpon>SaveSuiteDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulerMultiHostv2.xaml.cs">
+      <DependentUpon>SchedulerMultiHostv2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsForm.xaml.cs">
+      <DependentUpon>SettingsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartBrowserDialog.xaml.cs">
+      <DependentUpon>StartBrowserDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestConnectionDialog.xaml.cs">
+      <DependentUpon>TestConnectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestDependencyDialog.xaml.cs">
+      <DependentUpon>TestDependencyDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestEditor.xaml.cs">
+      <DependentUpon>TestEditor.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestExecutionDialog.xaml.cs">
+      <DependentUpon>TestExecutionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseApplication.xaml.cs">
+      <DependentUpon>ChooseApplication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestPlaybackParametersDialog.xaml.cs">
+      <DependentUpon>TestPlaybackParametersDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestExecutionParametersDialog.xaml.cs">
+      <DependentUpon>TestExecutionParametersDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestQueueRowEditorDialog.xaml.cs">
+      <DependentUpon>TestQueueRowEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestSuiteSummaryDialog.xaml.cs">
+      <DependentUpon>TestSuiteSummaryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimePickerCtrl.xaml.cs">
+      <DependentUpon>TimePickerCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlViewer.xaml.cs">
+      <DependentUpon>XmlViewer.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddControlDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDataColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CheckInCommentsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddNewFolder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CheckinSourceControlDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DialogBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LoadingAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Modal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConvertToDataModificationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConvertToDataModificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DashboardCleanupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\AddContainsTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\AddEditTag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\AddQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\BatchReplace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\DuplicateFinder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\ProductSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\LibraryMainForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\ManageTags.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\TagBasket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\AddEditSuiteTags.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\TestDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\ManageSuiteTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiagnosticTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiagnosticTestProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnterProductKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateExecutionConditionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GlobalVariableFileSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportDestination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportTestOptionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GenerateDashboardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageSuiteLinks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageTestLinks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenInBrowserOptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recorder\EditStep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recorder\EnvironmentSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourcesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExportResultsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SchedulerSettingsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Recorder\AddVariable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Recorder\TestPlaybackDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Recorder\UnexpectedModalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recorder\TestCapture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScheduleOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SetExternalScriptDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SetScheduleDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BusyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClearRowDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmailSettingsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExecuteScriptDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterTestDirectoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadObjectStoreDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadResultsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DlkKeywordTestsLoader.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="OSRecorder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PopulateReportDBDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaveTestDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SaveSuiteDialogSC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SaveSuiteDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SchedulerMultiHostv2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewFeaturesDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartBrowserDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestConnectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestDependencyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestExecutionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChooseApplication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestPlaybackParametersDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestExecutionParametersDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestQueueRowEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestSuiteSummaryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TimePickerCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XmlViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\recordresume.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\recordstart.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Import.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table-insert-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table-row-insert-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Multiple_Selection.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\paste.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Splash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\stoprecord.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\recordpause.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\recordstart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\arrow_down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\arrow_left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\arrow_right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\arrow_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\buttondown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\buttonup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_delete_row.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\rename.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\insert_table_row.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_export.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_import.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_delete_row.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_insert_row.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_delete_column.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\table_insert_column.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\play.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bullet_arrow_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bullet_arrow_down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\copy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\find.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\filter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\refresh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\eraser.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\offline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\online.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\folder_sync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\envelope.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\clearbroom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\addblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\button_cancel.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\check.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\loading_tr2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\refresh.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bullet_toggle_minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bullet_toggle_plus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\record.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\delete.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\instance.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\folder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\file.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Init.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="OpenMspaint.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Content Include="ReleaseNews.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Resources\add_folder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Gear.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\documentedit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\generate_data.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="test_connect.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Resources\tp_arrow_down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\tp_arrow_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Resources\GreenCorner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\group_bottom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\group_left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\group_top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Resources\agent.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\button_enable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\button_download.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\button_close.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Resources\controller.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\database.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\rename1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\editgray.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\reset.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\goto.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Information-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\warn.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="SharedFolder.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SourceControl.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SharedFolderFull.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="TestRunner_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Checkout.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\glasses3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\refresh.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeltekBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TestRunner.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcumenTouchStoneLib\AcumenTouchStoneLib.csproj">
+      <Project>{d58713f4-1a9b-448f-b060-579822c17734}</Project>
+      <Name>AcumenTouchStoneLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AjeraLib\AjeraLib.csproj">
+      <Project>{5beefca6-c450-43b0-a74f-1b788be8f1a8}</Project>
+      <Name>AjeraLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AjeraTime\AjeraTimeLib.csproj">
+      <Project>{e90d3a2e-c524-48f3-b9b8-f84ae22dee30}</Project>
+      <Name>AjeraTimeLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoMail\AutoMail.csproj">
+      <Project>{fc117cae-1da2-482b-8e1f-d6f9e84dac09}</Project>
+      <Name>AutoMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutomationAgent\AutomationAgent.csproj">
+      <Project>{ceb9dc46-ab3d-46ee-93cc-26f66400231e}</Project>
+      <Name>AutomationAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPM\BPMLib.csproj">
+      <Project>{8aa4eb17-323d-4448-8ce6-2f8db5c54786}</Project>
+      <Name>BPMLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CBILib\CBILib.csproj">
+      <Project>{e679f187-0194-416d-8452-4c21093a582b}</Project>
+      <Name>CBILib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{1000485d-4034-419d-95f9-a07566912482}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConceptShareLib\ConceptShareLib.csproj">
+      <Project>{22fe83d1-73ee-4267-905d-35ebfaa173f5}</Project>
+      <Name>ConceptShareLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CostpointLib\CostpointLib.csproj">
+      <Project>{2a9bb29a-631c-4fa8-880e-96e1960304c4}</Project>
+      <Name>CostpointLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPTouchLib\CPTouchLib.csproj">
+      <Project>{9609be45-70aa-4804-bbeb-c74f7676774b}</Project>
+      <Name>CPTouchLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DCOLib\DCOLib.csproj">
+      <Project>{ab9748c1-1580-4fa3-8c1a-c38e997c75d1}</Project>
+      <Name>DCOLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeltekProjectsToolLib\DeltekProjectsToolLib.csproj">
+      <Project>{ee19ed75-b7cb-4f39-8987-aef7035e43a6}</Project>
+      <Name>DeltekProjectsToolLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DocDiff\DocDiff.csproj">
+      <Project>{1c294f46-a44f-4fed-bbc3-a929ba14bea2}</Project>
+      <Name>DocDiff</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FieldEaseLib\FieldEaseLib.csproj">
+      <Project>{365c2b93-57c0-4d8b-bd90-c7400541d6ac}</Project>
+      <Name>FieldEaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenerateDashboard\GenerateDashboard.csproj">
+      <Project>{037bcdc6-034f-437d-b9a7-1b9ef12a9936}</Project>
+      <Name>GenerateDashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GovWinLib\GovWinLib.csproj">
+      <Project>{ac65ee9f-89e2-47ea-bf79-7bdeadb72e43}</Project>
+      <Name>GovWinLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRSmartLib\HRSmartLib.csproj">
+      <Project>{57b61cb7-eadd-4023-b170-39e9b7ee38fb}</Project>
+      <Name>HRSmartLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HTMLBuilder\HTMLBuilder.csproj">
+      <Project>{1f7a39f5-4215-46f9-872e-e74fc692aaff}</Project>
+      <Name>HTMLBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KnowledgePointLib\KnowledgePointLib.csproj">
+      <Project>{928ad7c3-ae31-41c1-b31c-852878f69003}</Project>
+      <Name>KnowledgePointLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KonaLib\KonaLib.csproj">
+      <Project>{28cc3407-503c-429a-9a6d-6730121a72e4}</Project>
+      <Name>KonaLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaconomyiAccessLib\MaconomyiAccessLib.csproj">
+      <Project>{1fef0cb4-5217-44a5-b944-a5d22c430506}</Project>
+      <Name>MaconomyiAccessLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaconomyNavigator\MaconomyNavigatorLib.csproj">
+      <Project>{6fcc1730-7f53-4ae4-9e8d-2437430730e2}</Project>
+      <Name>MaconomyNavigatorLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaconomyTouch\MaconomyTouchLib.csproj">
+      <Project>{c9712bd0-f2d3-4d36-af3e-d2142b20cbe0}</Project>
+      <Name>MaconomyTouchLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NavigatorLib\NavigatorLib.csproj">
+      <Project>{9b008702-3309-449d-b3f9-693094de63cf}</Project>
+      <Name>NavigatorLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ngCRMLib\ngCRMLib.csproj">
+      <Project>{11785a00-6def-41cf-ac8e-458c9a8a2862}</Project>
+      <Name>ngCRMLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PIMMobileLib\PIMMobileLib.csproj">
+      <Project>{1ff6fd53-4e9e-44a0-85b4-b2e2c8e030dd}</Project>
+      <Name>PIMMobileLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PIMTimeAndExpenseLib\PIMTimeAndExpenseLib.csproj">
+      <Project>{38189664-0a9d-4899-a58b-1081ff737df9}</Project>
+      <Name>PIMTimeAndExpenseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectInformationManagementLib\ProjectInformationManagementLib.csproj">
+      <Project>{7dd6529c-78a6-4712-8280-e7a4ab6b49d9}</Project>
+      <Name>ProjectInformationManagementLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SBCLib\SBCLib.csproj">
+      <Project>{33bd685e-e010-413a-9342-acb5bbe562ce}</Project>
+      <Name>SBCLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFTLib\SFTLib.csproj">
+      <Project>{58cc548b-a4d5-4ae2-a6ee-cd4637fdc3d5}</Project>
+      <Name>SFTLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StormTouchCRMLib\StormTouchCRMLib.csproj">
+      <Project>{3021a9b3-2c1e-4638-be6a-e195f6952dff}</Project>
+      <Name>StormTouchCRMLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StormTouchTimeExpenseLib\StormTouchTimeExpenseLib.csproj">
+      <Project>{af4d5a8d-ff6b-4466-ad92-60fe63336870}</Project>
+      <Name>StormTouchTimeExpenseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StormWebLib\StormWebLib.csproj">
+      <Project>{c283057c-3210-49aa-a71a-ea26120d1158}</Project>
+      <Name>StormWebLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TEMobileLib\TEMobileLib.csproj">
+      <Project>{6f095cd4-c54a-4fdb-9298-03998eeb1b4c}</Project>
+      <Name>TEMobileLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestRunnerCmd\TestRunnerCmd.csproj">
+      <Project>{56fb0dce-06d2-4d9c-82d4-db9adea97914}</Project>
+      <Name>TestRunnerCmd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestRunnerScheduler\TestRunnerScheduler.csproj">
+      <Project>{50f12ca6-2bad-41f2-b673-a5f51dce8eeb}</Project>
+      <Name>TestRunnerScheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TM1WebLib\TM1WebLib.csproj">
+      <Project>{1ea44816-a168-4be9-bc52-defe6a452f38}</Project>
+      <Name>TM1WebLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrafficLiveLib\TrafficLiveLib.csproj">
+      <Project>{53bab261-6904-4bff-8c8b-c302f613384d}</Project>
+      <Name>TrafficLiveLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TRDiagnosticsCore\TRDiagnosticsCore.csproj">
+      <Project>{cbfbd3d4-13c7-416d-ab3d-a46e8f29ec28}</Project>
+      <Name>TRDiagnosticsCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionCRMLib\VisionCRMLib.csproj">
+      <Project>{e9d0eaec-a102-42c3-82c8-adefedc682d2}</Project>
+      <Name>VisionCRMLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionTimeLib\VisionTimeLib.csproj">
+      <Project>{6ff6e2bb-4c7b-466b-91dd-0be664101e0b}</Project>
+      <Name>VisionTimeLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebTimeClockLib\WebTimeClockLib.csproj">
+      <Project>{d910d8d6-a20d-4b64-9d21-8b5ce81105f4}</Project>
+      <Name>WebTimeClockLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkBookLib\WorkBookLib.csproj">
+      <Project>{420d094f-624c-4702-a75e-dbebab847066}</Project>
+      <Name>WorkBookLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

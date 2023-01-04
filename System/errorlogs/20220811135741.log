@@ -1,0 +1,152 @@
+2022-08-11 01:57:41 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:57:41 pm| System
+2022-08-11 01:57:41 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 01:57:41 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 01:57:41 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 01:57:41 pm| System
+2022-08-11 01:57:41 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 01:57:41 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.<>c__DisplayClass343_0.<mExecutionBW_ProgressChanged>b__0() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6130
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at System.Windows.Threading.Dispatcher.Invoke(DispatcherPriority priority, Delegate method)
+   at TestRunner.MainWindow.mExecutionBW_ProgressChanged(Object sender, ProgressChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6126
+2022-08-11 02:03:20 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:03:20 pm| System
+2022-08-11 02:03:20 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:03:20 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 02:03:20 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:03:20 pm| System
+2022-08-11 02:03:20 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:03:20 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.<>c__DisplayClass343_0.<mExecutionBW_ProgressChanged>b__0() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6130
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at System.Windows.Threading.Dispatcher.Invoke(DispatcherPriority priority, Delegate method)
+   at TestRunner.MainWindow.mExecutionBW_ProgressChanged(Object sender, ProgressChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6126
+2022-08-11 02:04:27 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:04:27 pm| System
+2022-08-11 02:04:27 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:04:27 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 02:04:27 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:04:27 pm| System
+2022-08-11 02:04:27 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:04:27 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.<>c__DisplayClass343_0.<mExecutionBW_ProgressChanged>b__0() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6130
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at System.Windows.Threading.Dispatcher.Invoke(DispatcherPriority priority, Delegate method)
+   at TestRunner.MainWindow.mExecutionBW_ProgressChanged(Object sender, ProgressChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6126
+2022-08-11 02:42:08 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:42:08 pm| System
+2022-08-11 02:42:08 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:42:08 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-08-11 02:42:08 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-08-11 02:42:08 pm| System
+2022-08-11 02:42:08 pm| This BackgroundWorker is currently busy and cannot run multiple tasks concurrently.
+2022-08-11 02:42:08 pm|    at System.ComponentModel.BackgroundWorker.RunWorkerAsync(Object argument)
+   at TestRunner.MainWindow.LoadTestHistory() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1791
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1297
+   at TestRunner.MainWindow.<>c__DisplayClass343_0.<mExecutionBW_ProgressChanged>b__0() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6130
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Threading.DispatcherOperation.Wait(TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.InvokeImpl(DispatcherOperation operation, CancellationToken cancellationToken, TimeSpan timeout)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at System.Windows.Threading.Dispatcher.Invoke(DispatcherPriority priority, Delegate method)
+   at TestRunner.MainWindow.mExecutionBW_ProgressChanged(Object sender, ProgressChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 6126

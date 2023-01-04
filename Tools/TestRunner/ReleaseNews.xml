@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testrunner version="v3.2.0">
+  <feature id="1" name="Filter in Test Editor" description="Feature to filter the grid view in Test Editor" />
+  <feature id="2" name="Delete Test suite" description="Added ability to delete a test suite file or folder in the suite explorer" />
+  <feature id="3" name="Continue on error" description="Feature to set whether a test execution will continue until the end despite of a failed step" />
+  <feature id="4" name="Assign a Global variable" description="Feature to define a user variable common across all tests" />
+  <feature id="5" name="Browse Test and Suite directory" description="Added a browse button when changing the default tests and test suites directory" />
+  <feature id="6" name="Search Functionality" description="Search can now be limited to tests or test suites only, tags only, both tests or test suites and tags" /> 
+  <feature id="7" name="Test Connection" description="Improved UI of Test Connection functionality for environments" />
+  <feature id="8" name="Added Tooltips" description="Added Tooltips where needed in Test Runner" />
+</testrunner>

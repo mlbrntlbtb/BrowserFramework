@@ -1,0 +1,101 @@
+﻿<Window x:Class="TestRunner.CreateSchedulerConditionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Set Condition" Height="280" Width="320" ResizeMode="NoResize" WindowStyle="ToolWindow" Loaded="Window_Loaded" >
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <DockPanel LastChildFill="True">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right"  DockPanel.Dock="Bottom" Height="40" Margin="0,0,20,0">
+                <Button x:Name="btnOK" Style="{StaticResource ButtonStyle2}" Content="OK" Click="btnOK_Click"/>
+                <Button x:Name="btnCancel" Style="{StaticResource ButtonStyle2}" Content="Cancel" Click="btnCancel_Click"/>
+            </StackPanel>
+            <TabControl x:Name="tabSettings" Margin="5,5,5,0" Background="#FF90D2FF" RenderTransformOrigin="0.954,0.461">
+                <TabItem x:Name="tpgEmail" Header="" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" Margin="10,10,0,0" HorizontalAlignment="Left">
+                            <Label x:Name="lblExecuteTest" Content="Execute" HorizontalAlignment="Left" VerticalAlignment="Center" Width="55" Height="23"/>
+                            <ComboBox x:Name="cboExecuteTest" ItemsSource="{Binding Path=ExecuteList, Mode=OneTime}" Width="80" Margin="0" Height="25" VerticalAlignment="Top" SelectedIndex="0" HorizontalAlignment="Left" IsEditable="False">
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="SelectedItem"  Value="TRUE">
+                                                <Setter Property="Foreground" Value="Green"/>
+                                            </Trigger>
+                                            <Trigger Property="SelectedItem"  Value="FALSE">
+                                                <Setter Property="Foreground" Value="Red"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="FontWeight" Value="Medium"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding}" Value="TRUE">
+                                                <Setter Property="Foreground" Value="Green" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding}" Value="FALSE">
+                                                <Setter Property="Foreground" Value="Red" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="15,10,0,0" HorizontalAlignment="Left">
+                            <CheckBox Name="chkEnableCondition" Click="chkEnableCondition_Click">Enable</CheckBox>
+                        </StackPanel>
+                        <GroupBox Header="Execution Condition" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,10,10,0" x:Name="groupBox1" Height="110">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Margin="10,15,10,0" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                                    <Label x:Name="lblTest" Content="Activator Suite" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="23"/>
+                                    <ComboBox x:Name="cboTest" Width="140"  Margin="0" Height="25" VerticalAlignment="Top" SelectedIndex="0" HorizontalAlignment="Left" IsEditable="False"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,45,10,0" HorizontalAlignment="Left">
+                                    <Label x:Name="lblTestResult" Content="Result" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90" Height="23"/>
+                                    <ComboBox x:Name="cboTestResult" ItemsSource="{Binding Path=ResultList, Mode=OneTime}"  Width="140"  Margin="0" Height="25" VerticalAlignment="Top" SelectedIndex="0" HorizontalAlignment="Left" IsEditable="False">
+                                        <ComboBox.Style>
+                                            <Style TargetType="ComboBox">
+                                                <Setter Property="FontWeight" Value="Medium"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="SelectedItem"  Value="PASSED">
+                                                        <Setter Property="Foreground" Value="Green"/>
+                                                    </Trigger>
+                                                    <Trigger Property="SelectedItem"  Value="FAILED">
+                                                        <Setter Property="Foreground" Value="Red"/>
+                                                    </Trigger>
+                                                    <Trigger Property="SelectedItem"  Value="SKIPPED">
+                                                        <Setter Property="Foreground" Value="Orange"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.Style>
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="FontWeight" Value="Medium"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding}" Value="PASSED">
+                                                        <Setter Property="Foreground" Value="Green" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding}" Value="FAILED">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding}" Value="SKIPPED">
+                                                        <Setter Property="Foreground" Value="Orange" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

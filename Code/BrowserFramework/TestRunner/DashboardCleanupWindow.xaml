@@ -1,0 +1,141 @@
+﻿<Window x:Class="TestRunner.DashboardCleanupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Test Dashboard Clean-up" Height="400" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Splash.png" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition />
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TabControl Grid.Row="0" Background="#FF90D2FF">
+                    <TabItem Visibility="Hidden">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                                <TextBlock Width="53" >Clean-up</TextBlock>
+                                <ComboBox x:Name="cmbFilter" Width="226" Height="17" FontSize="9" SelectionChanged="cmbFilter_SelectionChanged">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="ComboBoxItem">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding}" Value="">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                                                <Separator HorizontalAlignment="Stretch" IsEnabled="False"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                </ComboBox>
+                            </StackPanel>
+                            <TextBlock Margin="5,0,0,5" FontSize="10" FontStyle="Italic">You can exclude specific test results from clean-up by unchecking them below. The rest will be removed from the dashboard repository</TextBlock>
+                            <GroupBox Header="Dashboard entries to clean-up" VerticalAlignment="Stretch">
+                                <StackPanel Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="170"/>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox x:Name="chkSelectAll" Grid.Column="0" Margin="5,5,0,0" IsChecked="True" Checked="chkSelectAll_Checked" Unchecked="chkSelectAll_Unchecked">Check/Uncheck all entries</CheckBox>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,5,5,0">
+                                            <TextBlock Visibility="Hidden">Displaying</TextBlock>
+                                            <TextBox x:Name="txtCurrCount" Width="40" Margin="5,0,5,0" IsEnabled="False" Height="18" FontSize="10"
+                                                     Text="{Binding Path=CurrentRecordCount}"></TextBox>
+                                            <TextBlock>of</TextBlock>
+                                            <TextBox x:Name="txtTotCount" Width="40" Margin="5,0,5,0" IsEnabled="False" Height="18" FontSize="10"
+                                                     Text="{Binding Path=TotalRecordCount}"></TextBox>
+                                        </StackPanel>
+                                    </Grid>
+                                    <DataGrid x:Name="dgResults" Style="{StaticResource DataGridStyle1}" VerticalScrollBarVisibility="Visible"
+                                              SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False"
+                                              Height="180" HorizontalAlignment="Stretch" Margin="5"
+                                              ItemsSource="{Binding}">
+                                        <DataGrid.RowStyle>
+                                            <Style TargetType="{x:Type DataGridRow}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding isvisible}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn x:Name="colInclude" Header="" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="25">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding ischecked, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <!--<DataGridCheckBoxColumn x:Name="colInclude" Header="" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" Width="25" Binding="{Binding ischecked}">-->
+                                                <!--<DataGridCheckBoxColumn.CellStyle>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="IsEditing" Value="True" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGridCheckBoxColumn.CellStyle>-->
+                                            <!--</DataGridCheckBoxColumn>-->
+                                            <DataGridTextColumn x:Name="colDate" Header="Date" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" Width="100" CanUserSort="True" Binding="{Binding executiondate}" IsReadOnly="True"/>
+                                            <DataGridTextColumn x:Name="colName" Header="Name" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" Width="180" CanUserSort="True" Binding="{Binding suite}" IsReadOnly="True">
+                                                <DataGridTextColumn.CellStyle>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="ToolTip" Value="{Binding suitepath}" />
+                                                    </Style>
+                                                </DataGridTextColumn.CellStyle>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn x:Name="colPath" Header="Results Path" HeaderStyle="{StaticResource DataGridColumnHeaderStyle6}" Width="*" CanUserSort="True" Binding="{Binding resultsdirectory}" IsReadOnly="True">
+                                                <DataGridTextColumn.CellStyle>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="ToolTip" Value="{Binding resultsdirectory}" />
+                                                    </Style>
+                                                </DataGridTextColumn.CellStyle>
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                            </DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <StackPanel Margin="5,0,0,5" Orientation="Horizontal">
+                                        <TextBlock FontSize="10" Width="55" FontStyle="Italic" FontWeight="Bold" Foreground="Red">WARNING:</TextBlock>
+                                        <TextBlock FontSize="10" FontStyle="Italic">Removing entries from the repository is irreversible. Please ensure that entries you will remove are no longer needed.</TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>  
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Button x:Name="btnOk" Style="{StaticResource ButtonStyle2}" Click="btnOk_Click" ToolTip="Clean-up">Clean-up</Button>
+                <Button x:Name="btnCancel" Style="{StaticResource ButtonStyle2}" Click="btnCancel_Click">Close</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

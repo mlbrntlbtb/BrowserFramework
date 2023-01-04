@@ -1,0 +1,10 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\bin\Debug\TestRunner.exe.config
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\bin\Debug\TestRunner.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\bin\Debug\TestRunner.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\Launcher.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\Launcher.csproj.SuggestedBindingRedirects.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\Launcher.Properties.Resources.resources
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\Launcher.csproj.GenerateResource.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\Launcher.csproj.CoreCompileInputs.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\TestRunner.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\Launcher\obj\Debug\TestRunner.pdb

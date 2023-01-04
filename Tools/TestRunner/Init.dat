@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Init>
+  <applicationlist>
+    <application id="0" name="Ajera" version="" library="AjeraLib.dll" productfolder="Ajera" type="internal" platform="Web"/>
+    <application id="1" name="Costpoint" version="7.0.1" library="CostpointLib.dll" productfolder="Costpoint_701" type="" platform="Web"/>
+    <application id="2" name="Costpoint" version="7.1.1" library="CostpointLib.dll" productfolder="Costpoint_711" type="" platform="Web"/>
+    <application id="3" name="GovWin" version="" library="GovWinLib.dll" productfolder="GovWin" type="internal" platform="Web"/>
+    <application id="4" name="DTM" version="DTM_B" library="HRSmartLib.dll" productfolder="DTM_B" type="internal" platform="Web"/>
+    <application id="5" name="Kona" version="" library="KonaLib.dll" productfolder="Kona" type="internal" platform="Web"/>
+    <application id="6" name="Maconomy iAccess" version="1.3" library="MaconomyNavigatorLib.dll" productfolder="MaconomyiAccess_13" type="" platform="Web"/>
+    <application id="7" name="MaconomyTouch" version="3.0" library="MaconomyTouchLib.dll" productfolder="MaconomyTouch" type="internal" platform="Mobile"/>
+    <application id="8" name="ngCRM" version="" library="ngCRMLib.dll" productfolder="ngCRM" type="internal" platform="Web"/>
+    <application id="9" name="VisionCRM" version="" library="VisionCRMLib.dll" productfolder="VisionCRM" type="internal" platform="Mobile"/>
+    <application id="10" name="VisionTime" version="" library="VisionTimeLib.dll" productfolder="VisionTime" type="internal" platform="Mobile"/>
+    <application id="11" name="Time and Expense" version="" library="CostpointLib.dll" productfolder="TimeAndExpense" type="" platform="Web"/>
+    <application id="12" name="Budgeting and Planning" version="" library="CostpointLib.dll" productfolder="BudgetingAndPlanning" type="" platform="Web"/>
+    <application id="13" name="TrafficLive" version="" library="TrafficLiveLib.dll" productfolder="TrafficLive" type="internal" platform="Mobile"/>
+    <application id="14" name="AjeraTime" version="" library="AjeraTimeLib.dll" productfolder="AjeraTime" type="internal" platform="Mobile"/>
+    <application id="15" name="DTM" version="DTM_A" library="HRSmartLib.dll" productfolder="DTM_A" type="internal" platform="Web"/>
+    <application id="16" name="StormTouchCRM" version="" library="StormTouchCRMLib.dll" productfolder="StormTouchCRM" type="internal" platform="Mobile"/>
+    <application id="17" name="StormTouchTimeExpense" version="" library="StormTouchTimeExpenseLib.dll" productfolder="StormTouchTimeExpense" type="internal" platform="Mobile"/>
+    <application id="18" name="StormWeb" version="" library="StormWebLib.dll" productfolder="StormWeb" type="internal" platform="Web"/>
+    <application id="19" name="CEI" version="" library="TM1WebLib.dll" productfolder="TM1Web" type="internal" platform="Web"/>
+    <application id="20" name="Maconomy iAccess" version="2.0" library="MaconomyiAccessLib.dll" productfolder="MaconomyiAccess_20" type="" platform="Web"/>
+    <application id="21" name="StormWeb" version="1.0" library="StormWebLib.dll" productfolder="StormWeb_10" type="internal" platform="Web"/>
+    <application id="22" name="StormTouchCRM" version="1.0" library="StormTouchCRMLib.dll" productfolder="StormTouchCRM_10" type="internal" platform="Mobile"/>
+    <application id="23" name="StormTouchTimeExpense" version="1.0" library="StormTouchTimeExpenseLib.dll" productfolder="StormTouchTimeExpense_10" type="internal" platform="Mobile"/>
+    <application id="24" name="StormTouchCRM" version="1.1" library="StormTouchCRMLib.dll" productfolder="StormTouchCRM_11" type="internal" platform="Mobile"/>
+    <application id="25" name="StormTouchTimeExpense" version="1.1" library="StormTouchTimeExpenseLib.dll" productfolder="StormTouchTimeExpense_11" type="internal" platform="Mobile"/>
+    <application id="26" name="ProjectInformationManagement" version="" library="ProjectInformationManagementLib.dll" productfolder="ProjectInformationManagement" type="internal" platform="Web"/>
+    <application id="27" name="StormWeb" version="1.1" library="StormWebLib.dll" productfolder="StormWeb_11" type="internal" platform="Web"/>
+    <application id="28" name="TalentManagement" version="New" library="HRSmartLib.dll" productfolder="TalentManagement" type="internal" platform="Web"/>
+    <application id="29" name="BPM" version="" library="BPMLib.dll" productfolder="BPM" type="internal" platform="Web"/>
+    <application id="30" name="PIMMobile" version="" library="PIMMobileLib.dll" productfolder="PIMMobile" type="internal" platform="Mobile"/>
+    <application id="31" name="MaconomyTouch" version="2.3.1" library="MaconomyTouchLib.dll" productfolder="MaconomyTouch_231" type="internal" platform="Mobile"/>
+    <application id="32" name="WorkBook" version="" library="WorkBookLib.dll" productfolder="WorkBook" type="internal" platform="Web"/>    
+    <application id="33" name="SFT" version="1.3" library="SFTLib.dll" productfolder="SFT_13" type="internal" platform="Web"/>
+    <application id="34" name="PIMTimeAndExpense" version="" library="PIMTimeAndExpenseLib.dll" productfolder="PIMTimeAndExpense" type="internal" platform="Mobile"/>
+    <application id="35" name="TimeAndExpenseSmartPhone" version="" library="TEMobileLib.dll" productfolder="TimeAndExpenseSmartPhone" type="internal" platform="Mobile"/>
+    <application id="36" name="Acumen TouchStone" version="" library="AcumenTouchStoneLib.dll" productfolder="AcumenTouchStone" type="internal" platform="Web"/>
+    <application id="37" name="ConceptShare" version="" library="ConceptShareLib.dll" productfolder="ConceptShare" type="internal" platform="Web"/>
+    <application id="38" name="CBI" version="" library="CBILib.dll" productfolder="CBI" type="internal" platform="Web"/>
+    <application id="39" name="TE Mobile" version="" library="CPTouchLib.dll" productfolder="TEMobile" type="internal" platform="Mobile"/>
+    <application id="40" name="SpecBuilder Cloud" version="" library="SBCLib.dll" productfolder="SBC" type="internal" platform="Web"/>
+    <application id="41" name="WebTimeClock" version="" library="WebTimeClockLib.dll" productfolder="WebTimeClock" type="internal" platform="Web"/>
+    <application id="42" name="Maconomy iAccess" version="2.3" library="MaconomyiAccessLib.dll" productfolder="MaconomyiAccess_23" type="" platform="Web"/>
+    <application id="43" name="SFT" version="2.0" library="SFTLib.dll" productfolder="SFT_20" type="internal" platform="Web"/>
+    <application id="44" name="DCO" version="" library="DCOLib.dll" productfolder="DCO" type="internal" platform="Web"/>
+    <application id="45" name="FieldEase" version="" library="FieldEaseLib.dll" productfolder="FieldEase" type="internal" platform="Web"/>
+    <application id="46" name="DeltekProjectsTool" version="" library="DeltekProjectsToolLib.dll" productfolder="DeltekProjectsTool" type="internal" platform="Web"/>
+    <application id="47" name="KnowledgePoint" version="" library="KnowledgePointLib.dll" productfolder="KnowledgePoint" type="internal" platform="Web"/>
+    <application id="48" name="CPSmartPhone" version="" library="TEMobileLib.dll" productfolder="CPSmartPhone" type="internal" platform="Mobile"/>
+    <application id="49" name="Acumen TouchStone" version="8.1" library="AcumenTouchStoneLib.dll" productfolder="AcumenTouchStone_81" type="internal" platform="Web"/>
+    <application id="50" name="Maconomy iAccess DFME" version="" library="MaconomyiAccessLib.dll" productfolder="MaconomyiAccess_DFME" type="" platform="Web"/>
+	  <application id="51" name="MaconomyTouch DFME" version="" library="MaconomyTouchLib.dll" productfolder="MaconomyTouch_DFME" type="internal" platform="Mobile"/>
+	  <application id="52" name="BPM DFME" version="" library="BPMLib.dll" productfolder="BPM_DFME" type="internal" platform="Web"/>
+    <application id="53" name="SFT" version="2.1" library="SFTLib.dll" productfolder="SFT_21" type="internal" platform="Web"/>
+    <application id="54" name="DTM" version="DTM_TestCases" library="HRSmartLib.dll" productfolder="DTM_TestCases" type="internal" platform="Web"/>
+    <application id="55" name="DTM" version="DTM_UPDCycle" library="HRSmartLib.dll" productfolder="DTM_UPDCycle" type="internal" platform="Web"/>
+    <application id="56" name="DTM" version="DTM_ENHCycle" library="HRSmartLib.dll" productfolder="DTM_ENHCycle" type="internal" platform="Web"/>
+  </applicationlist>
+  <currentapp>0</currentapp>
+  <initiallaunch>true</initiallaunch>
+  <sourcecontrolenabled>false</sourcecontrolenabled>
+  <donotcheckinenvironmentinfo>false</donotcheckinenvironmentinfo>
+  <getlatestversiononlaunch>false</getlatestversiononlaunch>
+  <testtreeexpanded>false</testtreeexpanded>
+  <errorloglevel>default</errorloglevel>
+  <smtphost>smtp.deltek.com</smtphost>
+  <smtpport>25</smtpport>
+  <smtpuser>6vXGLNCeBFC1CGzmpeHV/ncU4bZR9za3PtG+/x84xvM=</smtpuser>
+  <smtppass>XXqFJqLlqZ1UCoj0gE0Vfg==</smtppass>
+  <usecustomsenderadd>false</usecustomsenderadd>
+  <customsenderadd></customsenderadd>
+  <defaultsenderadd>AutomationBatch@deltek.com</defaultsenderadd>
+  <usedefaultemail>false</usedefaultemail>
+  <defaultemail></defaultemail>
+  <usedatabase>false</usedatabase>
+  <recordresults>False</recordresults>
+  <dbserver>MAKAPT294VS</dbserver>
+  <dbname>DashboardResults</dbname>
+  <dbuser>3x02keX5VcYADUXCAcDmJg==</dbuser>
+  <dbpassword>sv++TcKyPzFN4EKtms8ncA==</dbpassword>
+  <dashboardenabled>true</dashboardenabled>
+  <maxeditorwindows>4</maxeditorwindows>
+  <release></release>
+  <releaseversion>0.1</releaseversion>
+</Init>

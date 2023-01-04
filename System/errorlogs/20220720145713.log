@@ -1,0 +1,4 @@
+2022-07-20 02:57:13 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-20 02:57:13 pm| TestRunner
+2022-07-20 02:57:13 pm| Object reference not set to an instance of an object.
+2022-07-20 02:57:13 pm|    at TestRunner.TestEditor.cmbKeyword_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\TestEditor.xaml.cs:line 2789

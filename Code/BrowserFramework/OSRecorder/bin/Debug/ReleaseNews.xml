@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testrunner version="v3.6.0">
+  <feature id="1" name="Combined object store for Costpoint 711" description="Scripting across Budgeting and Planning and Time and Expense screens is now possible for Costpoint 711" />
+  <feature id="2" name="Show App Name" description="Option to use the Application Name instead of Application ID in scripts is now available" />
+  <feature id="3" name="Performance Optimization" description="Optimized performance for Verify keywords and Functions, Table keywords, and Test Editor Control" />
+  <feature id="4" name="Support for Microsoft Edge" description="Microsoft Edge is now a supported browser. Recommended to use Chromium based Edge" />
+  <feature id="5" name="Password Masking" description="Password in Database and Login screen is now masked for additional security" />
+  <feature id="6" name="URL Blacklist" description="Prevent specific URLs from being used for script execution by adding them into Blacklist" /> 
+  <feature id="7" name="Support for updated Chrome and Firefox browsers" description="Newest drivers added to support latest versions of Chrome and Firefox" /> 
+  <feature id="8" name="Multiple bug fixes" description="Improved Test Runner features, resolved Test Capture issues and other bug fixes" />
+</testrunner>

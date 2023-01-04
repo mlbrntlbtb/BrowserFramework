@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{58CC548B-A4D5-4AE2-A6EE-CD4637FDC3D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFTLib</RootNamespace>
+    <AssemblyName>SFTLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Tools\Selenium\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\..\..\Tools\Selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\..\..\Tools\Selenium\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapper\DlkAutoMapper.cs" />
+    <Compile Include="DlkControls\AutoMapper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DlkControls\AutoMapper.Designer.cs">
+      <DependentUpon>AutoMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DlkControls\Concrete\ComboBox\DefaultComboBox.cs" />
+    <Compile Include="DlkControls\Concrete\ComboBox\DropDownComboBox.cs" />
+    <Compile Include="DlkControls\Concrete\Grid\DefaultGrid.cs" />
+    <Compile Include="DlkControls\Concrete\Grid\RichSDTGrid.cs" />
+    <Compile Include="DlkControls\Contract\ICheckBox.cs" />
+    <Compile Include="DlkControls\Contract\IComboBox.cs" />
+    <Compile Include="DlkControls\Contract\IGrid.cs" />
+    <Compile Include="DlkControls\Contract\IGridWithFooter.cs" />
+    <Compile Include="DlkControls\DlkButton.cs" />
+    <Compile Include="DlkControls\DlkCalendar.cs" />
+    <Compile Include="DlkControls\DlkCheckBox.cs" />
+    <Compile Include="DlkControls\DlkComboBox.cs" />
+    <Compile Include="DlkControls\DlkForm.cs" />
+    <Compile Include="DlkControls\DlkGrid.cs" />
+    <Compile Include="DlkControls\DlkImageIcon.cs" />
+    <Compile Include="DlkControls\DlkLabel.cs" />
+    <Compile Include="DlkControls\DlkLink.cs" />
+    <Compile Include="DlkControls\DlkListBox.cs" />
+    <Compile Include="DlkControls\DlkMenu.cs" />
+    <Compile Include="DlkControls\DlkTabPage.cs" />
+    <Compile Include="DlkControls\DlkTable.cs" />
+    <Compile Include="DlkControls\DlkTextBox.cs" />
+    <Compile Include="DlkControls\DlkToggle.cs" />
+    <Compile Include="DlkControls\DlkTreeView.cs" />
+    <Compile Include="DlkSystem\DlkSFTExtensionMethods.cs" />
+    <Compile Include="DlkSystem\DlkSFTFunctionHandler.cs" />
+    <Compile Include="DlkSystem\DlkSFTKeywordHandler.cs" />
+    <Compile Include="DlkSystem\DlkSFTTestExecute.cs" />
+    <Compile Include="DlkUtility\DlkSFTCommon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DlkControls\Concrete\CheckBox\" />
+    <Folder Include="DlkFunctions\" />
+    <Folder Include="DlkHandlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{1000485d-4034-419d-95f9-a07566912482}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DlkControls\AutoMapper.resx">
+      <DependentUpon>AutoMapper.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

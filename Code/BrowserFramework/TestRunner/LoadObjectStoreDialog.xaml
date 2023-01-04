@@ -1,0 +1,23 @@
+﻿<Window x:Class="TestRunner.LoadObjectStoreDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Load Object Store" Height="350" Width="300"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,0">
+                <Label x:Name="lblSearch" Content="Search:" />
+                <TextBox x:Name="txtSearch" Width="180" />
+                <Button x:Name="btnFind" Content="Find" Style="{StaticResource ButtonStyle2}"/>
+            </StackPanel>
+            <ListBox x:Name="lstOSFiles" Height="250" Margin="5,5,5,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,5,0">
+                <Button x:Name="btnLoad" Content="Load" Style="{StaticResource ButtonStyle2}" Click="btnLoad_Click"/>
+                <Button x:Name="btnCancel" Content="Cancel" Style="{StaticResource ButtonStyle2}" Click="btnCancel_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

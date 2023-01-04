@@ -1,0 +1,7 @@
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Release\OSH_Client.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Release\OSH_Client.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\bin\Release\Newtonsoft.Json.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Release\OSH_Client.csprojAssemblyReference.cache
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Release\OSH_Client.csproj.CopyComplete
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Release\OSH_Client.dll
+C:\TFS\BrowserFramework\Code\BrowserFramework\OSH_Client\obj\Release\OSH_Client.pdb

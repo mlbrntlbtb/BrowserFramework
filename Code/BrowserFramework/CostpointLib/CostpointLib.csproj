@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A9BB29A-631C-4FA8-880E-96E1960304C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CostpointLib</RootNamespace>
+    <AssemblyName>CostpointLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Tools\ExternalLib\CSCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Tools\Selenium\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tools\Selenium\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\..\..\Tools\Selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\..\..\Tools\Selenium\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\..\Tools\Selenium\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DlkControls\DlkAppMenuView.cs" />
+    <Compile Include="DlkControls\DlkCustomTable.cs" />
+    <Compile Include="DlkControls\DlkDashpart.cs" />
+    <Compile Include="DlkControls\DlkInfoTip.cs" />
+    <Compile Include="DlkControls\DlkConditionListBox.cs" />
+    <Compile Include="DlkControls\DlkListBox.cs" />
+    <Compile Include="DlkControls\DlkMultiPartTable.cs" />
+    <Compile Include="DlkControls\DlkSearchAppResultList.cs" />
+    <Compile Include="DlkControls\DlkFolderTree.cs" />
+    <Compile Include="DlkControls\DlkContextMenu.cs" />
+    <Compile Include="DlkControls\DlkReportBody.cs" />
+    <Compile Include="DlkControls\DlkRadioButtonGroup.cs" />
+    <Compile Include="DlkControls\DlkRadioButton.cs" />
+    <Compile Include="DlkControls\DlkNavigationPath.cs" />
+    <Compile Include="DlkControls\DlkMenu.cs" />
+    <Compile Include="DlkControls\DlkLabel.cs" />
+    <Compile Include="DlkControls\DlkImage.cs" />
+    <Compile Include="DlkControls\DlkCalendar.cs" />
+    <Compile Include="DlkControls\DlkComboBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DlkControls\DlkComboBoxList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DlkControls\DlkLink.cs" />
+    <Compile Include="DlkControls\DlkSetupGrid.cs" />
+    <Compile Include="DlkControls\DlkTab.cs" />
+    <Compile Include="DlkControls\DlkForm.cs" />
+    <Compile Include="DlkControls\DlkCheckBox.cs" />
+    <Compile Include="DlkControls\DlkMessageArea.cs" />
+    <Compile Include="DlkControls\DlkTable.cs" />
+    <Compile Include="DlkControls\DlkTextArea.cs" />
+    <Compile Include="DlkControls\DlkToolbar.cs" />
+    <Compile Include="DlkControls\DlkTemplate.cs" />
+    <Compile Include="DlkControls\DlkNavigationArea.cs" />
+    <Compile Include="DlkControls\DlkNavigationMenu.cs" />
+    <Compile Include="DlkControls\DlkButton.cs" />
+    <Compile Include="DlkControls\DlkTextBox.cs" />
+    <Compile Include="DlkControls\DlkWebGrid.cs" />
+    <Compile Include="DlkFunctions\DlkAutoComplete.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DlkFunctions\DlkBrowseFilePopup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DlkFunctions\DlkDatePicker.cs" />
+    <Compile Include="DlkFunctions\DlkArrangeTableColumns.cs" />
+    <Compile Include="DlkFunctions\DlkShowHideScreenControls.cs" />
+    <Compile Include="DlkFunctions\DlkFileUploadManager.cs" />
+    <Compile Include="DlkFunctions\DlkDialog.cs" />
+    <Compile Include="DlkFunctions\DlkProcessProgress.cs" />
+    <Compile Include="DlkFunctions\DlkQuery.cs" />
+    <Compile Include="DlkFunctions\DlkCPLogin.cs" />
+    <Compile Include="DlkRecords\DlkPreviousControlRecord.cs" />
+    <Compile Include="DlkSystem\DlkCostpointFunctionHandler.cs" />
+    <Compile Include="DlkSystem\DlkCostpointKeywordHandler.cs" />
+    <Compile Include="DlkSystem\DlkCostpointTestExecute.cs" />
+    <Compile Include="DlkUtility\DlkCostpointCommon.cs" />
+    <Compile Include="DlkUtility\DlkCostpointControlHelper.cs" />
+    <Compile Include="DlkUtility\DlkVoiceCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DlkHandlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{1000485d-4034-419d-95f9-a07566912482}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OSH_Client\OSH_Client.csproj">
+      <Project>{842d7e7e-7aff-44d6-b671-3f2124963672}</Project>
+      <Name>OSH_Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,4 @@
+REM -product Navigator -library NavigatorLib.dll
+REM -product ngCRM -library ngCRMLib.dll
+REM -product MaconomyNavigator -library MaconomyNavigatorLib.dll
+-product Costpoint -library CostpointLib.dll

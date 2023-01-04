@@ -1,0 +1,4 @@
+2020-10-01 02:07:33 PM| Test Scheduler encountered an unexpected error.
+2020-10-01 02:07:33 PM| TestRunnerCmd
+2020-10-01 02:07:33 PM| Index was outside the bounds of the array.
+2020-10-01 02:07:33 PM|    at TestRunnerCmd.Program.Main(String[] args) in C:\TFS\BrowserFramework\Code\BrowserFramework\TestRunnerCmd\Program.cs:line 19

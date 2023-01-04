@@ -1,0 +1,77 @@
+﻿<Window x:Class="Recorder.AddVariable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Assign Variable" Height="300" Width="300" WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Closing="Window_Closing">
+    <TabControl Margin="10,5,10,10" Background="#FF90D2FF">
+        <TabItem Visibility="Hidden">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="30" x:Name="rowValueSubStr"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label VerticalAlignment="Center">Name :</Label>
+            <ComboBox x:Name="cboName" VerticalAlignment="Center" Height="25" Width="198" IsEditable="True" ItemsSource="{Binding}" DisplayMemberPath="Name"></ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Button x:Name="btnReset" Style="{StaticResource ButtonStyle2}" Click="btnReset_Click"  VerticalAlignment="Center">Reset</Button>
+                    <Button x:Name="btnOK" Style="{StaticResource ButtonStyle2}" Click="btnOK_Click" VerticalAlignment="Center">OK</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center">Start Index :</Label>
+                <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="txtStartIndex" Width="35" Height="18" TextChanged="txtStartIndex_TextChanged" KeyDown="numericTB_KeyDown" FontSize="9" Text="{Binding Path=StartIndex, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <Button x:Name="btnSIUp" Style="{StaticResource FlatButtonStyle}" Height="9" Width="18" Margin="0,0,0,0" Click="btnSIUp_Click">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="7">
+                                &#9650;
+                            </TextBlock>
+                        </Button>
+                        <Button x:Name="btnSIDown" Style="{StaticResource FlatButtonStyle}" Height="9" Width="18" Click="btnSIDown_Click">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="7">
+                                &#9660;
+                            </TextBlock>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Width="12"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center">Length :</Label>
+                <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="txtLength" Width="35" Height="18" TextChanged="txtLength_TextChanged" KeyDown="numericTB_KeyDown" FontSize="9" Text="{Binding Path=Length, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <Button x:Name="btnLUp" Style="{StaticResource FlatButtonStyle}" Height="9" Width="18" Margin="0,0,0,0" Click="btnLUp_Click">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="7">
+                                &#9650;
+                            </TextBlock>
+                        </Button>
+                        <Button x:Name="btnLDown" Style="{StaticResource FlatButtonStyle}" Height="9" Width="18" Click="btnLDown_Click">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="7">
+                                &#9660;
+                            </TextBlock>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Label Name="lblValue" Grid.Row="2" VerticalAlignment="Bottom" Margin="12,0,0,0">Current Value :</Label>
+                <TextBox x:Name="txtCurrentValue" Grid.Row="3" Margin="17,0,11,4" IsReadOnly="True" 
+                         Text="{Binding Path=CurrentValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto">
+                    <TextBox.Style>
+                        <Style>
+                            <Setter Property="Panel.Background" Value="{DynamicResource ResourceKey={x:Static SystemColors.ControlBrushKey}}" />
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+    </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

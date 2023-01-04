@@ -1,0 +1,6 @@
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Release\AutoMail.exe
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Release\AutoMail.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Release\AutoMail.csprojAssemblyReference.cache
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Release\AutoMail.exe
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Release\AutoMail.pdb
+C:\TFS\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Release\AutoMail.exe.config

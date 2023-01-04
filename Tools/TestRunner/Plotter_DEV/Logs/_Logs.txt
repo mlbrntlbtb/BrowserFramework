@@ -1,0 +1,98 @@
+6/16/2017 1:03:42 AM : 
+6/16/2017 1:03:42 AM : User provided the full path only...
+6/16/2017 1:03:42 AM : Instantiating Plotter...
+6/16/2017 1:03:42 AM : Plotting to Database...
+6/16/2017 1:03:42 AM : Plotting the instance 20170608054801
+6/16/2017 1:03:42 AM : AN EXCEPTION WAS FOUND!!! EXCEPTION FOUND!!!!! System.Exception: Error encountered while executing commands. Transaction rolled back. ---> System.Data.SqlClient.SqlException: Incorrect syntax near 't'.
+Unclosed quotation mark after the character string ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 65
+   --- End of inner exception stack trace ---
+   at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 76
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 94
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at    at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 76
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 94
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at 0 
+6/16/2017 1:03:42 AM : ------------------Done-------------------
+6/16/2017 1:03:42 AM :  
+6/16/2017 1:07:59 AM : 
+6/16/2017 1:07:59 AM : User provided the full path only...
+6/16/2017 1:07:59 AM : Instantiating Plotter...
+6/16/2017 1:07:59 AM : Plotting to Database...
+6/16/2017 1:07:59 AM : Plotting the instance 20170608054801
+6/16/2017 1:07:59 AM : AN EXCEPTION WAS FOUND!!! EXCEPTION FOUND!!!!! System.Exception: Error encountered while executing commands. Transaction rolled back. Script: DECLARE @suiteid [int]
+DECLARE @runid [int]
+INSERT INTO TestSuites (TestSuite, Path) VALUES ('HP_CRM_OPP_AUTOOFF_1', 'BrowserFramework\StormWeb_10\Framework\SuiteResults\HP_CRM_OPP_AUTOOFF_1')
+SELECT @suiteid = SCOPE_IDENTITY();
+INSERT INTO TestRun (TestSuiteId, Description, Elapsed, Total, Failed, Passed, MachineName, Username, OperatingSystem, RunNumber) VALUES (@suiteid, '', '01:19:10.83', '8', '3', '5', 'MAKAPT567VS', 'Auto1', 'Microsoft Windows NT 6.2.9200.0', '0')
+SELECT @runid = SCOPE_IDENTITY();
+INSERT INTO TestResults (RunId, TestName, TestFile, Id, TestInstance, Browser, Environment, Description, TestStatus, TestStart, TestEnd, Elapsed, StepDescription, StepInfo, ErrorMessage, ErrorOutputFile, ErrorStack, ErrorScreenshot, ExecutedSteps, TotalSteps) VALUES (@runid, 'GenericRestore_DPS10QCSimpleCRMPlusAuto', '', '', '1', 'Chrome', 'Storm_NoLogin', '', 'passed', '', '', '00:01:34.00', '', '', '-', '', '', '', '2', '2')
+INSERT INTO TestResults (RunId, TestName, TestFile, Id, TestInstance, Browser, Environment, Description, TestStatus, TestStart, TestEnd, Elapsed, StepDescription, StepInfo, ErrorMessage, ErrorOutputFile, ErrorStack, ErrorScreenshot, ExecutedSteps, TotalSteps) VALUES (@runid, 'HP_OPP_CreateEditDeleteOpportunities', '', '', '1', 'Chrome', 'Auto_Admin_CRMAuto', '', 'failed', '', '', '00:03:24.20', '', '', '[ERROR] Set() failed : Couldn't find control [Name] within timeout: 40', '', '', '\\MAKAPT567VS\BrowserFramework\StormWeb_10\Framework\TestResults\20170608043020\EXCEPTIONIMG_170608043341.png', '4', '74')
+INSERT INTO TestResults (RunId, TestName, TestFile, Id, TestInstance, Browser, Environment, Description, TestStatus, TestStart, TestEnd, Elapsed, StepDescription, StepInfo, ErrorMessage, ErrorOutputFile, ErrorStack, ErrorScreenshot, ExecutedSteps, TotalSteps) VALUES (@runid, 'HP_OPP_CreateEditDeleteCompetition', '', '', '1', 'Chrome', 'Auto_Admin_CRMAuto', '', 'passed', '', '', '00:30:10.43', '', '', '-', '', '', '', '71', '71') ---> System.Data.SqlClient.SqlException: Incorrect syntax near 't'.
+Unclosed quotation mark after the character string ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 65
+   --- End of inner exception stack trace ---
+   at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 76
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 94
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at    at Plotter.ErrorHelper.SqlDbUtility.ExecuteTransaction(String transactionName, List`1 commands) in c:\MakatiProjects\Plotter - Storm\Plotter\Utilities\SqlDbUtility.cs:line 76
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 94
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at 0 
+6/16/2017 1:07:59 AM : ------------------Done-------------------
+6/16/2017 1:07:59 AM :  
+6/16/2017 1:14:10 AM : 
+6/16/2017 1:14:10 AM : User provided the full path only...
+6/16/2017 1:14:10 AM : Instantiating Plotter...
+6/16/2017 1:14:10 AM : Plotting to Database...
+6/16/2017 1:14:10 AM : Plotting the instance 20170608054801
+6/16/2017 1:14:10 AM : AN EXCEPTION WAS FOUND!!! EXCEPTION FOUND!!!!! System.NullReferenceException: Object reference not set to an instance of an object.
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.CreateTestResultsCommand(DlkTest test) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 119
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 89
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at    at Plotter.ErrorHelper.SuiteResultsDBWriter.CreateTestResultsCommand(DlkTest test) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 119
+   at Plotter.ErrorHelper.SuiteResultsDBWriter.SaveTestSuite() in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\SuiteResultsDBWriter.cs:line 89
+   at Plotter.ErrorHelper.PlotterMain.PlotToDatabase(String path, Boolean forced) in c:\MakatiProjects\Plotter - Storm\Plotter\Test Plotter Logic\PlotterMain.cs:line 253
+   at Plotter.ErrorHelper.Program.Main(String[] args) in c:\MakatiProjects\Plotter - Storm\Plotter\Program.cs:line 49 at 0 
+6/16/2017 1:14:10 AM : ------------------Done-------------------
+6/16/2017 1:14:10 AM :  
+6/16/2017 1:22:55 AM : 
+6/16/2017 1:22:55 AM : User provided the full path only...
+6/16/2017 1:22:55 AM : Instantiating Plotter...
+6/16/2017 1:22:55 AM : Plotting to Database...
+6/16/2017 1:22:55 AM : Plotting the instance 20170608054801
+6/16/2017 1:22:55 AM : Done plotting to Database!
+9/6/2017 8:24:41 PM : 
+9/6/2017 8:24:41 PM : User provided the full path only...
+9/6/2017 8:24:41 PM : Instantiating Plotter...
+9/6/2017 8:24:41 PM : Plotting to Database...
+9/6/2017 8:24:42 PM : Plotting the instance 20170831185521
+9/6/2017 8:24:55 PM : Successfully saved suite. [NikkaSample]
+9/6/2017 8:24:55 PM : Done plotting to Database!
+10/17/2017 3:27:10 PM : 
+10/17/2017 3:27:10 PM : User provided the full path only...
+10/17/2017 3:27:10 PM : Instantiating Plotter...
+10/17/2017 3:27:10 PM : Plotting to Database...
+10/17/2017 3:27:10 PM : Plotting the instance 20170511101358
+10/17/2017 3:27:10 PM : Successfully saved suite. [HP_CRM_FIRMS_AUTOOFF]
+10/17/2017 3:27:10 PM : Done plotting to Database!
+10/17/2017 4:45:02 PM : 
+10/17/2017 4:45:02 PM : User provided the full path only...
+10/17/2017 4:45:02 PM : Instantiating Plotter...
+10/17/2017 4:45:02 PM : Plotting to Database...
+10/17/2017 4:45:02 PM : Plotting the instance 20171017164502
+10/17/2017 4:45:04 PM : Successfully saved suite. [RandomTesting]
+10/17/2017 4:45:04 PM : Done plotting to Database!

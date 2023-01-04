@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="TestResultsDashboard.Dashboard" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Test Dashboard</title>
+    <link href="StyleSheets/StyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+            <div id="header" style="background-image: url(Images/Logo2.png); background-repeat: no-repeat; background-position-x: right; background-position-y: center; border: none">
+                <div class="fltlftHdr"> <h1>Test Dashboard</h1> </div>
+                <div class="fltrtHdr"> <b style="vertical-align:bottom">Current Product  </b><asp:DropDownList ID="ddlProjects" runat="server" style="vertical-align:bottom" OnSelectedIndexChanged="ddlProjects_SelectedIndexChanged" AutoPostBack="true"/> </div>
+            </div>
+            <div id="body">
+                <table class="TblStyle1" style="min-width: 900px">
+                    <tr>
+                        <td>
+                            <div style="width: 120px;">
+                                <h2>Views</h2>
+                                <asp:HyperLink ID="lnkSummary" runat="server" Text="Summary" NavigateUrl="~/default.aspx"></asp:HyperLink>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary1" runat="server" Text="1 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=1"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary3" runat="server" Text="3 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=3"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary5" runat="server" Text="5 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=5"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary7" runat="server" Text="7 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=7"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary14" runat="server" Text="14 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=14"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary30" runat="server" Text="30 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=30"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary60" runat="server" Text="60 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=60"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <asp:HyperLink ID="lnkSummary90" runat="server" Text="90 Day Summary" NavigateUrl="~/default.aspx?NumberOfDays=90"></asp:HyperLink>
+                                </p>
+                                <p>
+                                    <%--<asp:HyperLink ID="lnkRunningSuites" runat="server" Text="Currently Running" NavigateUrl="~/CurrentlyRunningSuites.aspx"></asp:HyperLink>--%>
+                                </p>
+                            </div>
+                        </td>
+                        <td style="position: relative">
+                            <h2>
+                                <asp:ContentPlaceHolder ID="PageTitle" runat="server" />
+                            </h2>
+                            <asp:ContentPlaceHolder ID="PageData" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="footer">
+                <asp:Image ImageUrl="Images/Logo1.png" runat="server" Height="30px" />
+            </div>
+        </div>
+    </form>
+</body>
+</html>

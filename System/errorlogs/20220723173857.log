@@ -1,0 +1,83 @@
+2022-07-23 05:38:57 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 05:38:57 pm| mscorlib
+2022-07-23 05:38:57 pm| String was not recognized as a valid DateTime.
+2022-07-23 05:38:57 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80
+2022-07-23 05:39:37 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:39:37 pm| mscorlib
+2022-07-23 05:39:37 pm| Value cannot be null.
+Parameter name: path1
+2022-07-23 05:39:37 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-07-23 05:39:54 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:39:54 pm| mscorlib
+2022-07-23 05:39:54 pm| Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+2022-07-23 05:39:54 pm|    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at TestRunner.TestEditor.<>c__DisplayClass348_0.<UpdateDataTabSelection>b__0() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\TestEditor.xaml.cs:line 5050
+2022-07-23 05:40:56 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:40:56 pm| TestRunner
+2022-07-23 05:40:56 pm| Object reference not set to an instance of an object.
+2022-07-23 05:40:56 pm|    at TestRunner.MainWindow.tvKeywordDirectory_SelectedItemChanged(Object sender, RoutedPropertyChangedEventArgs`1 e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 4363
+2022-07-23 05:42:10 pm| Test Runner encountered an unexpected error. See program logs for details.
+2022-07-23 05:42:10 pm| mscorlib
+2022-07-23 05:42:10 pm| Value cannot be null.
+Parameter name: path1
+2022-07-23 05:42:10 pm|    at System.IO.Path.Combine(String path1, String path2)
+   at TestRunner.MainWindow.GetLogName(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 7099
+   at TestRunner.MainWindow.DisplayLogResults(Int32 iRow) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 999
+   at TestRunner.MainWindow.UpdateTestExecutionDetails() in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 1295
+   at TestRunner.MainWindow.TestQueue_SelectionChanged(Object sender, SelectionChangedEventArgs e) in C:\BrowserFramework\Code\BrowserFramework\TestRunner\MainWindow.xaml.cs:line 2682
+2022-07-23 06:17:54 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 06:17:54 pm| mscorlib
+2022-07-23 06:17:54 pm| String was not recognized as a valid DateTime.
+2022-07-23 06:17:54 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80
+2022-07-23 06:24:27 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 06:24:27 pm| mscorlib
+2022-07-23 06:24:27 pm| String was not recognized as a valid DateTime.
+2022-07-23 06:24:27 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80
+2022-07-23 06:24:50 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 06:24:50 pm| mscorlib
+2022-07-23 06:24:50 pm| String was not recognized as a valid DateTime.
+2022-07-23 06:24:50 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80
+2022-07-23 07:12:56 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 07:12:56 pm| mscorlib
+2022-07-23 07:12:56 pm| String was not recognized as a valid DateTime.
+2022-07-23 07:12:56 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80
+2022-07-23 10:02:44 pm| [Write Output Manifest] Error in writing output manifest
+2022-07-23 10:02:44 pm| mscorlib
+2022-07-23 10:02:44 pm| String was not recognized as a valid DateTime.
+2022-07-23 10:02:44 pm|    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.<>c.<UpdateOutputManifest>b__3_0(XElement itm) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 73
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CommonLib.DlkHandlers.DlkOutputManifestHandler.UpdateOutputManifest(String Path, String Value) in C:\BrowserFramework\Code\BrowserFramework\CommonLib\DlkHandlers\DlkOutputManifestHandler.cs:line 80

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test>
+  <name>test_connect</name>
+  <file>C:\TFS\QEAutomation\Selenium\BrowserFramework\Products\Costpoint_711\Tests\test_connect.xml</file>
+  <identifier></identifier>
+  <description>This test is a login connection test.</description>
+  <author>JP Valle</author>
+  <instance>-1</instance>
+  <status></status>
+  <stepfailed>0</stepfailed>
+  <start>1/1/0001 12:00:00 AM</start>
+  <end>1/1/0001 12:00:00 AM</end>
+  <elapsed></elapsed>
+  <testsetup>
+    <logmessages />
+  </testsetup>
+  <testteardown>
+    <logmessages />
+  </testteardown>
+  <links />
+  <tags />
+  <steps>
+    <step id="1">
+      <execute>True</execute>
+      <screen>Function</screen>
+      <control>Function</control>
+      <keyword>LogComment</keyword>
+      <parameters>
+        <parameter>This test is a login connection test.</parameter>
+      </parameters>
+      <delay>0</delay>
+      <status>Not run</status>
+      <logmessages />
+      <start>1/1/0001 12:00:00 AM</start>
+      <end>1/1/0001 12:00:00 AM</end>
+      <elapsed></elapsed>
+    </step>
+  </steps>
+</test>

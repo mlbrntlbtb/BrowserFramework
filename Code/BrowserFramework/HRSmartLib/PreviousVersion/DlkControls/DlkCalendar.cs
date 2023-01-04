@@ -1,0 +1,54 @@
+﻿using CommonLib.DlkControls;
+using CommonLib.DlkSystem;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HRSmartLib.PreviousVersion.DlkControls
+{
+    [ControlType("Calendar")]
+    public class DlkCalendar : DlkBaseControl
+    {
+        #region Declarations
+        #endregion
+
+        #region Constructors
+
+        public DlkCalendar(String ControlName, String SearchType, String[] SearchValues)
+            : base(ControlName, SearchType, SearchValues)
+        {
+            //Do Nothing.
+        }
+
+        #endregion
+
+        #region Keywords
+
+        [Keyword("VerifyExists", new String[] { "1|text|Expected Value|TRUE" })]
+        public void VerifyExists(String TrueOrFalse)
+        {
+            try
+            {
+                base.VerifyExists(Convert.ToBoolean(TrueOrFalse));
+                DlkLogger.LogInfo("VerifyExists() passed");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("VerifyExists() failed : " + e.Message, e);
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void initialize()
+        {
+            FindElement();
+        }
+
+        #endregion
+    }
+}

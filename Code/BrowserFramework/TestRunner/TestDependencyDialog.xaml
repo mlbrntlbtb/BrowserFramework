@@ -1,0 +1,264 @@
+﻿<Window x:Class="TestRunner.TestDependencyDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:TestRunner.Common"
+        Title="Set Condition" Height="600" Width="800" Background="#FF90D2FF" WindowStyle="SingleBorderWindow"  Closing="Window_Closing">
+    <Window.Resources>
+        <common:DlkStringToBoolean x:Key="stringtobool" />
+        <common:DlkStringToBooleanInverted x:Key="stringtoboolinverted" />
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/splash.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Current Test" Margin="5,5,5,0" FontWeight="Bold" Foreground="Navy">
+            <Grid>
+                <DataGrid x:Name="dgCurrentTest" Margin="5,5,5,0" ItemsSource="{Binding}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                           FontWeight="Normal" CanUserAddRows="False" CanUserDeleteRows="False" Style="{StaticResource DataGridStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding testrow}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="#" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" IsReadOnly="True" Width="25"/>
+                        <DataGridTextColumn x:Name="CurrentTestDisplayName" Binding="{Binding file}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" IsReadOnly="True"
+                                        Width="*">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock x:Name="txtDisplayNameHeaderCurrent" Loaded="txtDisplayNameHeaderCurrent_Loaded"  Text="File Name"/>
+                                        <Button Name="btnDisplayNameCurrent" HorizontalAlignment="Right" Margin="5,0,10,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxDisplayNameDependency1}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowCurrentTestDisplayNameContextMenu" ToolTip="Choose display type"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding name}" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding instance}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Instance" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding description}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Description" HeaderStyle="{StaticResource DataGridColumnHeaderStyle6}" IsReadOnly="True" Width="300">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding description}" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="TestEnvironmentColumn" Binding="{Binding environment}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Environment" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" Width="100"/>
+                        <DataGridTextColumn x:Name="TestBrowserColumn" Binding="{Binding Browser.Name}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Browser" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}"  Width="80"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Execute" Margin="5,0,5,0" FontWeight="Bold" Foreground="Navy">
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
+                <RadioButton x:Name="rdoYes" FontWeight="Normal" IsChecked="{Binding execute, Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource stringtobool}}">True</RadioButton>
+                <TextBlock Width="50"/>
+                <RadioButton x:Name="rdoNo" FontWeight="Normal" IsChecked="{Binding execute, Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource stringtoboolinverted}}">False</RadioButton>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="grpExecutionCondition" Grid.Row="2" Header="Execution Condition" Margin="5,0,5,5" FontWeight="Bold" Foreground="Navy">
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding testrow}" Value="1">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TabControl Grid.Row="0" Margin="5,0,5,0" >
+                    <TabItem Visibility="Hidden">
+                        <StackPanel Orientation="Horizontal" Height="23">
+                            <CheckBox x:Name="chkExecuteDependency" VerticalAlignment="Center" Checked="chkExecuteDependency_Checked" Unchecked="chkExecuteDependency_Unchecked" IsChecked="{Binding dependent, Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource stringtobool}}">
+                                <CheckBox.Style>
+                                    <Style TargetType="CheckBox">
+                                        <Setter Property="Content" Value="Enable"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="FontWeight" Value="Normal"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True"/>
+                                                    <Condition Binding="{Binding ElementName=rdoYes, Path=IsChecked}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Content" Value="EXECUTE"/>
+                                                <Setter Property="Foreground" Value="Green"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True"/>
+                                                    <Condition Binding="{Binding ElementName=rdoYes, Path=IsChecked}" Value="False"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Content" Value="SKIP"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+                            <TextBlock Width="4"/>
+                            <TextBlock x:Name="txtCurrentTest" VerticalAlignment="Center" FontWeight="Normal" Text="current test">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Width="4"/>
+                            <TextBlock x:Name="txtIf" VerticalAlignment="Center" FontWeight="Normal" Text="if">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Width="4"/>
+                            <TextBlock x:Name="txtSelectedTest" VerticalAlignment="Center" FontStyle="Italic" FontWeight="Normal" Text="Activator Test">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <ComboBox x:Name="cboDependencyTestResult" Grid.Row="3"  ItemsSource="{Binding Path=ResultList, Mode=OneTime}" Margin="5,0,5,0" Height="20" Width="80" VerticalContentAlignment="Center" FontWeight="Normal">
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox">
+                                        <Style.Triggers>
+                                            <Trigger Property="SelectedItem"  Value="PASSED">
+                                                <Setter Property="Background" Value="LightGreen"/>
+                                            </Trigger>
+                                            <Trigger Property="SelectedItem"  Value="FAILED">
+                                                <Setter Property="Background" Value="MistyRose"/>
+                                            </Trigger>
+                                            <Trigger Property="SelectedItem"  Value="NOT RUN">
+                                                <Setter Property="Background" Value="White"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=chkExecuteDependency, Path=IsChecked}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="FontWeight" Value="Normal"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding}" Value="PASSED">
+                                                <Setter Property="Background" Value="LightGreen"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding}" Value="FAILED">
+                                                <Setter Property="Background" Value="MistyRose"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding}" Value="NOT RUN">
+                                                <Setter Property="Background" Value="White"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+                <GroupBox Header="Activator Test" Grid.Row="1" Margin="5,5,5,5" FontStyle="Italic" FontSize="11" FontWeight="Normal" Foreground="Black">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="txtFileName" Grid.Row="0" Grid.Column="0" FontStyle="Normal" VerticalAlignment="Center" FontSize="10" Margin="5,0,0,0" Text="File Name:"/>
+                        <TextBox x:Name="txtSelectedDependency" Grid.Row="0"  Grid.RowSpan="2" Grid.Column="1" TextWrapping="Wrap" IsEnabled="False" Margin="5,0,5,0" Height="46" Text="{Binding Path=name, Mode=OneWay}"></TextBox>
+                        <TextBlock Grid.Row="0" Grid.Column="2" FontSize="10" FontStyle="Normal" VerticalAlignment="Center">Test #:</TextBlock>
+                        <TextBox x:Name="txtTestNumber" Grid.Row="0" Grid.Column="3" Margin="0,5,5,5" Height="23" IsEnabled="False" Text="{Binding Path=testrow, Mode=OneWay}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="10" FontStyle="Normal" VerticalAlignment="Center">Instance:</TextBlock>
+                        <TextBox x:Name="txtTestInstance" Grid.Row="1" Grid.Column="3" Margin="0,3,5,7" Height="23" IsEnabled="False" Text="{Binding Path=instance, Mode=OneWay}"/>
+                    </Grid>
+                </GroupBox>
+
+                <DataGrid x:Name="dgPrecedingTests" Grid.Row="2"  Margin="5,0,5,0" ItemsSource="{Binding}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                          CanUserAddRows="False" CanUserDeleteRows="False" Style="{StaticResource DataGridStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" SelectionChanged="dgPrecedingTests_SelectionChanged" IsReadOnly="True" FontWeight="Normal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding testrow}" CanUserSort="False" CanUserReorder="False" CanUserResize="True"  Header="#" HeaderStyle="{StaticResource DataGridColumnHeaderStyle0}" IsReadOnly="True" Width="25"/>
+                        <DataGridTextColumn x:Name="PrecedingTestDisplayName" Binding="{Binding file}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" IsReadOnly="True"
+                                        Width="*">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock x:Name="txtPrecedingDisplayNameHeader" Loaded="txtDisplayNameHeaderPreceding_Loaded"  Text="File Name"/>
+                                        <Button Name="btnDisplayNamePreceding" HorizontalAlignment="Right" Margin="5,0,10,0" Width="20" Height="15" Content="&#9660;" ContextMenu="{StaticResource ctxDisplayNameDependency2}" ContextMenuService.IsEnabled="false" FontSize="8" Click="ShowPrecedingTestsDisplayNameContextMenu" ToolTip="Choose display type"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding name}" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding instance}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Instance" HeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding description}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Description" HeaderStyle="{StaticResource DataGridColumnHeaderStyle6}" IsReadOnly="True" Width="300">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="ToolTipService.ToolTip" Value="{Binding description}" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="CurrentTestEnvironmentColumn" Binding="{Binding environment}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Environment" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}" Width="100"/>
+                        <DataGridTextColumn x:Name="CurrentTestBrowserColumn" Binding="{Binding Browser.Name}" CanUserSort="False" CanUserReorder="False" CanUserResize="True" Header="Browser" HeaderStyle="{StaticResource DataGridColumnHeaderStyleTestQueue}"  Width="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Height="30" HorizontalAlignment="Right" Margin="0,0,15,0">
+            <Button x:Name="btnOk" Style="{StaticResource ButtonStyle3}" Click="btnOk_Click">OK</Button>
+            <Button x:Name="btnCancel" Style="{StaticResource ButtonStyle3}" Click="btnCancel_Click">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

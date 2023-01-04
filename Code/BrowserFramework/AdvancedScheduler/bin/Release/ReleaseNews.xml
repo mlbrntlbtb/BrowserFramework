@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testrunner version="v3.5.0">
+  <feature id="1" name="Global variable feature enhancement" description="Feature to declare and use a global variable file common across all suites" />
+  <feature id="2" name="Integration of new scheduler" description="Improved scheduler in Test Runner is now accessible" />
+  <feature id="3" name="Change Test and Suite directories" description="Updated feature to remove importing of tests and suites to new directory" />
+  <feature id="4" name="Support for latest Firefox and Chrome browsers" description="Newest drivers added to support latest versions of Firefox and Chrome" />
+  <feature id="5" name="Support for updated Selenium" description="Updated Selenium webdriver to a newer and more stable version" />
+  <feature id="6" name="Test Capture Execute column" description="Execute column is now available in Test Capture" />
+  <feature id="7" name="Continue on error for all TR products" description="Feature to set whether a test execution will continue until the end despite of a failed step" />
+</testrunner>

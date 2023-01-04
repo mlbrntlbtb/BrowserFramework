@@ -1,0 +1,9 @@
+﻿<Window x:Class="TestRunner.BusyPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BusyPage" Height="300" Width="300" WindowStartupLocation="CenterOwner" Background="{x:Null}"  AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <MediaElement x:Name="spinner" MediaEnded="spinner_MediaEnded" Height="150" Margin="0" Width="150" RenderTransformOrigin="0,0" Source="pack://siteoforigin:,,,/Resources/loading_tr2.gif"
+                      LoadedBehavior="Play" UnloadedBehavior="Manual" Opacity="0.05" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

@@ -1,0 +1,820 @@
+=========================================================================================
+*  Deltek Test Runner : CHANGELOG.txt                                                   *
+*  Application Version: 3.2.0                                                           *
+*  Selenium Version   : 2.53.1                                                          *
+*  Modified Date      : 4/3/2017                                                        *
+*  Modified By        : JPV                                                             *
+=========================================================================================
+
+Revision History
+
+v3.2.0
+======
+
+   * Feature 765117: Option to open an external link to a document (test plan, worksheet,
+     etc.)
+   * Bug Fix 763624: Optimize loading of Tests and Suites
+   * Bug Fix 778711: Some table keywords not working correctly
+   * Bug Fix 778740: In the TestRunner screen, the DDT instances are not updated when TRD
+     files are edited manually
+   * Bug Fix 762381: Test Capture of navigation path incorrectly records space
+   * Bug Fix 760578: Test Capture fails to record some controls
+   * Bug Fix 781130: Test Scheduler waits for next queue schedule instead of running queued
+     suite after first suite finished execution
+   * Bug Fix 762976: Clicking 'New' causes Test Editor to delete an unsaved new test
+   * Feature 758734: Added limited support for Edge browser
+   * Feature 764013: Enhancement message to close TC when you open TE
+   * Feature 754504: Changed autologin environment selection into separate dialog
+   * Bug Fix 733202: Minor bug fixes on Environment Tab
+   * Feature 743697: Sorted different environments in alphabetical order
+   * Bug Fix 758842: FileUploadManager does not work in Test Capture
+   * Bug Fix 756426: Feedback and error reporting logs link broken if location has space
+   * Bug Fix 754785: Suite with execution set to false not proceeding with schedule
+   * Bug Fix 753577: Unable to save suite after removing tests in a suite that other tests 
+     depend on
+   * Bug Fix 754412: Numbering of tests within a testsuite becomes incorrect on deletion of 
+     test
+   * Bug Fix 749738: Product key expiration and update failure
+   * Feature 751031: Added collapse inside Test Suites window
+   * Bug Fix 700095: Saving a test causes long freeze in UI
+   * Bug Fix 700094: Test Cancelation in Ad-hoc run and Test Queue run is flaky
+   * Bug Fix 735470: Fixed delay after clicking on Export
+   * Bug Fix 735556: Multiple suite runs can be initiated concurrently
+   * Bug Fix 735609: Settings form allow users to add ID of the same name
+   * Bug Fix 734762: Error when adding a new machine and clicking Cancel in scheduler
+   * Bug Fix 735569: Clicking OK on error dialog for entering invalid email format in schedule 
+     'Settings' closes the Settings form
+   * Bug Fix 735584: Canceling Add/Delete of Environment disables Edit and Delete buttons
+   * Bug Fix 735606: Search in Test Explorer does not filter correctly
+   * Bug Fix 735611: In Test Explorer tree, when search yields no result, nothing happens
+   * Bug Fix 710032: Window caption does not change when suite is saved as different file
+   * Bug Fix 734754: Right click ‘Run Now’ feature is still accessible even when the scheduler
+     is empty
+   * Bug Fix 734755: ‘Clear All’ button should be disabled when the scheduler is empty
+   * Bug Fix 734764: Incorrect grammar and punctuation in the Delete folder message box
+   * Bug Fix 734771: Cosmetic issues in Settings form Test Dashboard Clean-up screen
+   * Bug Fix 734783: Adding a blank entry in the Environment tab in Settings form is allowed
+   * Bug Fix 734820: TR: Selecting an empty folder in the Test Explorer and clicking on Queue
+     do not display error message, but logs an entry on error log file
+   * Bug Fix 734843: Toolbar step buttons are enabled at Test Capture screen launch
+   * Bug Fix 735553: Database keywords show no information under Info
+   * Bug Fix 735578: Load Results button stays disabled when reloading the same suite
+   * Bug Fix 735605: Set Schedule search does not filter correctly
+   * Bug Fix 735607: When clearing Search in Open suite window, results do not clear previous
+     search results
+   * Bug Fix 735615: TE: Renaming a data view column does not retain original name on Rename 
+     window
+   * Bug Fix 735044: Changed DocDiff error log when actual worksheet name not found in actual 
+     file
+   * Feature 695085: Added a link in the email report for DocDiff that would open the output 
+     file in IE
+
+
+v3.1.1
+======
+
+   * Bug Fix 751847: Fixed Test Capture is not recording when clicking on links
+   * Bug Fix 749738: Fixed product key expiration and update failure
+
+
+v3.1.0
+======
+
+   * Bug Fix 603434: Deleting Environment/Remote Browser/Mobile Browser list elements 
+     won't update the list, and would crash Test Runner if there are no elements left to 
+     delete
+   * Bug Fix 603412: Fixed environment selection issues in Test Runner
+   * Bug Fix 580144: Fixed misspelled word "Recepient" in Deltek Test Runner
+   * Bug Fix 578982: When adding new Remote machine under Remote Tab, Browser value does 
+     not change when selecting from one remote machine to another
+   * Bug Fix 591140: When adding new RemoteBrowser/Mobile, TR needs to restart so new 
+     values can be used in TE and Test Queue
+   * Bug Fix 623450: In Test Capture, Edit for a step wtih blank parameter throws an 
+     error
+   * Bug Fix 615657: Links with different mapping for MSS and ORA should work for Test 
+     Capture and Test Editor/Runner
+   * Bug Fix 608906: Fixed Record options omit underscore characters for environments with 
+     underscore characters
+   * Bug Fix 596954: Fixed Test Capture cannot catch the % sign
+   * Bug Fix 605615: Fixed Test Capture does not recognize Calendar icon when clicked
+   * Bug Fix 698902: Fixed Test Capture does not recognize RadioButtons located in MainForm
+   * Bug Fix 612150: Fixed Test Capture/Test Runner closes unexpectedly while recording
+   * Bug Fix 696843: Fixed when re-ordering steps, selected step re-ordered is not in view
+   * Bug Fix 603758: Fixed error when adding successive new line in Test Editor
+   * Bug Fix 603785: Fixed Copy-Paste issues in Deltek Test Editor
+   * Bug Fix 603770: Fixed Data grid row multiple row selection only allows Left Ctrl key. 
+     Right Ctrl key should also be allowed as modifier
+   * Bug Fix 607167: Fixed if data column name has underscore char, selected cell in Data 
+     View does not change when a step in Keyword View using data column is selected.
+   * Bug Fix 698184: Fixed if test has no data driven values, Execute field in update panel 
+     still shows line divider
+   * Bug Fix 623120: Fixed Import/ Export of CSV Data File showing data in incorrect 
+     columns
+   * Bug Fix 607514: Fixed In DataView, when copying and pasting a data row, additional 
+     underscore char are added to column names with underscores
+   * Bug Fix 607517: Fixed In DataView, when New Row is clicked after and pasting a data 
+     row, data row will be cleared of all existing values
+   * Bug Fix 698892: Fixed New row in keyword grid should have "True" as execute value 
+     instead of "true"
+   * Bug Fix 603338: Fixed Test Editor with steps over 100 crashes the test runner
+   * Bug Fix 697001: Fixed Select All fails for some scripts (CTRL+A)
+   * Bug Fix 603479: Fixed Select Rows issues in Test Editor
+   * Bug Fix 694070: Fixed template.trd being created on prompt to save file before data 
+     export
+   * Bug Fix 612228: Fixed Test Editor Data View goes blank after copy-paste row
+   * Bug Fix 580200: Fixed Test Editor does not accept Exclamation Point (!) when its 
+     being inputted in textboxes
+   * Bug Fix 603430: Fixed Test Runner crashes when control-clicking the same row header 
+     twice in DataView
+   * Bug Fix 607924: Fixed When a test is saved in TE and Test Queue has a loaded suite, a 
+     dialog saying suite has been loaded is displayed
+   * Bug Fix 605639: Fixed When Keyword field in update panel is populated with invalid value, 
+     valid values will no longer be shown in dropdown list when valid value is erased.
+   * Bug Fix 602853: Fixed When there is only 1 column in datagrid, cannot select 
+     multiple rows (for deletion)
+   * Bug Fix 607902: Fixed Execution dialog with progress bar displays cropped text if text 
+     path is too long
+   * Bug Fix 693484: Fixed Hiding the Search field in Test Explorer is slow.
+   * Bug Fix 623449: Fixed Newly added RemoteBrowser and Mobile in Settings form does not 
+     come up in Browser options in Test Queue and Test Editor ad-hoc dialog until reboot of 
+     Test Runner
+   * Bug Fix 600545: Fixed On execution status dialog, x in status text saying 
+     "Test <x> of <y>.."  should indicate row number of test being ran, not actual number 
+     of tests executed
+   * Bug Fix 591444: On Test Explorer, confirmation dialog to when deleting test/folder should 
+     have title of 'Delete' instead of 'Delete test?'
+   * Bug Fix 591150: Fixed searching performance in Text Explorer
+   * Bug Fix 603337: Fixed Rapid Copy-Paste in step grid crashes Test Editor
+   * Bug Fix 619718: Fixed Test Runner waits for a long time upon encountering system error
+   * Bug Fix 602851: Fixed When canceling 'Add' folder in Test Tree, Test Tree reloads and 
+     freezes the form momentarily
+   * Bug Fix 602850: Fixed When canceling 'Import' test in Test Tree, Test Tree reloads and 
+     freezes the form momentarily
+   * Bug Fix 607897: Fixed When changing products, loading dialog displays cropped text
+   * Bug Fix 594231: Fixed When changing test display type for all tests in queue, if  
+     last test in queue has 'Keep Open' set to TRUE, it will be set to FALSE
+   * Bug Fix 607580: Fixed When deleting a row which is assigned as Activator test of another 
+     row in Test Queue, Dependency information did not adjust
+   * Bug Fix 602852: Fixed When Remote Browsers and Mobile Browsers are empty, do not put 
+     headers in Apply All context menu
+   * Bug Fix 598643: Fixed EXE extension support as external script
+   * Bug Fix 603951: Fixed Misspelled word 'recepients' in the label above the email 
+     addresses field.
+   * Bug Fix 600926: Fixed Pre/Post Scripts Start in field should not have a character limit.
+   * Bug Fix 615660: Fixed Suite names are being displayed as lower case
+   * Bug Fix 604508: Fixed Test Runner Tool did not get latest files before suite 
+     scheduled run (INTERNAL)
+   * Bug Fix 608877: Fixed Command line is interactive, scheduled run stalls and asking 
+     for user input
+   * Feature 582536: Add field in Settings for SMTP (Simple Mail Transfer Protocol) 
+     server, for use of AutoMail.exe	
+   * Feature 600546: Add 'Up' and 'Down' buttons for re-order of test steps in steps 
+     grid	
+   * Feature 591151: Allow feature to Edit Parameter while on Paused state	
+   * Feature 613155: Playback should allow selection of test instance to run
+   * Feature 560944: Test Capture support for VerifyExists/Read-Only/Value/Text	
+   * Feature 602857: Add ability to convert a non-data-driven script to data-driven 
+     script	
+   * Feature 594872: Add feature to allow multiple rows to be deleted in DataView grid	
+   * Feature 602855: Allow update of step 'Delay'  for multiple rows in Keyword grid	
+   * Feature 602846: Change font color of Step Row to gray (or the like) and font style 
+     to Italic if execute value is False	
+   * Feature 693499: Control type filter in Update Panel	
+   * Feature 693504: DataView parameter lookup from Update Panel	
+   * Feature 605881: In DataView, when a column is renamed, all test steps in KeywordView 
+     using the old data column name should now use the new column name	
+   * Feature 602856: On Ad-hoc run, put header in dropdown of Browsers to differentiate 
+     between Web/Remote/Mobile	
+   * Feature 611035: Convert to Data should allow data-conversion per selected row 
+     only	
+   * Feature 619658: Support data-driven values (D{} )for Execute column	
+   * Feature 591141: Add divider Test Queue context menu to separate 
+     Browser/Remote Browser/Mobile	
+   * Feature 602849: Add 'Find' option similar to test tree to Open Suite dialog	
+   * Feature 591147: Add progress bar and helpful information on Execution dialog box	
+   * Feature 598636: Added support for Budgeting and Planning	
+   * Feature 607573: Encrypt username/password information in Init.dat and config.xml	
+   * Feature 607572: Encrypt username/password information in LoginConfig.xml	
+   * Feature 613164: Executed step/s count information should be presented in main UI	
+   * Feature 613154: Execution status dialog in Test Editor Ad-hoc should also indicate 
+     current step being executed	
+   * Feature 598635: Get all default values in Init.dat	
+   * Feature 596183: Oracle Database Handler	
+   * Feature 693506: Provide menu item in Help that will open the user guide	
+   * Feature 607907: Put Browser type header for browser dropdown in Test Queue	
+   * Feature 560075: Setting to allow users to get latest TR executables/lib at launch. 
+     (INTERNAL)	
+   * Feature 596167: Test Explorer folders collapse every time a test is edited	
+   * Feature 611038: Update email notification to send feedback, enhancements, and issues 
+     to DeltekTestRunner@deltek.com customer support center	
+   * Feature 592677: Upgrade Selenium to support Firefox 45 (and 46, if already out)	
+   * Feature 602864: When Import is clicked, ask user if he intends to import files or 
+     folder via dialog	
+   * Feature 549227: Whenever running in queue, a test execution can be configured to depend 
+     on success or failure of a specified preceding test.	
+   * Feature 607892: Write encrypted product key in windows registry instead of in a test 
+     file	
+   * Feature 598637: Allow import/export of Scheduler info (from 1 machine to another)	
+   * Feature 530003: Allow post/pre execution of external scripts	
+   * Feature 608795: AutomationAgent.exe should retain state of running/not running when 
+     machine is restarted	
+   * Feature 613228: Enable Run Now for Network machines	
+   * Feature 559905: Multiple schedules for same suite on the same day should be allowed	
+   * Feature 595451: Scheduler feature that can copy paste/ save schedule so that we can 
+     reuse the same schedule on all days of the Scheduler	
+   * Feature 590332: Schedules on queue can be turned off/on to allow skipping of queued 
+     test suites	
+   * Feature 561815: Send a message when the scheduled execution starts
+   * Feature 617463: Set Schedule time edit field should use more 'ticker' UI instead of 
+     simple text field	
+   * Feature 602277: When per schedule email recepients and default email recepients are 
+     both not set, scheduled execution should not send email	
+   * Feature 605856: Add 'Run Now' feature to Test Scheduler	
+
+v3.0.0
+======
+
+   * Bug Fix 572578: Fixed mapping of control under Change Expense Report/Advance Status 
+     (EPQCHGEXPSTAT).
+   * Bug Fix 569624: Fixed mapping of function control under TMRFLRCHK.
+   * Bug Fix 578605: Fixed mapping of "Amortization Schedule Code" field in OEMNTSO1 and 
+     OEMNTSO2
+   * Bug Fix 579388: Fixed mapping of controls for EMAMAIN
+   * Bug Fix 577291: Fixed mapping of controls missing in INMSET
+   * Bug Fix 570622: Fixed mapping of links in PPMNTRQ2
+   * Bug Fix 569969: Fixed mapping of links in POQSTAT
+   * Bug Fix 576763: Fixed mapping of controls in MRMIAPEG
+   * Bug Fix 572210: Fixed mapping of controls in PDMTEXT
+   * Bug Fix 569209: Fixed mapping of missing Childform in ECMECN
+   * Bug Fix 568705: Fixed mapping of missing controls in POMSET
+   * Bug Fix 568489: Fixed mapping of controls in OEMSET
+   * Bug Fix 578179: Fixed mapping of PCPTOOL screen
+   * Bug Fix 568137: Fixed mapping of PJMACGRP ProjectAccountsForm
+   * Bug Fix 571098: Fixed mapping of Charge Allocations Under Ceiling Table under 
+     EPMEXPRPTAPPROVE
+   * Bug Fix 569427: Fixed mapping of User Directed Form under EPMEXPAUTHAPPROVE
+   * Bug Fix 560942: Fixed mapping of Charge Allocation under EPMEXPRPTAPPROVE
+   * Bug Fix 572111: Fixed mapping of Charge Allocations table under EMPEXPAUTH
+   * Bug Fix 572573: Fixed mapping of Default Charge Tab,Main Form in Approve Expense Report 
+     (EPMEXPRPTAPPROVE) Application
+   * Bug Fix 575302: Fixed mapping of Expense Class Form in Export ERs/Advances 
+     (EPPEXPORTEXP) Application
+   * Bug Fix 569950: Fixed mapping of Lookup Table
+   * Bug Fix 569632: Fixed mapping of Lookup Table in Print Timesheet By Charge (TMRTSCHRG)
+   * Bug Fix 569430: Fixed mapping of Lookup Table under TMQCLRTMSHT
+   * Bug Fix 571215: Fixed mapping of Message Area under EPMEXPAUTH
+   * Bug Fix 570803: Fixed mapping of Textbox in TMRTSSTATUS Application
+   * Bug Fix 570592: Fixed mapping of Textbox under EPMEXPRPTAPPROVE.
+   * Bug Fix 570624: Fixed mapping of unknown control in POPCOMM
+   * Bug Fix 573145: Fixed mapping of unknown controls in PDMPRCAT
+   * Bug Fix 575542: Fixed mapping of links in PPMNTRQ2
+   * Bug Fix 576784: Fixed mapping of INPALLOC screen
+   * Bug Fix 569980: Fixed VerifyReadOnly keyword
+   * Bug Fix 574648: Fixed VerifyTableColumnHeaders keyword
+   * Bug Fix 578127: Fixed Android automation not working due to webviews not visible for 
+     packages built with Crosswalk
+   * Bug Fix 525088: Fixed Android not capturing error screenshot
+   * Bug Fix 577704: Fixed iOS automation encountering 'Method not found' error
+   * Bug Fix 577706: Fixed iOS Touch products not allowing unsecured (HTTP) server URL, 
+     only allows HTTPS as set by Apple development standards
+   * Bug Fix 545131: Fixed Mobile Tab accept and reject buttons are clipped from screen 
+     when performing New/Edit
+   * Bug Fix 545133: Fixed Mobile tab groupd label changed to 'Devices' from 'Mobile'
+   * Bug Fix 545132: Fixed Remote Tab group label renamed to 'Remote Machine' from 
+     'Remote Browsers'
+   * Bug Fix 567230: Fixed steps created with GetTableRowWithColumnValue keyword
+   * Bug Fix 573117: Fixed Receipt Line number control has not defined
+   * Bug Fix 571336: Fixed Apply button not recorded in Exchange Rate Subtask.
+   * Bug Fix 575367: Fixed incorrect verification of Find_Count_Results
+   * Bug Fix 560917: Fixed Verify icon wrong state when paused
+   * Bug Fix 567713: Fixed column header names with an underscore are not displayed 
+     properly in the Test Editor Data view.
+   * Bug Fix 544613: Fixed DataView column renamed with '.' included in name, all 
+     values for that column is deleted
+   * Bug Fix 580629: Fixed AssignToVariable not allowing same variable name to be overwritten
+   * Bug Fix 563826: Fixed cannot queue folder contents in Test Explorer if folder is more 
+     than 2-level deep
+   * Bug Fix 573171: Fixed fails in login due to latency
+   * Bug Fix 570493: Fixed FireFox 43 not working
+   * Bug Fix 577378: Fixed application crash when changing selecting Product on Settings form 
+     with incomplete Product directories/files
+   * Bug Fix 569868: Fixed Deltek Test Runner tool not displayed on the taskbar and hidden 
+     behind existing windows
+   * Bug Fix 571564: Fixed when querying a record with no records found, waits for a long time
+   * Bug Fix 577315: Fixed scripts do not run when prior script ended after 12 midnight
+   * Bug Fix 583213: Fixed GetTableRowWithColumnValue does not work even if the record is 
+     present
+   * Bug Fix 581241: Added additional controls for ECMAMAIN 
+   * Bug Fix 581442: Added missing control in MEMRFQS
+   * Bug Fix 587453: Added SYMGRP screen/objects
+   * Feature 570217: Added ClickTableCheckBox keyword
+   * Feature 569871: Added Verify keywords on the Browse Applications after typing on the 
+     Search Application text box
+   * Feature 569874: Added verify the form button labels
+   * Feature 569882: Added VerifyIfBlank keyword for verifying fields that are supposed to have 
+     a default value upon first launch without verification of the actual text
+   * Feature 569930: Added a confirmation dialog whenever we stop the recording of a test 
+     using test capture and then closing the Test Capture window via the 'X' button
+   * Feature 555320: Added getting and setting system generated IDs
+   * Feature 571537: Grouped related toolbar buttons
+   * Feature 569873: Added verify to the table/form headers
+   * Feature 552729: Added support Calendar control
+   * Feature 567209: Added feature to delete of multiple lines
+   * Feature 568143: Added adjustability of column headers in log section
+   * Feature 569216: Added error message info in email report
+   * Feature 570104: Added license key
+   * Feature 571173: Moved all settings/configuration files under Tools/TestRunner folder to 
+     Products/Common/Config/config.xml
+   * Feature 571878: Removed link to CHANGELOG.txt in What's new dialog
+   * Feature 561814: Added Clear all tests in scheduler
+   * Feature 571171: Moved scheduler file from Tools folder to new Products/Common/Scheduler 
+     folder
+
+v2.2.7
+======
+
+  * Bug Fix 549688: Fixed test playback in Test Capture not working on imported test if 
+    imported file is not located in its own Tests folder
+  * Feature 560123: Added support for reports module (see FW1)
+  * Feature 560611: Added new ClickOKMessageDialogIfExist keyword
+  * Bug Fix 560646: Fixed object mapping for POMACSET
+  * Feature 561759: Added ClickMessagesAreaButtonIfExists keyword
+  * Feature 564105: Added FileUploadManager screen and keywords
+  * Bug Fix 566299: Fixed ARMCTYPE MainformTable unknown in Test Capture
+  * Bug Fix 567181: Fixed Scheduler tab in Settings not appearing for non-internal 
+    products
+  * Bug Fix 566214: Fixed POQSTAT link not working
+  * Bug Fix 564998: Fixed BMMMBOM1 ChildformTable is unknown in Test Capture
+  * Bug Fix 565299: Fixed When exporting an imported DDT script from TC, data values get 
+    deleted
+  * Bug Fix 565812: Fixed queue does not update when data driven values are updated
+  * Bug Fix 566127: Fixed Settings Form UI elements
+  * Bug Fix 563462: Fixed Mobile and Remote browser options still showing for Browser 
+    column in Test Queue, and A-hoc run, even if not supported by product
+  * Bug Fix 560650: Fixed object mapping for POPACCR
+  * Bug Fix 546688: Fixed When suite is loaded then cleared, running a new set of queued 
+    tests still prompts 'Suite has been modified.. Would you like to save?'
+  * Bug Fix 549687: Fixed opening a test suite that contains a test script that has been 
+    deleted or removed in the target directory does not open.
+  * Feature 557828: Added support to have default email recipients for scheduler
+  * Bug Fix 549910: Fixed console window displaying at startup of Test Runner
+  * Bug Fix 560648: Fixed object mapping for GLMACSET
+  * Bug Fix 560744: Fixed Settings form crashes when VS 2013 is not installed
+  * Bug Fix 560910: Fixed Browse Applications not recorded either verify or click 
+    via Test Capture
+  * Feature 561807: Added configurability in display name in test queue
+  * Bug Fix 566160: Fixed ClickTextBoxButton keyword
+  * Feature 565300: Added Test Capture ClickMessagesAreaButton support
+  * Feature 560626: Added Add Folder capability in Test Explorer
+  * Bug Fix 552272: Fixed Environment name being shown in Environment Header when 
+    queueing test suite is different from the saved Environment Name
+  * Bug Fix 556132: Fixed unable to record in Test Capture when using the arrow button 
+    to set a combobox inside a table
+  * Feature 560122: Added multiple formats for DateFormat keyword
+  * Feature 560627: Added capability to delete file/folder in Test Explorer
+  * Bug Fix 560644: Fixed object mapping for POPCOMM
+  * Bug Fix 565277: Fixed Subcontractor Agreement checkbox in PPMRFQV
+  * Bug Fix 564788: Fixed Test Editor crash when writing into a DataView cell where 
+    column header has 'backslash' character
+  * Feature 561813: Added configurability in test queue columns
+  * Feature 564096: Added multiple keywords in Function screen
+  * Bug Fix 560911: Fixed Form control VerifyButtonExists keyword
+  * Bug Fix 566300: Fixed multiple checkboxes controls for PPMRQSET
+  * Feature 567021: Added configurability in Test editor column headers width
+
+
+v2.2.6
+======
+
+  * Feature 556671: Merged of internal and external builds
+  * Bug Fix 556159: Added mappings for multiple subtasks in PCMMOMNT (711)
+  * Bug Fix 556141: Fixed object mapping for PCMMOMNT (701)
+  * Bug Fix 552720: Fixed extra Add button appearing intermittently
+  * Feature 559268: Added FolderTree control type
+  * Feature 559902: Disabled source control group in Settings form if machine cannot 
+    support source control
+  * Bug Fix 559907: Fixed source control get latest files on Product folder 
+  * Bug Fix 559909: Fixed time display on Scheduler UI for Sunday column
+  * Feature 556683: Support for Time and Expense product
+  * Bug Fix 557081: Fixed Networked machine setting of execution schedules
+  * Bug Fix 557693: Fixed restart of TR is required before a failed script runs completely
+  * Bug Fix 553282: Fixed missing status update in status bar
+  * Bug Fix 559718: Fixed Save and Exit toolbar buttom not working
+
+v2.2.5
+======
+
+  * Bug Fix 554615: Fixed failed screenshot when modal dialog is displayed
+  * Bug Fix 554695: Fixed test waits for user input on messages area for a long time, 
+    causing costpoint timeout dialog
+  * Bug Fix 547850: Fixed failures in test setup, error message in email report is path 
+    to screenshot, and link to error image is blank
+  * Bug Fix 555498: Fixed when playback fails, Test Capture doesn't work on resume.
+  * Bug Fix 552727: Fixed resume changes to Record when capture is paused and Clear button 
+    is clicked
+  * Bug Fix 555323: Fixed setting table controls failure when running
+  * Bug Fix 555506: Fixed object mapping for OEMNTSO1 (711)
+  * Bug Fix 544834: Fixed clicking on message box records a “CLOSE” row
+  * Bug Fix 555524: Fixed environment dropdown allows no checked item
+  * Bug Fix 555211: Fixed mappings for missing controls in OEMNTSO1(711)
+  * Feature 555496: Added tooltip to environment dropdown
+  * Bug Fix 552220: Some dialogs intended to be modal are modeless
+  * Bug Fix 555505: Fixed mappings for ChildForm Tabs in InventoryAllocations subtask in 
+    OEMNTSO1(711)
+  * Bug Fix 555503: Fixed mappings for ProjSubParts and Approvals subtasks in OEMNTSO1(711)
+  * Bug Fix 555504: Fixed mappings for InventoryAllocation and BasicInformation Tab in 
+    OEMNTSO1(711)
+  * Bug Fix 549674: Fixed deletion of last row not allowed  while Clearing of the while 
+    captured test is allowed
+  * Bug Fix 555497: Fixed rev field in PDMPART listed as Unknown
+  * Bug Fix 555507: Fixed object mappings and add mappings for missing controls 
+    in POMPOVCH(711)
+  * Bug Fix 555734: Fixed object mapping for POMPOVCH (701)
+  * Bug Fix 555735: Fixed object mapping for OEMNTSO1  (701)
+  * Bug Fix 556012: Fixed autologin failure prompt does not appear in playback
+  * Bug Fix 556141: Fixed object mapping for PCMMOMNT (701)
+  * Bug Fix 556142: Fixed object mapping for LDMEINFO (701)
+  * Bug Fix 552195: Fixed status bar state changes to 'Performing Auotmatic login' even when 
+    automatic login is not being performed
+  * Bug Fix 556163: Fixed object mapping for LDMEINFO (711)
+  * Bug Fix 556165: Fixed object mapping for SavingBonds for LDMEINFO (711)
+  * Bug Fix 556166: Fixed object mapping for BondDetails for LDMEINFO (711)
+  * Bug Fix 556168: Fixed mappings for missing controls in LDMEINFO (711)
+  * Bug Fix 556183: Fixed mappings for ExchangeRates for LDMEINFO (711)
+  * Bug Fix 556145: Fixed object mapping and add mappings for missing controls in 
+    RCMPORC (711)
+  * Bug Fix 556167: Fixed mappings for EmployeeCountryStatus for LDMEINFO (711)
+  * Bug Fix 556140: Fixed object mapping for RCMPORC (701)
+  * Feature 556188: Removed the OS recorder app in the zip file
+  * Bug Fix 552782: Added mappings for HeaderSOW, LineSOW, Resources, and VendorEmployee 
+    subtasks in PPMRQAPX (711)
+  * Bug Fix 552786: Added mappings for ProjSubParts, SecurityRequirementsTab and other 
+    missing controls  in PPMRQAPX (711)
+  * Bug Fix 552787: Fixed object mapping for PPMRQAPX (711)
+  * Bug Fix 552791: Fixed object mapping for PPMRQAPX (701)
+  * Bug Fix 553060: Fixed object mapping for PPMNTRQ2 (711)
+  * Bug Fix 553062: Added mappings for HeaderSOW, LineSOW, Resources, and VendorEmployee 
+    subtasks in PPMNTRQ2 (711)
+  * Bug Fix 553063: Added mappings for missing controls  in PPMNTRQ2 (711)
+  * Bug Fix 553074: Fixed object mapping for PPMNTRQ2 (701)
+  * Bug Fix 553287: Fixed object mapping for POMMAIN (711)
+  * Bug Fix 553288: Added mappings for HeaderSOW, LineSOW, Resources, and VendorEmployee 
+    subtasks in POMMAIN (711)
+  * Bug Fix 553289: Added mappings for ManufacturerVendorInformation and 
+    SecurityRequirementsTab controls  in POMMAIN(711)
+  * Bug Fix 553290: Added mappings for missing controls  in POMMAIN(711)
+  * Bug Fix 553323: Added mappings for ManufacturerVendorInformation, AssignPO_Resources 
+    and SecurityRequirementsTab controls  in PPMNTRQ2 (711)
+  * Bug Fix 553509: Fixed loading percentage in Loading dialog exceeding 100%
+  * Bug Fix 553987: Fixed object mapping for POMMAIN (701)
+  * Bug Fix 554363: Fixed when clicking 'Record' and opting to playback test, nothing 
+    happens
+  * Bug Fix 551637: Fixed object mapping for BMMMBOM2 (711)
+  * Bug Fix 551972: Fixed object mapping for PDMPART (711)
+  * Bug Fix 551974: Added missing mappings for Licenses/Agreement subtask PDMPART (711)
+  * Bug Fix 551981: Added missing mappings for Export Control and Security Group subtasks 
+    PDMPART (711)
+  * Bug Fix 551983: Added missing mappings for missing controls in PDMPART (711)
+  * Bug Fix 552230: Fixed object mapping for PPMNTRQ1 (711)
+  * Bug Fix 552238: Added missing mappings for ProjSubParts and VendorEmployee subtasks 
+    in PPMNTRQ1 (711)
+  * Bug Fix 552240: Added missing mappings for HeaderSOW and LineSOW subtasks in 
+    PPMNTRQ1 (711)
+  * Bug Fix 552241: Added missing mappings for Resources and LinkSCISAPSecurityCodes 
+    subtasks in PPMNTRQ1 (711)
+  * Bug Fix 552242: Added missing mappings for SecurityRequirements subtasks in 
+    PPMNTRQ1 (711)
+  * Bug Fix 552243: Added missing mappings for missing controls in PPMNTRQ1 (711)
+  * Bug Fix 552536: Fixed WaitProcessProgressFinished failing when running test on 
+    Scheduler
+  * Bug Fix 552545: Fixed When importing a test, prompt to overwrite should come after 
+    Open File dialog, not before
+  * Bug Fix 552549: Fixed not uniform dialog when test grid has existing steps and Record 
+    is clicked
+  * Bug Fix 552560: Fixed email report error links not working if BrowserFramework share 
+    name already exists
+  * Bug Fix 551997: Fixed object mapping for PPMNTRQ1 (701)
+  * Bug Fix 552193: Fixed state of Environment dropdown not mirroring enabled state of 
+    Record button
+  * Bug Fix 552204: Fixed After stopping recordng and saving test, clicking 'Record' will 
+    present user the option to save again and run
+  * Bug Fix 552213: Fixed Test capture asking to play imported file, even if user did not 
+    import test
+  * Bug Fix 551693: Fixed object mapping for PDMPART (701)
+  * Bug Fix 551597: Fixed object mapping for BMMMBOM2 (701)
+  * Bug Fix 550123: Fixed when environment info does not exist, test in a suite will not 
+    run and scheduler will crash
+  * Bug Fix 550125: Fixed Url gets appended with 'www' instead of 'http' resulting to 
+    failed test
+  * Bug Fix 550141: Fixed Suites with test results with file names exceeding 250 characters 
+    not sending email notification
+  * Bug Fix 550188: FixedTest suite results does not load when 1 of the tests in the suite 
+    failed to generate a log file
+  * Bug Fix 550494: Fixed slow performance resulting to error in some Virtual Machines
+  * Bug Fix 550552: Fixed test queue with results do not clear when Run is clicked in some 
+    Virtual Machines
+  * Bug Fix 548922: Fixed behavior of test capture to clear step grid before starting 
+    from scratch when user opts to not playback existing steps
+  * Bug Fix 548933: Fixed PDMPART Standard Text Select button not being caught by 
+    capture tool
+  * Bug Fix 548923: Fixed options messages when asking to playback existing test steps 
+    in grid
+  * Bug Fix 548565: Fixed browser list including remote and mobile not changing when 
+    switching target application within Setting form
+  * Bug Fix 547963: Fixed application drodpown showing a blank list and hangs in the 
+    startup
+  * Bug Fix 548542: Fixed wrong reported passed/failed tests in summary (Internal build)
+  * Bug Fix 543072: Fixed object mapping of PDMPART for Part Security
+  * Bug Fix 543275: Fixed wrong executed steps reported in summary report (Internal build)
+  * Bug Fix 543274: Fixed wrong error link published in summary report (Internal build)
+  * Bug Fix 544593: Fixed execution report not being generated due to out of system 
+    memory exception
+  * Bug Fix 543073: Fixed stopping of capture even in 'Paused' state
+  * Bug Fix 543279: Fixed performance slowdown for Test Capture 2.2.4 
+  * Bug Fix 544843: Fixed PDMPART Lead Time subtask # of days = Unknown
+  * Bug Fix 544802: Fixed Test Capture left in 'Paused' state for a long period of time, 
+    spawning another browser instead of record resuming when Record is clicked
+  * Bug Fix 541185: Fixed overflow buttons visible when toolbars are not visible on 
+    initial launch
+  * Bug Fix 543046: Fixed error image not loaded in Error tab
+  * Feature 544801: Changed Test Capture 'Record' button label to 'Resume' when coming 
+    from 'Paused' state
+  * Feature 538197: Added copy and paste feature of Data View grid rows
+  * Feature 495429: Updated Appium c# bindings to latest version to get new 
+    features/bugfixes (Internal build)
+  * Feature 544808: Include Machine name in Email notification report
+  * Feature 543277: Changed Save Test/Suite dialog boxes with 3 buttons into forms with 
+    radio button options (Internal Build)
+  * Feature 531354: Added feature to support import of data files in .xls and 
+    .xlsx format 
+  * Feature 549011: Changed SetTableCellValue keyword to be no longer available for 
+    Lookup table
+  * Feature 543278: Added automatic login to application using any of stored 
+    environments when starting test capture
+  * Feature 543079: Added playback option everytime 'Record' button in Test Capture 
+    is clicked and step grid is not empty
+  * Feature 544810: Re-added Test Capture 'Clear' button
+  * Feature 530008: Added 'Info' box in Test Editor
+  * Feature 540335: Changed Test Explorer Panel to be resizable
+  * Feature 531356: Added tab control container to contain Test Queue
+  * Feature 543047: Added test suite 'Description' field
+  * Feature 544805: Added 'What's New' window at initial launch
+  * Feature 542557: Added target application version selection feature
+  * Feature 542533: Added source control integration support user interface
+  * Feature 536362: Added instant updating of test execution results in test queue
+  * Feature 539647: Modified multiple row copy paste feature to select pasted row after 
+    paste operation
+  * Feature 544833: Next/Previous form buttons now supported in Test Capture
+  * Feature 540344: Test Capture 'Record' button updated
+  * Feature 531355: Test Setup messages now available in execution results
+  * Feature 484843: Selenium webdriver libraries updated to latest version v2.47
+
+
+v2.2.4
+======
+  * Bug fix 541703: Fixed wrong distribution of columns on data export
+  * Bug fix 541649: Fixed WaitForProcessFinished keyword
+  * Bug fix 536600: Fixed issue with import of CSV file
+  * Bug fix 536595: Fixed issue with data export when filename is the same name as the 
+    test script name
+  * Bug fix 536597: Fixed issue with wrong Data values exported
+  * Bug fix 541700: Fixed GetTableWithMultipleColumnValue keyword
+  * Bug fix 537068: Fixed issue with Test Capture not correctly exporting
+  * Bug fix 469782: Fixed newly queued test to an existing suite file not being run
+  * Bug fix 542399: Fixed scheduled tests failing to send notification email
+  * Bug fix 536592: Fixed SetTableCellValue keyword for table combobox
+  * Bug fix 541955: Fixed Test Execution Parameters dialog in Test Capture does not 
+    display after Test Playback prompt if user did not click on any radio button
+  * Bug fix 541965: Fixed missing Import icon in Test Capture
+  * Bug fix 539597: Fixed Download keyword
+  * Bug fix 541750: Fixed duplicate control in CP7Main screen
+  * Bug fix 541941: Fixed Test Explorer not refreshing after saving if Test Explorer 
+    is empty before saving
+  * Bug fix 531353: Fixed Test Runner running on multiple instances
+  * Bug fix 532181: Fixed Test Name and Description in a suite not changing in test queue 
+    when test is edited and saved
+  * Bug fix 536606: Fixed VerifyTableCellValue not working when value is blank
+  * Feature 536369: Added Costpoint 7.0.1 Test Runner support
+  * Feature 535995: Added menu pulldowns for every form
+  * Feature 533690: Added selection/re-order of multiple rows in Keyword View grid
+  * Feature 531557: Adjusted column widths of Ad-hoc run results window
+  * Feature 538045: Added support for Find & Replace screen
+  * Feature 530009: Separated Mobile settings tab from Remote Browsers tab (Internal)
+  * Feature 536778: Added Test Capture Import feature
+  * Feature 539494: Added Test Capture support for Costpoint Lookup screen
+  * Feature 536360: Added Test Capture Table support
+  * Feature 535805: Added color-coding for output variables (O{}) in Test Editor
+  * Feature 532182: Added left padding to column headers in Test Editor
+  * Feature 534525: Added keyboard shortcut for 'Update' in Test Editor
+  * Feature 528929: Added specific error messages for data import/export errors
+  * Feature 541209: Added indicator of version in Main Window and About form (External)
+  * Feature 535806: Added feature to copy browser selection of a test from preceding test 
+    if preceding has 'Keep Open' checked
+  * Feature 539684: Mased password field in the Setting form
+
+v2.2.3
+======
+  * Bug fix 532184: Fixed wrong button states of Test Runner when Clear button is clicked
+  * Bug fix 529142: Fixed unresponsive 'Save A's and 'Check-In' (internal build)
+  * Bug fix 529148: Getting latest files by Scheduler now gets current product tests instead
+    of tests for all products
+  * Bug fix 532128: Fixed renaming of data view grid columns
+  * Bug fix 532183: Fixed wrong UI state of in Add Suite dialog in Scheduler
+  * Bug fix 530006: Fixed some buttons, like Logout, not being captured by Test Capture
+  * Bug fix 530007: Fixed response of Test Capture to unexpected alerts/dialogs
+  * Bug fix 531352: Fixed application closing when New is clicked repeatedly
+  * Bug fix 533949: Fixed unresponsive File~Close in Test Capture
+  * Bug fix 535740: Fixed step pasting behavior in Test Editor
+  * Feature 503073: Added Copy-Paste of steps in Test Editor
+  * Feature 530011: Added application splash screen to load application resources
+  * Feature 478355: Added context menu in dataview grid listing all available row commands
+  * Feature 488984: Modified user messages and dialog boxes
+  * Feature 484408: Added registry updating to Test Runner startup instead of external tool
+  * Feature 489202: Added row/column insert in data view grid
+  * Feature 530013: Added row/column re-order in data view grid
+  * Feature 532180: Resized url field in Settings form
+  * Feature 533320: Added Keep Open field in Test Runner to allow suite not to close browser
+    after every test execution
+
+v2.2.2
+======
+  * Bug fix 503233: Fixed wrong path of queued test when inside two sub-folders and filter
+    tool was used
+  * Bug fix 528417: Fixed email information not saved when same suite scheduled on an 
+    earlier date in scheduler
+  * Bug fix 503659: Fixed immediate execution of queued suite if day is today and preceding
+    suite already executed
+  * Bug fix 524585: Fixed Test explorer not loading if a single test has malformed XML
+  * Bug fix 524584: Fixed external build features displaying on internal build
+  * Bug fix 496077: Fixed scheduler not recognizing updates made to schedules
+  * Feature 524069: Added DateFormat function
+  * Feature 524589: Added feature to not check-in environment file when source control is
+    enabled (Internal build)
+  * Feature 526384: Modified schedule manifest file schema
+  * Feature 528165: Modified all environment dropdownlists into combboboxes, to enable
+    quick searching. List items are now loaded sorted as well
+  * Feature 525588: Modified schedule UI code for optimization and porting to new schema
+  * Feature 520650: Added option to expand/collapse tests in test explorer, and make the
+    last known setting persistent
+  * Feature 524589: Added delete step in Test Capture
+
+v2.2.1
+======
+  * Feature 501634: Added Test Capture functionality (script recording)
+
+v2.1.8
+======
+  * Bug fix 502321: Fixed Browser tab getting disabled upon add/edit of new Environment 
+    item in Environment tab
+  * Bug fix 502036: Fixed check-in error in Settings form while an existing check-in
+    operation is in progress (Internal build)
+  * Bug fix 502038: Fixed Save and Save As exception on Test Editor when data view is not
+    properly populated
+  * Bug fix 498927: Fixed behavior of fetching browsers that show up in Settings form
+  * Feature 487215: Added error link in execution report notification email
+  * Feature 489731: Added Feedback and Error reporting feature
+  * Feature 484414: Added Logs details filter under Preferences tab in Settings form
+  * Feature 484410: Added multi-select in Test Editor keyword view grid to allow update
+    of Exceute information for multiple steps
+
+v2.1.7
+======
+  * Bug fix 486565: Fixed object store loading exception on initial Test Editor launch
+  * Bug fix 499209: Fixed uncleared logs on click of 'Clear Results'
+  * Bug fix 475772: Fixed handling of values with comma for Import/Export of CSV files
+  * Bug fix 487909: Fixed invalid 'Not run' test status after test execution
+  * Bug fix 485727: Fixed unupdated test instance in Test Explorer UI, when rows are 
+    deleted form Data View grid in Test Editor
+  * Bug fix 488208: Fixed cleared logs in Test Runner window when a new test is executed
+    in Test Editor window (ad-hoc run)
+  * Bug fix 486621: Fixed '+' add buttons not showing on Test Scheduler when there is no
+    existing test suites in machine
+  * Feature 484405: Added message prompt to preserve changes before allowing user to 
+    perform Ad-hoc run
+  * Feature 484412: Added feature to allow CTRL+C/CTRL+V on dataview grid cells without 
+    going to edit mode
+  * Feature 484411: Added feature to allow Data View grid with no rows (test instance)
+  * Feature 489450: Browsers dropdown now only display available browsers. 
+  * Feature 484409: In Test Editor, on add of new step focus will be on 'Screen' field
+  * Feature 487878: Added validation of installed browsers. New tab in Settings form 
+    added to show installed browsers
+  * Feature 484406: Added error dialog when invalid update is performed in Test Editor
+  * Feature 486606: Change notation of getting variable values from %% to O{}
+
+v2.1.6
+======
+  * Bug fix 484400: Fixed display of test logs after test suite execution
+  * Bug fix 484404: Fixed instability issues when cancelling test and test suite
+    executions
+  * Bug fix 484981: Fixed text visibility of fields in Settings
+  * Bug fix 485429: Fixed About form copyright information
+  * Bug fix 485468: Fixed checking-in of TRD files (Internal build)
+  * Feature 484401: Added common Functions
+  * Feature 484402: Added import feature of test and test suites
+  * Feature 484403: Added Selenium WebDriver version information in About
+  * Feature 484832: Added new Function 'TurnOffTestSteps'that allows turning off of test
+    steps per test/test iteration
+  * Feature 484833: Added 'LogComment' Function to allow user to embed comments on Tests
+  * Feature 484980: UI fixes for Open/Save Test Suite and Open/Save Test forms
+
+
+v2.1.5
+======
+  * Bug fix 479166: Fixed incomplete items in Control dropdown in Test Editor
+  * Bug fix 477658: Fixed display of Test Editor on click of New and Edit buttons 
+    in Test Runner
+  * Bug fix 478319: Fixed dialog message and title when removinf schedule in Scheduler
+  * Bug fix 478356: Fixed key press support for control searching in Test Editor
+  * Bug fix 478583: Fixed empty Keyword dropdown when control field is blank
+  * Bug fix 478957: Fixed orphaned TestRunner.exe process on application shutdown
+  * Bug fix 480680: Fixed Test Runner crash when editing multiple instance test
+  * Bug fix 482611: Fixed Test Editor crash when quickly selecting cells in keyword grid
+    or scrolling quickly thru the grid
+
+v2.1.4
+======
+  * Bug fix 474349: Fixed blank parameter field on initial load of Test Editor
+  * Bug fix 471633: Fixed slow performance of test results loading and scrolling
+  * Bug fix 478315: Fixed Test Runner crash on test suite execution
+  * Bug fix 482610: Fixed insert step in Test Editor
+  * Feature 476230: Added tap event for Android elements
+  * Feature 469784: Added control search in Test Editor
+  * Feature 471637: Added browser and login configuration to results log
+  * Feature 469785: Added selection of multiple tests in Test Explorer pane via 
+    Ctrl+Click
+
+v2.1.3
+======
+  * Bug fix 473048: Fixed slow loading of Test Editor due to object store files
+  * Bug fix 474347: Fixed update of Step Delay field in Test Editor
+  * Bug fix 475447: Fixed disappearing Add buttons when switching hosts in Scheduler
+  * Bug fix 475448: Fixed minor UI issues with Scheduler
+  * Bug fix 475464: Fixed missing email settings in Scheduler
+  * Bug fix 472991: Fixed prompt to save when exiting Test Editor
+  * Bug fix 471647: Fixed cleanup of IE and Chrome drivers on test teardown
+  * Bug fix 474500: Fixed Function keywords not displayed in Test Editor
+  * Bug fix 474035: Fixed tests not executing when scheduled in a queue in Scheduler
+  * Feature 471638: Added user comments on checkin (Internal build)
+  * Feature 471641: Added tool to automate settings for IE protection mode and zoom
+  * Feature 473421: Added support for iOS automation
+  * Feature 475446: Added prompt to save on close for Scheudler
+  * Feature 472992: Added cell styles in Keyword grid when using D{}
+  * Feature 469791: Scheduler UI overhaul
+  * Feature 469792: Added searching of suites in Scheduler
+  * Feature 471636: Added logging to file when error is encountered
+  * Feature 471643: Added Data View for user-defined data
+
+v2.1.2
+======
+  * Bug fix 469781: Fixed cancelation of test execution
+  * Bug fix 469783: Fixed queueing of tests by folders and subfolders
+  * Bug fix 470043: Fixed compilation warning on invalid XAML code for tooltips
+  * Bug fix 471328: Fixed skipped steps not labeled as 'Not Run'
+  * Bug fix 471634: Fixed logs not displayed on some failed tests in a suite
+  * Feature 467585: Added support for mobile automation via Appium
+  * Feature 471679: Added support for Android 5 (Lollipop)
+  * Feature 469786: Added searching/filtering of tests in Test Explorer
+  * Feature 469790: Added clickable links for screenshot path in logs
+
+
+v2.1.1
+======
+  * Bug fix 468734: Fixed Scheduler crash on offline node selection
+  * Bug fix 468735: Fixed name and description field not saved in Test Editor
+  * Bug fix 468736: Fixed opening screenshot file if path has spaces
+  * Bug fix 468737: Fixed updating of execution date after test execution
+  * Bug fix 468738: Fixed button icons in Settings form
+  * Bug fix 468739: Fixed Test Editor crash when switching between Keyword View and Data View
+  * Feature 467586: Scheduler UI enhancements
+  * Feature 467587: Test Editor UI enhancements
+  * Feature 467583: Added source control (Internal build)
+  * Feature 467584: Added test suite name to the subject of notification email
+
+
+v2.1.0
+======
+  * Bug fix 449027: Test Runner UI fixes
+  * Bug fix 449099: Fixed logs reporting after test execution
+  * Bug fix 445711: Fixed Object Store recorder freezing
+  * Bug fix 456643: Fixed sizes of columns in test queue
+  * Bug fix 458477: Fixed scaling of columns in Test Editor
+  * Bug fix 458577: Fixed scheduler errors when sending large UDP data over network
+  * Bug fix 459444: Fixed Parameter field to accept Return character
+  * Bug fix 462863: Fixed scrolling into view of new test steps
+  * Feature 456160: Added resizing of Test Runner
+  * Feature 458304: Added resizing of Test Editor
+  * Feature 453407: Added reporting charts
+  * Feature 451719: Added support for screen keywords
+  * Feature 449221: Updated styling of test queue grid
+  * Feature 445463: Added Scheduler
+  * Feature 448966: Upgraded Selenium to 2.43
+
+v2.0.0
+======
+  * Bug fix 438165: Test Runner UI fixes
+  * Feature 437097: Added Object Store recorder
+  * Feature 434175: Added Save/Load Suite dialog
+  * Feature 437747: Added Test Editor
+  * Feature 434169: Updated directory framework
+  * Feature 432330: New source branch for version 2.0.0
+

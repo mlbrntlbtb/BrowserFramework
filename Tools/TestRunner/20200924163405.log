@@ -1,0 +1,5 @@
+2020-09-24 04:34:05 PM| Test Scheduler encountered an unexpected error.
+2020-09-24 04:34:05 PM| CommonLib
+2020-09-24 04:34:05 PM| The type initializer for 'CommonLib.DlkSystem.DlkLogger' threw an exception.
+2020-09-24 04:34:05 PM|    at CommonLib.DlkSystem.DlkLogger.LogInfo(String msg)
+   at SchedulingAgent.Program.Main(String[] args)

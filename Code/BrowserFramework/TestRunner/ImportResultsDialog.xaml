@@ -1,0 +1,17 @@
+﻿<Window x:Class="TestRunner.ImportResultsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Import Test Results"  ResizeMode="NoResize" Height="375" Width="350" >
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="None"/>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical" Margin="5,5,5,5">
+            <Label x:Name="lblVMs" Content="Select VMs to import test results from:"/>
+            <ListBox x:Name="lboxVMs" Height="200"  ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionMode="Extended"/>
+            <Button x:Name="btnImportResults" Margin="0,5,0,5" Content="Import" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle2}" Click="btnImportResults_Click" />
+            <Label x:Name="lblImportStatus" Content="Importing..." Visibility="Collapsed"/>
+            <ProgressBar x:Name="pbImport" Height="25" Visibility="Collapsed" Foreground="#FF9001D3"/>
+        </StackPanel>
+    </Grid>
+</Window>

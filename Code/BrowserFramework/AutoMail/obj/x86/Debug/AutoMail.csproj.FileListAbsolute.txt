@@ -1,0 +1,8 @@
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Debug\AutoMail.exe.config
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Debug\AutoMail.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\bin\Debug\AutoMail.pdb
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Debug\AutoMail.csproj.AssemblyReference.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Debug\AutoMail.csproj.SuggestedBindingRedirects.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Debug\AutoMail.csproj.CoreCompileInputs.cache
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Debug\AutoMail.exe
+C:\Users\Melbourne\Documents\DELTEK\BrowserFramework\Code\BrowserFramework\AutoMail\obj\x86\Debug\AutoMail.pdb

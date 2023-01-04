@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <api host="makv0021" port="3000" endpoint="api/objectstore/control"/>
+</config>

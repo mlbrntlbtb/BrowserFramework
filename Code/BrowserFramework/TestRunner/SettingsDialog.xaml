@@ -1,0 +1,38 @@
+﻿<Window x:Class="TestRunner.SettingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="279" Width="348" WindowStyle="ToolWindow" ResizeMode="NoResize" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner" Closing="Window_Closing">
+    <Grid Height="239">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/DeltekBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="142*" />
+            <ColumnDefinition Width="184*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="202*" />
+            <RowDefinition Height="31" />
+        </Grid.RowDefinitions>
+        <TabControl Height="196" HorizontalAlignment="Left" Margin="8,5,0,0" Name="tabControl1" VerticalAlignment="Top" Width="325" Grid.ColumnSpan="2" Background="#FF90D2FF">
+            <TabItem Header="Data" Name="tabItem1" Background="#FF90D2FF">
+                <Grid>
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="48,9,0,0" Name="txtLocalPath" VerticalAlignment="Top" Width="233" IsReadOnly="True" Background="#FFD4D0C8" />
+                    <Label Content="Root" Height="28" HorizontalAlignment="Left" Margin="6,9,0,0" Name="label1" VerticalAlignment="Top" />
+                    <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="284,9,0,0" Name="btnBrowse" VerticalAlignment="Top" Width="25" Background="SteelBlue" Foreground="White" Click="btnBrowse_Click" />
+                    <GroupBox Header="Source Control" Height="122" HorizontalAlignment="Left" Margin="6,38,0,0" Name="groupBox2" VerticalAlignment="Top" Width="303">
+                        <Grid>
+                            <CheckBox Content="Map to Server" Height="16" HorizontalAlignment="Left" Margin="6,10,0,0" Name="chkMap" VerticalAlignment="Top" Checked="chkMap_Checked" Unchecked="chkMap_Unchecked" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="6,31,0,0" Name="txtServerPath" VerticalAlignment="Top" Width="279" Background="#FFD4D0C8" IsReadOnly="True" />
+                            <Button Content="Get Files" Height="23" HorizontalAlignment="Left" Margin="210,76,0,0" Name="btnGetFiles" VerticalAlignment="Top" Width="75" Background="SteelBlue" Foreground="White" Visibility="Hidden" Click="btnGetFiles_Click" />
+                            <ProgressBar Height="10" HorizontalAlignment="Left" Margin="6,60,0,0" Name="prbBackground" VerticalAlignment="Top" Width="279" IsIndeterminate="False" />
+                            <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="3,71,0,0" Name="lblStatus" VerticalAlignment="Top" FontSize="9" FontStyle="Italic" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="29,3,0,5" Name="btnOK" VerticalAlignment="Center" Width="75" Grid.Row="1" Grid.Column="1" Background="SteelBlue" Foreground="White" Click="btnOK_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="110,3,0,5" Name="btnCancel" VerticalAlignment="Center" Width="75" Grid.Row="1" Grid.Column="1" Background="SteelBlue" Foreground="White" Click="btnCancel_Click" />
+    </Grid>
+</Window>
